@@ -15,6 +15,7 @@
 8.  Latest Section
 9.  Contact
 10.  Footer Style
+11. login form
 -------------------------------------------------------------------*/
 
 html,
@@ -391,7 +392,9 @@ ol {
 }
 
 .header__logo {
-  padding: 30px 0;
+  padding: 30px 12px;
+  width: 192px;
+  height: 23px;
 }
 
 .header__logo a {
@@ -950,13 +953,7 @@ ol {
 }
 
 .product__item:hover .product__item__text a {
-  top: 22px;
   opacity: 1;
-  visibility: visible;
-}
-
-.product__item:hover .product__item__text h6 {
-  opacity: 0;
 }
 
 .product__item:hover .product__item__text .product__color__select {
@@ -967,6 +964,12 @@ ol {
   height: 260px;
   position: relative;
   background-position: center center;
+  transition: 0.5s;
+}
+.product__item__pic:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .product__item__pic .label {
@@ -1045,21 +1048,7 @@ ol {
   position: relative;
 }
 
-.product__item__text a {
-  font-size: 15px;
-  color: #e53637;
-  font-weight: 700;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-}
-
-.product__item__text h6 {
+.product__item__text .product-title {
   color: #111111;
   font-size: 15px;
   font-weight: 600;
@@ -1930,7 +1919,7 @@ ol {
 -----------------------*/
 
 .footer {
-  background: #111111;
+  background: #020202;
   padding-top: 70px;
 }
 
@@ -3882,4 +3871,235 @@ ol {
   .categories__text:before {
     height: 250px;
   }
+}
+
+/* Login form */
+.login-form-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.form-signin {
+  background: white;
+  padding: 50px 50px 0px 50px;
+  min-height: 470px;
+}
+
+.one-line {
+  display: flex;
+}
+
+.forgot {
+  margin-left: auto;
+  color: #279eff;
+}
+.forgot:hover {
+  color: #1f81d2;
+}
+#accountDropdown {
+  display: none;
+}
+#accountDropdown .dropdown-menu {
+  min-width: 7rem;
+  right: -54%;
+}
+
+@media only screen and (max-width: 576px) {
+  .form-signin {
+    min-width: 320px;
+    flex-wrap: wrap;
+    padding: 50px 0px;
+  }
+}
+
+/* not active */
+.nav-pills .pill-1 .nav-link:not(.active) {
+  border: none;
+  color: #6c757d !important;
+  font-weight: 700;
+  transition: width 0.4s;
+}
+
+.nav-pills .pill-2 .nav-link:not(.active) {
+  border: none;
+  color: #6c757d !important;
+  font-weight: 700;
+  transition: width 0.4s;
+}
+
+/* active (faded) */
+.nav-pills .pill-1 .nav-link {
+  background: white !important;
+  border-bottom: 2px solid #e53637;
+  color: #212529 !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav-pills .pill-2 .nav-link {
+  background: white !important;
+  border-bottom: 2px solid #e53637;
+  color: #212529 !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav-pills .pill-1 .nav-link:hover {
+  color: #212529 !important;
+  width: 100%;
+  border-bottom: 2px solid #e53637;
+}
+.nav-pills .pill-2 .nav-link:hover {
+  color: #212529 !important;
+  width: 100%;
+  border-bottom: 2px solid #e53637;
+}
+
+.nav {
+  padding: 0 15px !important;
+}
+.btn-login {
+  background-color: #e53637;
+  color: #fff;
+}
+.btn-login:hover {
+  background-color: #e53637;
+  color: #fff;
+}
+.profile {
+  background: white;
+  padding: 50px 50px 0px 50px;
+  min-height: 270px;
+}
+.profile .label-proflie {
+  color: #000;
+}
+#butDoiMatKhau {
+  color: #86b817;
+}
+#butDoiMatKhau:hover {
+  cursor: pointer;
+}
+/* btn back to top */
+.glow-on-hover {
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: #279eff;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #279eff;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #279eff;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+}
+.btn-square {
+  width: 38px;
+  height: 38px;
+}
+
+.btn-sm-square {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-lg-square {
+  width: 43px;
+  height: 43px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border-radius: 0px;
+}
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 78px;
+  bottom: 38px;
+  z-index: 99;
+  padding-top: 7px;
+}
+.btn-phone {
+  position: fixed;
+  right: 26px;
+  bottom: 100px;
+  z-index: 99;
+}
+.btn-mess {
+  position: fixed;
+  right: 26px;
+  bottom: 40px;
+  z-index: 99;
+}
+
+.btn-lg-contact {
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border-radius: 0px;
 }
