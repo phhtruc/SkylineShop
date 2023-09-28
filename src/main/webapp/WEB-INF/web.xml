@@ -9,12 +9,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- sitemesh filter , để sử dụng được decorators.xml chia giao diện -->
-<<<<<<< HEAD
-	<!-- <filter> <filter-name>sitemesh</filter-name> <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class> 
-		</filter> <filter-mapping> <filter-name>sitemesh</filter-name> <url-pattern>/*</url-pattern> 
-		<dispatcher>REQUEST</dispatcher> <dispatcher>FORWARD</dispatcher> </filter-mapping> -->
-=======
+	
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
@@ -25,7 +20,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
->>>>>>> bce78a4ff7ee99f14e315ffc81d3480c42ddf446
+
 
 	<context-param> <!-- Load, khai báo cho applicationContext.xml -->
 		<param-name>contextConfigLocation</param-name>
