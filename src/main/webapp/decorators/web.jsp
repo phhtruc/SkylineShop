@@ -10,8 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title><dec:title/></title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
     
     <!-- font-awesome -->
     <link
@@ -29,7 +28,7 @@
       crossorigin="anonymous"/>
       
     <!-- Libraries Stylesheet -->
-    <link rel="stylesheet" href="<c:url value='/template/web/lib/animate/animate.min.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/template/lib/animate/animate.min.css'/>"/>
     
     <!-- Css Styles -->
     <link rel="stylesheet" href="<c:url value='/template/web/css/bootstrap.min.css'/>" type="text/css"/>
@@ -40,7 +39,6 @@
     <link rel="stylesheet" href="<c:url value='/template/web/css/owl.carousel.min.css'/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/template/web/css/slicknav.min.css'/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/template/web/css/style.css'/>" type="text/css"/>
-    
   </head>
   <body>
   
