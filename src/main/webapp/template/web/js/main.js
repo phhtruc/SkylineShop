@@ -1,6 +1,8 @@
 "use strict";
 
 (function ($) {
+  //wow library
+  new WOW().init();
   /*------------------
         Preloader
     --------------------*/
@@ -145,10 +147,10 @@
   $("#countdown").countdown(timerdate, function (event) {
     $(this).html(
       event.strftime(
-        "<div class='cd-item'><span>%D</span> <p>Days</p> </div>" +
-          "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>" +
-          "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>" +
-          "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"
+        "<div class='cd-item'><span>%D</span> <p>Ngày</p> </div>" +
+          "<div class='cd-item'><span>%H</span> <p>Giờ</p> </div>" +
+          "<div class='cd-item'><span>%M</span> <p>Phút</p> </div>" +
+          "<div class='cd-item'><span>%S</span> <p>Giây</p> </div>"
       )
     );
   });
@@ -221,3 +223,24 @@
       );
   });
 })(jQuery);
+
+// Back to top button
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 300) {
+    $(".back-to-top").fadeIn("slow");
+  } else {
+    $(".back-to-top").fadeOut("slow");
+  }
+});
+$(".back-to-top").click(function () {
+  $("html, body").animate({ scrollTop: 0 }, 100, "easeInOutExpo");
+  return false;
+});
+//button phone contact
+// contact
+$(document).ready(function () {
+  $("#callButton").on("click", function () {
+    var phoneNumber = "0346713864";
+    window.location.href = "tel:" + phoneNumber;
+  });
+});
