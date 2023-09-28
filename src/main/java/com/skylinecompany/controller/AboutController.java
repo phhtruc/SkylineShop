@@ -12,4 +12,5 @@ public class AboutController {
 		ModelAndView mav = new ModelAndView("web/about");
 		return mav;
 	}
+	
 }
