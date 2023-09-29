@@ -94,29 +94,7 @@
       ><i class="fa-solid fa-arrow-up"></i
     ></a>
 
-<<<<<<< HEAD
-<!-- Search Begin -->
-<div class="search-model">
-	<div class="h-100 d-flex align-items-center justify-content-center">
-		<div class="search-close-switch">+</div>
-		<form class="search-model-form">
-			<input type="text" id="search-input" placeholder="Search here....." />
-		</form>
-	</div>
-</div>
-<!-- Search End -->
-<!-- <!-- Back to Top -->
-<!-- <a href="#!"
-	class="btn btn-lg btn-primary glow-on-hover btn-lg-square rounded-circle back-to-top"><i
-	class="fa-solid fa-arrow-up"></i></a>
 
-<a id="callButton" href="#!"
-	class="btn btn-lg btn-primary glow-on-hover btn-lg-contact rounded-circle btn-phone"><i
-	class="fa-solid fa-phone-volume"></i> </a>
-<a id="callButton" href="#!"
-	class="btn btn-lg btn-primary glow-on-hover btn-lg-contact rounded-circle btn-mess"><i
-	class="fa-brands fa-facebook-messenger"></i> </a> -->
-=======
     <a
       id="callButton"
       href="#!"
@@ -129,4 +107,4 @@
       class="btn btn-lg btn-primary glow-on-hover btn-lg-contact rounded-circle btn-mess"
       ><i class="fa-brands fa-facebook-messenger"></i>
     </a>
->>>>>>> 97100c447bc6a8d0791a92155add8b079cf9aeed
+

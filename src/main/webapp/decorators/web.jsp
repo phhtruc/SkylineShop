@@ -61,4 +61,5 @@
     <script src="<c:url value='/template/web/js/main.js'/>"></script>
     <script src="<c:url value='/template/web/lib/easing/easing.min.js'/>"></script>
     <script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
+    
   </body>
