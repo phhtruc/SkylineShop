@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ShoppingCartController {
 	
-	@RequestMapping(value="/gio-hang", method = RequestMethod.GET)
+	@RequestMapping(value="/shopping-cart", method = RequestMethod.GET)
 	public ModelAndView shopCartPage() {
 		ModelAndView mav = new ModelAndView("web/shopping-cart");
 		return mav;
