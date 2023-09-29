@@ -84,8 +84,8 @@
 	</div>
 </div>
 <!-- Search End -->
-<!-- Back to Top -->
-<a href="#!"
+<!-- <!-- Back to Top -->
+<!-- <a href="#!"
 	class="btn btn-lg btn-primary glow-on-hover btn-lg-square rounded-circle back-to-top"><i
 	class="fa-solid fa-arrow-up"></i></a>
 
@@ -94,4 +94,4 @@
 	class="fa-solid fa-phone-volume"></i> </a>
 <a id="callButton" href="#!"
 	class="btn btn-lg btn-primary glow-on-hover btn-lg-contact rounded-circle btn-mess"><i
-	class="fa-brands fa-facebook-messenger"></i> </a>
+	class="fa-brands fa-facebook-messenger"></i> </a> -->
