@@ -28,7 +28,7 @@
       crossorigin="anonymous"/>
       
     <!-- Libraries Stylesheet -->
-    <link rel="stylesheet" href="<c:url value='/template/lib/animate/animate.min.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/template/web/lib/animate/animate.min.css'/>"/>
     
     <!-- Css Styles -->
     <link rel="stylesheet" href="<c:url value='/template/web/css/bootstrap.min.css'/>" type="text/css"/>
