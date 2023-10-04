@@ -154,7 +154,7 @@
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item wow fadeInUp" data-wow-delay="0.5s">
 									<div class="product__item__pic " data-setbg="">
-										<img class="set-bg" src="${p.image }" />
+										<img class="set-bg" src="<c:url value='/template/web/images/${p.image }'/>"/>
 										<ul class="product__hover">
 											<li><a href="#"><img
 													src="template/web/img/icon/heart.png" alt="" /></a></li>

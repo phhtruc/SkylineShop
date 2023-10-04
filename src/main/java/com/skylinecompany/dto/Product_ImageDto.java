@@ -6,7 +6,7 @@ public class Product_ImageDto {
 	private String product_name;
 	private double price;
 	private String desc;
-	private String brand;
+	private int id_brand;
 	private int id_cate;
 	private String image;
 
@@ -14,14 +14,14 @@ public class Product_ImageDto {
 
 	}
 
-	public Product_ImageDto(int id_product, String product_name, double price, String desc, String brand, int id_cate,
+	public Product_ImageDto(int id_product, String product_name, double price, String desc, int id_brand, int id_cate,
 			String image) {
 		super();
 		this.id_product = id_product;
 		this.product_name = product_name;
 		this.price = price;
 		this.desc = desc;
-		this.brand = brand;
+		this.id_brand = id_brand;
 		this.id_cate = id_cate;
 		this.image = image;
 	}
@@ -58,12 +58,13 @@ public class Product_ImageDto {
 		this.desc = desc;
 	}
 
-	public String getBrand() {
-		return brand;
+
+	public int getId_brand() {
+		return id_brand;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setId_brand(int id_brand) {
+		this.id_brand = id_brand;
 	}
 
 	public int getId_cate() {
