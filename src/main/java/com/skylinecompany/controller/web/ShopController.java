@@ -14,37 +14,50 @@ import com.skylinecompany.service.web.impl.ShopServiceImpl;
 
 @Controller
 public class ShopController {
-	
+
 	@Autowired
 	ShopServiceImpl _shop;
-	
-	@RequestMapping(value="/shop", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public ModelAndView shopPage() {
 		ModelAndView mav = new ModelAndView("web/shop");
 		mav.addObject("product", _shop.findAllProduct_Image());
 		mav.addObject("cate", _shop.findAllCategory());
-		//mav.addObject("brand", _shop.findAllBrand());
+		mav.addObject("brand", _shop.findAllBrand());
 		return mav;
 	}
-	
-    // Lọc theo danh mục
-    @GetMapping("/shop/{id}")
-    public String shopCatePage(@PathVariable int id, Model model) {
-        model.addAttribute("product", _shop.findIdProduct(id));
-        model.addAttribute("cate", _shop.findAllCategory());
-        
-        return "web/shop";
-    }
-    
- // Tìm kiếm
-	/*
-	 * @GetMapping("/shop") public ModelAndView shopSearchPage(@RequestParam(name =
-	 * "search", required = false) String searchQuery) { ModelAndView mav = new
-	 * ModelAndView("web/shop"); mav.addObject("product",
-	 * _shop.findProductByName(searchQuery)); return mav; }
-	 */
-	
-	@RequestMapping(value="/shop-details", method = RequestMethod.GET)
+
+	// Lọc theo danh mục
+	@GetMapping("/shop/category/{name}")
+	public String shopCatePage(@PathVariable String name, Model model) {
+		model.addAttribute("product", _shop.findIdProduct(name));
+		model.addAttribute("cate", _shop.findAllCategory());
+		model.addAttribute("brand", _shop.findAllBrand());
+		return "web/shop";
+	}
+
+	// Lọc theo brand
+
+	@GetMapping("/shop/brand/{nameBrand}")
+	public String shopBrandPage(@PathVariable String nameBrand, Model model) {
+		model.addAttribute("product", _shop.findProductByNameBrand(nameBrand));
+		model.addAttribute("cate", _shop.findAllCategory());
+		model.addAttribute("brand", _shop.findAllBrand());
+		return "web/shop";
+	}
+
+	// Tìm kiếm
+
+	@GetMapping("/shop/search")
+	public ModelAndView shopSearchPage(@RequestParam(name = "search") String searchQuery, Model model) {
+	    ModelAndView mav = new ModelAndView("web/shop");
+	    mav.addObject("product", _shop.findProductBySearchName(searchQuery));
+	    model.addAttribute("cate", _shop.findAllCategory());
+	    model.addAttribute("brand", _shop.findAllBrand());
+	    return mav;
+	}
+
+	@RequestMapping(value = "/shop-details", method = RequestMethod.GET)
 	public ModelAndView shopDetailsPage() {
 		ModelAndView mav = new ModelAndView("web/shop-details");
 		return mav;

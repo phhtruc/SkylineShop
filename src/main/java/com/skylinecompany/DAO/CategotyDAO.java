@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.skylinecompany.entity.CategoryEntity;
-import com.skylinecompany.entity.ProductEntity;
 import com.skylinecompany.mapper.CategoryMapper;
 
 @Repository

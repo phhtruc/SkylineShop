@@ -16,7 +16,7 @@ public class Product_ImageMapper implements RowMapper<Product_ImageDto> {
 		p.setProduct_name(rs.getString("product_name"));
 		p.setPrice(rs.getDouble("price"));
 		p.setDesc(rs.getString("desc"));
-		p.setBrand(rs.getString("brand"));
+		p.setId_brand(rs.getInt("id_brand"));
 		p.setId_cate(rs.getInt("id_cate"));
 		p.setImage(rs.getString("image"));
 		return p;
