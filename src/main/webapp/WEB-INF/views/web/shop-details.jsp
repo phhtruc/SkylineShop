@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -60,9 +61,9 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="product__details__breadcrumb">
-                <a href="./index.html">Trang Chủ</a>
-                <a href="./shop.html">Shop</a>
-                <span>Product Details</span>
+                <a href="<c:url value='/trang-chu'/>">Trang Chủ</a>
+                <a href="<c:url value='/shop'/>">Cửa Hàng</a>
+                <span>Chi Tiết Sản Phẩm</span>
               </div>
             </div>
           </div>

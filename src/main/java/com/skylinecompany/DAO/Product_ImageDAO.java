@@ -36,8 +36,13 @@ public class Product_ImageDAO {
 		return list;
 	}
 	
+	//Lọc sản phẩm theo category
+	private int findCategoryIdByName(String name) {
+	    String sql = "SELECT id_cate FROM Category WHERE cate_name = ?";
+	    return _jdbcTemplate.queryForObject(sql, Integer.class, name);
+	}
 	
-	private String SqlString1(int cate){
+	private String SqlString2(){
 		StringBuffer  varname1 = new StringBuffer();
 		varname1.append("SELECT p.id_product, p.product_name, p.price, p.[desc], ");
 		varname1.append("p.id_brand, p.id_cate, ( ");
@@ -47,10 +52,34 @@ public class Product_ImageDAO {
 		varname1.append("WHERE p.id_cate = ?;");
 		return varname1.toString();
 	}
-	public List<Product_ImageDto> findIdProduct(int cate){
-		List<Product_ImageDto> list = _jdbcTemplate.query(SqlString1(cate), new Object[]{cate}, new Product_ImageMapper()); //new Object[]{cate} sẽ truyền vào ?
+	public List<Product_ImageDto> findIdProduct(String name){
+		int categoryId = findCategoryIdByName(name);
+		List<Product_ImageDto> list = _jdbcTemplate.query(SqlString2(), new Object[]{categoryId}, new Product_ImageMapper()); //new Object[]{cate} sẽ truyền vào ?
 		return list;
 	}
+	
+	private int findIdBrandByName(String brand) {
+		String sql = "select id_brand from Brand where brand_name = ?";
+		return _jdbcTemplate.queryForObject(sql, Integer.class, brand);
+	}
+	
+	private String SqlString1(){
+		StringBuffer  varname1 = new StringBuffer();
+		varname1.append("SELECT p.id_product, p.product_name, p.price, p.[desc], ");
+		varname1.append("p.id_brand, p.id_cate, ( ");
+		varname1.append("SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product ");
+		varname1.append(") AS [image] ");
+		varname1.append("FROM Product p ");
+		varname1.append("WHERE p.id_brand = ?;");
+		return varname1.toString();
+	}
+	public List<Product_ImageDto> findProductByNameBrand(String brand){
+		int BrandId = findIdBrandByName(brand);
+		List<Product_ImageDto> list = _jdbcTemplate.query(SqlString1(), new Object[]{BrandId}, new Product_ImageMapper()); //new Object[]{cate} sẽ truyền vào ?
+		return list;
+	}
+	
+	
 	
 	
 }

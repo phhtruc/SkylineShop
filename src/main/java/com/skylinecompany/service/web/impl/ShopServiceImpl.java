@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skylinecompany.DAO.BrandDtoDAO;
+import com.skylinecompany.DAO.BrandDAO;
 import com.skylinecompany.DAO.CategotyDAO;
 import com.skylinecompany.DAO.Product_ImageDAO;
-import com.skylinecompany.dto.BrandDto;
+import com.skylinecompany.DAO.SearchDAO;
 import com.skylinecompany.dto.Product_ImageDto;
+import com.skylinecompany.entity.BrandEntity;
 import com.skylinecompany.entity.CategoryEntity;
 import com.skylinecompany.service.web.IShopService;
 
@@ -23,7 +24,10 @@ public class ShopServiceImpl implements IShopService{
 	CategotyDAO cate;
 	
 	@Autowired
-	BrandDtoDAO pro;
+	BrandDAO b;
+	
+	@Autowired
+	SearchDAO s;
 
 	@Override
 	public List<Product_ImageDto> findAllProduct_Image() {
@@ -38,16 +42,29 @@ public class ShopServiceImpl implements IShopService{
 	}
 
 	@Override
-	public List<Product_ImageDto> findIdProduct(int cate) {
+	public List<Product_ImageDto> findIdProduct(String name) {
 		// TODO Auto-generated method stub
-		return proIma.findIdProduct(cate);
+		return proIma.findIdProduct(name);
 	}
 
 	@Override
-	public List<BrandDto> findAllBrand() {
+	public List<BrandEntity> findAllBrand() {
 		// TODO Auto-generated method stub
-		return pro.findAllBrand();
+		return b.findAllBrand();
 	}
+
+	@Override
+	public List<Product_ImageDto> findProductByNameBrand(String brand) {
+		// TODO Auto-generated method stub
+		return proIma.findProductByNameBrand(brand);
+	}
+
+	@Override
+	public List<Product_ImageDto> findProductBySearchName(String name) {
+		// TODO Auto-generated method stub
+		return s.findProductBySearchName(name);
+	}
+
 
 
 	
