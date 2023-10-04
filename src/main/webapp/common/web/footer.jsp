@@ -8,14 +8,14 @@
             <div class="footer__about">
               <div class="footer__logo">
                 <a href="index.html"
-                  ><img src="template/web/img/logo-footer-sky.png" alt=""
+                  ><img src="<c:url value ='/template/web/img/logo-footer-sky.png'/>" alt=""
                 /></a>
               </div>
               <p>
                 Khách hàng là trung tâm của mô hình kinh doanh độc đáo của chúng
                 tôi, bao gồm cả thiết kế.
               </p>
-              <a href="#"><img src="template/web/img/payment.png" alt="" /></a>
+              <a href="#"><img src="<c:url value ='/template/web/img/payment.png'/>" alt="" /></a>
             </div>
           </div>
           <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
