@@ -17,7 +17,7 @@ public class Product_ImageDAO {
 	
 	private String SqlString(){
 		StringBuffer  sql = new StringBuffer();
-		sql.append("SELECT ");
+		sql.append("SELECT");
 		sql.append("    p.id_product, ");
 		sql.append("    p.product_name, ");
 		sql.append("    p.price, ");

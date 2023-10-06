@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 import com.skylinecompany.DAO.BestSellingProductDAO;
 import com.skylinecompany.DAO.HotSalesDAO;
 import com.skylinecompany.DAO.NewArrivalsDAO;
-import com.skylinecompany.DAO.Product_ImageDAO;
 import com.skylinecompany.dto.BestSellingProductDto;
 import com.skylinecompany.dto.HotSalesDto;
 import com.skylinecompany.dto.NewArrivalsDto;
-import com.skylinecompany.dto.Product_ImageDto;
 import com.skylinecompany.service.web.IHomeService;
 
 @Service
@@ -27,8 +25,6 @@ public class HomeServiceImpl implements IHomeService{
 	@Autowired
 	BestSellingProductDAO best;
 	
-	@Autowired
-	Product_ImageDAO d;
 
 	@Override
 	public List<HotSalesDto> findHotSalesProduct() {
@@ -48,10 +44,5 @@ public class HomeServiceImpl implements IHomeService{
 		return best.findBestSellingProduct();
 	}
 
-	@Override
-	public List<Product_ImageDto> findAllProduct_Image() {
-		// TODO Auto-generated method stub
-		return d.findAllProduct_Image();
-	}
 
 }

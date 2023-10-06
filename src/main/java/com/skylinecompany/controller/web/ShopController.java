@@ -57,9 +57,5 @@ public class ShopController {
 	    return mav;
 	}
 
-	@RequestMapping(value = "/shop-details", method = RequestMethod.GET)
-	public ModelAndView shopDetailsPage() {
-		ModelAndView mav = new ModelAndView("web/shop-details");
-		return mav;
-	}
+	
 }

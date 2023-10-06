@@ -11,11 +11,10 @@ import com.skylinecompany.mapper.BestSellingProductMapper;
 public class BestSellingProductDAO extends BaseDAO{
 	
 	public List<BestSellingProductDto> findBestSellingProduct(){
-		String sql = "SELECT  p.id_product, p.product_name, p.price,(\r\n"
+		String sql = "SELECT  TOP 8 p.id_product, p.product_name, p.price,(\r\n"
 				+ "           SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product\r\n"
 				+ "       ) AS [image]\r\n"
-				+ "FROM Product p \r\n"
-				+ "WHERE p.price > 800000";
+				+ "FROM Product p \r\n";
 		List<BestSellingProductDto> list = _jdbcTemplate.query(sql, new BestSellingProductMapper());
 		return list;
 	}
