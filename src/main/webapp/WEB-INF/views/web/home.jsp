@@ -237,8 +237,9 @@ pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
         <div class="row product__filter">
           <c:forEach items="${best}" var="b">
             <div
-              class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix ${b.id_product % 2 == 0? 'hot-sale' : ''} ${b.id_product % 3 == 0 && b.id_product % 2 != 0? 'new-arrivals' : ''}"
-            >
+              class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix
+               ${(b.id_product % 2 == 0)? 'hot-sale' : 'new-arrivals'}
+               ">
               <div class="product__item wow fadeInUpBig" data-wow-delay="0.6s">
                 <div class="product__item__pic" data-setbg="">
                   <a href="<c:url value='/shop-details/${b.product_name}'/>">
