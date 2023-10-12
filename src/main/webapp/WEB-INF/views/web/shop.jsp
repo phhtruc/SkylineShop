@@ -93,7 +93,7 @@
 												<ul class="nice-scroll">
 													<c:forEach items="${cate}" var="c">
 														<li><a
-															href="<c:url value='/shop/category/${c.cate_name}'/>">${c.cate_name}</a></li>
+															href="<c:url value='/shop?category=${c.cate_name}'/>">${c.cate_name}</a></li>
 													</c:forEach>
 												</ul>
 											</div>
@@ -112,7 +112,7 @@
 												<ul>
 													<c:forEach items="${brand}" var="b">
 														<li><a
-															href="<c:url value='/shop/brand/${b.brand_name}'/>">${b.brand_name}</a></li>
+															href="<c:url value='/shop?brand=${b.brand_name}'/>">${b.brand_name}</a></li>
 													</c:forEach>
 												</ul>
 											</div>
@@ -134,9 +134,10 @@
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="shop__product__option__right">
 									<p>Sắp xếp theo giá:</p>
-									<select>
-										<option value="">Thấp đến Cao</option>
-										<option value="">Cao đến Thấp</option>
+									<select name="sort">
+										<option value="">Giá</option>
+										<option value="asc">Thấp đến Cao</option>
+										<option value="desc">Cao đến Thấp</option>
 									</select>
 								</div>
 							</div>
@@ -148,13 +149,14 @@
 								<p>Không có sản phẩm nào được tìm thấy</p>
 							</c:when>
 							<c:otherwise>
-								<c:forEach items="${product}" var="p">
+								<c:forEach items="${product}" var="p" varStatus="loop">
 									<div class="col-lg-4 col-md-6 col-sm-6">
 										<div class="product__item wow fadeInUp" data-wow-delay="0.5s">
 											<div class="product__item__pic " data-setbg="">
-												<a href="<c:url value='/shop-details/${p.product_name}'/>"> <img
-													class="set-bg"
-													src="<c:url value='/template/web/images/${p.image }'/>" /></a>
+												<a href="<c:url value='/shop-details/${p.product_name}'/>">
+													<img class="set-bg"
+													src="<c:url value='/template/web/images/${p.image }'/>" />
+												</a>
 												<ul class="product__hover">
 													<li><a href="#"><img
 															src="<c:url value='/template/web/img/icon/heart.png'/>"
@@ -194,8 +196,56 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="product__pagination">
-								<a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a>
-								<span>...</span> <a href="#">21</a>
+								<c:forEach var="item" begin="1" end="${paginate.totalPage}"
+									varStatus="loop">
+									<c:set var="categoryParam" value="${param.category}" />
+									<c:set var="brandParam" value="${param.brand}" />
+									<c:choose>
+										<c:when test="${param.category != null}">
+											<c:if test="${loop.index == paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                								<c:param name='category' value="${categoryParam}" />
+                								<c:param name='page' value="${loop.index}" />
+            									</c:url>"
+													class="active">${loop.index}</a>
+											</c:if>
+											<c:if test="${loop.index != paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                								<c:param name='category' value="${categoryParam}"/>
+                								<c:param name='page' value="${loop.index}" />
+            									</c:url>">${loop.index}</a>
+											</c:if>
+										</c:when>
+										<c:when test="${param.brand != null}">
+											<c:if test="${loop.index == paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                        							<c:param name='brand' value="${brandParam}" />
+                        							<c:param name='page' value="${loop.index}" />
+                    								</c:url>"
+													class="active">${loop.index}</a>
+											</c:if>
+											<c:if test="${loop.index != paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                        						<c:param name='brand' value="${brandParam}" />
+                        						<c:param name='page' value="${loop.index}" />
+                    							</c:url>">${loop.index}</a>
+											</c:if>
+										</c:when>
+										<c:otherwise>
+											<c:if test="${loop.index == paginate.currentPage}">
+												<a href="<c:url value='/shop?page=${loop.index}'/>"
+													class="active">${loop.index}</a>
+											</c:if>
+											<c:if test="${loop.index != paginate.currentPage}">
+												<a href="<c:url value='/shop?page=${loop.index}'/>">${loop.index}</a>
+											</c:if>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
