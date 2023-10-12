@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Skyline - Sản phẩm</title>
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -45,7 +46,6 @@
 	type="text/css" />
 <link rel="stylesheet" href="template/web/css/style.css" type="text/css" />
 </head>
-
 <body>
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-option">
@@ -64,7 +64,6 @@
 		</div>
 	</section>
 	<!-- Breadcrumb Section End -->
-
 	<!-- Shop Section Begin -->
 	<section class="shop spad">
 		<div class="container">
@@ -273,5 +272,3 @@
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
 </body>
 </html>
-
-

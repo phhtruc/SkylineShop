@@ -58,7 +58,6 @@
 </head>
 
 <body>
-
 	<!-- Shop Details Section Begin -->
 	<section class="shop-details">
 		<div class="product__details__pic">
