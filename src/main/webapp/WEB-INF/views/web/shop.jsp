@@ -127,7 +127,7 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="shop__product__option__left">
-									<p>Hiển thị 1–12 trong 126 kết quả</p>
+									<p>Hiển thị ${paginate.start+1} - ${paginate.end} trong ${totalData } kết quả</p>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">

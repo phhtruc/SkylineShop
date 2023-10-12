@@ -94,7 +94,6 @@
 						<li><a href="<c:url value='/about'/>">Pages</a>
 							<ul class="dropdown">
 								<li><a href="<c:url value='/about'/>">Về chúng tôi</a></li>
-								<li><a href="<c:url value='/shop-details'/>">Chi tiết sản phẩm</a></li>
 								<li><a href="<c:url value='/shopping-cart'/>">Giỏ hàng</a></li>
 								<li><a href="<c:url value='/checkout'/>">Thanh toán</a></li>
 								<li><a href="<c:url value='/blog-details'/>">Chi tiết Blog</a></li>

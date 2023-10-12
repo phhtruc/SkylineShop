@@ -144,13 +144,8 @@
 								<h5>
 									<span>Guaranteed Safe Checkout</span>
 								</h5>
-								<img src="template/web/img/shop-details/details-payment.png"
+								<img src=<c:url value="/template/web/img/shop-details/details-payment.png"/>
 									alt="" />
-								<ul>
-									<li><span>SKU:</span> 3812912</li>
-									<li><span>Categories:</span> Clothes</li>
-									<li><span>Tag:</span> Clothes, Skin, Body</li>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -321,8 +316,6 @@
 							</div>
 							<div class="product__item__text">
 								<a href="<c:url value='/shop-details/${p.product_name}'/>"><h6>${p.product_name}</h6></a>
-								<a href="#" class="add-cart"><i
-									class="fa-solid fa-cart-plus"></i>Thêm vào giỏ hàng</a>
 								<div class="rating">
 									<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 										class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i

@@ -39,8 +39,7 @@ public class ShopController {
 		mav.addObject("paginate", paginate);
 		mav.addObject("cate", _shop.findAllCategory());
 		mav.addObject("brand", _shop.findAllBrand());
-		mav.addObject("sort", sort);
-		System.out.println("Sort parameter: " + sort);
+		mav.addObject("totalData", totalData);
 		return mav;
 	}
 

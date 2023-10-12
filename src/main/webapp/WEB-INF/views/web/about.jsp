@@ -65,7 +65,8 @@
 					<div class="breadcrumb__text">
 						<h4>Về Chúng Tôi</h4>
 						<div class="breadcrumb__links">
-							<a href="<c:url value='/trang-chu'/>">Trang Chủ</a> <span>Về Chúng Tôi</span>
+							<a href="<c:url value='/trang-chu'/>">Trang Chủ</a> <span>Về
+								Chúng Tôi</span>
 						</div>
 					</div>
 				</div>
@@ -87,26 +88,26 @@
 			<div class="row">
 				<div class="col-lg-4 col-md-4 col-sm-6">
 					<div class="about__item">
-						<h4>Who We Are ?</h4>
-						<p>Contextual advertising programs sometimes have strict
-							policies that need to be adhered too. Let’s take Google as an
-							example.</p>
+						<h4>Chúng tôi là ai ?</h4>
+						<p>Các chương trình quảng cáo theo ngữ cảnh đôi khi cũng có
+							những chính sách nghiêm ngặt cần được tuân thủ. Hãy lấy Google
+							làm ví dụ.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6">
 					<div class="about__item">
-						<h4>Who We Do ?</h4>
-						<p>In this digital generation where information can be easily
-							obtained within seconds, business cards still have retained their
-							importance.</p>
+						<h4>Chúng tôi làm gì ?</h4>
+						<p>Trong thế hệ kỹ thuật số này, nơi có thể dễ dàng lấy được
+							thông tin trong vòng vài giây, danh thiếp vẫn giữ được tầm quan
+							trọng của chúng.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6">
 					<div class="about__item">
-						<h4>Why Choose Us</h4>
-						<p>A two or three storey house is the ideal way to maximise
-							the piece of earth on which our home sits, but for older or
-							infirm people.</p>
+						<h4>Tại sao nên chọn chúng tôi</h4>
+						<p>Một ngôi nhà hai hoặc ba tầng là cách lý tưởng để tối đa
+							hóa mảnh đất nơi có nhà của chúng tôi, nhưng dành cho người già
+							hoặc ốm yếu mọi người.</p>
 					</div>
 				</div>
 			</div>
@@ -121,9 +122,9 @@
 				<div class="col-lg-6 p-0">
 					<div class="testimonial__text">
 						<span class="icon_quotations"></span>
-						<p>“Going out after work? Take your butane curling iron with
-							you to the office, heat it up, style your hair before you leave
-							the office and you won’t have to make a trip back home.”</p>
+						<p>“Đi ra ngoài sau giờ làm việc? Mang theo máy uốn tóc butan
+							để văn phòng, sưởi ấm, tạo kiểu tóc trước khi rời khỏi văn phòng
+							văn phòng và bạn sẽ không phải quay về nhà nữa.”</p>
 						<div class="testimonial__author">
 							<div class="testimonial__author__pic">
 								<img src="template/web/img/about/testimonial-author.jpg" alt="" />
@@ -153,7 +154,7 @@
 						<div class="counter__item__number">
 							<h2 class="cn_num">102</h2>
 						</div>
-						<span>Our <br />Clients
+						<span>Khách hàng <br />của chúng tôi
 						</span>
 					</div>
 				</div>
@@ -162,7 +163,7 @@
 						<div class="counter__item__number">
 							<h2 class="cn_num">30</h2>
 						</div>
-						<span>Total <br />Categories
+						<span>Tổng số <br />danh mục
 						</span>
 					</div>
 				</div>
@@ -171,7 +172,7 @@
 						<div class="counter__item__number">
 							<h2 class="cn_num">102</h2>
 						</div>
-						<span>In <br />Country
+						<span>Trong <br />nước
 						</span>
 					</div>
 				</div>
@@ -181,7 +182,7 @@
 							<h2 class="cn_num">98</h2>
 							<strong>%</strong>
 						</div>
-						<span>Happy <br />Customer
+						<span>Khách hàng <br />hài lòng
 						</span>
 					</div>
 				</div>
@@ -196,8 +197,8 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<span>Our Team</span>
-						<h2>Meet Our Team</h2>
+						<span>Đội của chúng tôi</span>
+						<h2>Hãy gặp gỡ đội của chúng tôi</h2>
 					</div>
 				</div>
 			</div>
@@ -205,29 +206,52 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="team__item">
 						<img src="template/web/img/about/team-1.jpg" alt="" />
-						<h4>John Smith</h4>
+						<h4>Trương Văn Lâm</h4>
 						<span>Fashion Design</span>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="team__item">
 						<img src="template/web/img/about/team-2.jpg" alt="" />
-						<h4>Christine Wise</h4>
+						<h4>Trần Công Quang Phú</h4>
 						<span>C.E.O</span>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="team__item">
 						<img src="template/web/img/about/team-3.jpg" alt="" />
-						<h4>Sean Robbins</h4>
+						<h4>Lê Phước Đức</h4>
 						<span>Manager</span>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="team__item">
 						<img src="template/web/img/about/team-4.jpg" alt="" />
-						<h4>Lucy Myers</h4>
+						<h4>Phạm Thanh Trúc</h4>
 						<span>Delivery</span>
+					</div>
+				</div>
+				<div class="row d-flex justify-content-center">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="team__item">
+							<img src="img/about/team-1.jpg" alt="" />
+							<h4>Trần Văn Lượng</h4>
+							<span>Fashion Design</span>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="team__item">
+							<img src="img/about/team-1.jpg" alt="" />
+							<h4>Phan Lê Văn Minh</h4>
+							<span>Fashion Design</span>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="team__item">
+							<img src="img/about/team-1.jpg" alt="" />
+							<h4>Phạm Văn Bảo</h4>
+							<span>Fashion Design</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -241,8 +265,8 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<span>Partner</span>
-						<h2>Happy Clients</h2>
+						<span>Nhà hợp tác</span>
+						<h2>Các khách hàng hài lòng</h2>
 					</div>
 				</div>
 			</div>
