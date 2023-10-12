@@ -147,12 +147,10 @@
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item wow fadeInUp" data-wow-delay="0.5s">
 									<div class="product__item__pic " data-setbg="">
-<<<<<<< HEAD
-										<img class="set-bg" src="<c:url value='/template/web/images/${p.image }'/>"/>
-=======
+
 										<img class="set-bg"
 											src="<c:url value='/template/web/images/${p.image }'/>" />
->>>>>>> 443d3d5d6db66f93e5fe6a2b4bd99697d9e72641
+
 										<ul class="product__hover">
 											<li><a href="#"><img
 													src="template/web/img/icon/heart.png" alt="" /></a></li>
