@@ -20,7 +20,6 @@ public class HomeController {
 		mav.addObject("hotSale", h.findHotSalesProduct());
 		mav.addObject("newArrivals", h.findNewArricalsProduct());
 		mav.addObject("best", h.findBestSellingProduct());
-		mav.addObject("product", h.findAllProduct_Image());
 		return mav;
 	}
 	

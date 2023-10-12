@@ -19,15 +19,24 @@ public interface IShopService {
 	public List<CategoryEntity> findAllCategory();
 	
 	@Autowired
-	public List<Product_ImageDto> findIdProduct(String cate);
-	
-	@Autowired
 	public List<BrandEntity> findAllBrand();
 	
 	@Autowired
-	public List<Product_ImageDto> findProductByNameBrand(String brand);
+	public List<Product_ImageDto> findAllProductByNameCategory(String cate);
+	
+	@Autowired
+	public List<Product_ImageDto> findAllProductByNameBrand(String brand);
 	
 	@Autowired
 	public List<Product_ImageDto> findProductBySearchName(String name);
+	
+	@Autowired
+	public List<Product_ImageDto> findProductByPrice(String sort);
+	
+	@Autowired
+	public List<Product_ImageDto> findProduct(String cate, String brand, String sort);
+	
+	@Autowired
+	public List<Product_ImageDto> GetDataProductsPaginate(String cate, String brand, String sort, int start, int totalPage);
 
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.skylinecompany.dto.BestSellingProductDto;
 import com.skylinecompany.dto.HotSalesDto;
 import com.skylinecompany.dto.NewArrivalsDto;
-import com.skylinecompany.dto.Product_ImageDto;
 
 @Service
 public interface IHomeService {
@@ -22,6 +21,4 @@ public interface IHomeService {
 	@Autowired
 	public List<BestSellingProductDto> findBestSellingProduct();
 	
-	@Autowired
-	public List<Product_ImageDto> findAllProduct_Image();
 }

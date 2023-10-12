@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Skyline - Sản phẩm</title>
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -45,7 +46,6 @@
 	type="text/css" />
 <link rel="stylesheet" href="template/web/css/style.css" type="text/css" />
 </head>
-
 <body>
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-option">
@@ -55,7 +55,8 @@
 					<div class="breadcrumb__text">
 						<h4>Cửa Hàng</h4>
 						<div class="breadcrumb__links">
-							<a href="<c:url value='/trang-chu'/>">Trang Chủ</a> <span>Cửa Hàng</span>
+							<a href="<c:url value='/trang-chu'/>">Trang Chủ</a> <span>Cửa
+								Hàng</span>
 						</div>
 					</div>
 				</div>
@@ -63,7 +64,6 @@
 		</div>
 	</section>
 	<!-- Breadcrumb Section End -->
-
 	<!-- Shop Section Begin -->
 	<section class="shop spad">
 		<div class="container">
@@ -92,7 +92,7 @@
 												<ul class="nice-scroll">
 													<c:forEach items="${cate}" var="c">
 														<li><a
-															href="<c:url value='/shop/category/${c.cate_name}'/>">${c.cate_name}</a></li>
+															href="<c:url value='/shop?category=${c.cate_name}'/>">${c.cate_name}</a></li>
 													</c:forEach>
 												</ul>
 											</div>
@@ -111,7 +111,7 @@
 												<ul>
 													<c:forEach items="${brand}" var="b">
 														<li><a
-															href="<c:url value='/shop/brand/${b.brand_name}'/>">${b.brand_name}</a></li>
+															href="<c:url value='/shop?brand=${b.brand_name}'/>">${b.brand_name}</a></li>
 													</c:forEach>
 												</ul>
 											</div>
@@ -127,22 +127,23 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="shop__product__option__left">
-									<p>Hiển thị 1–12 trong 126 kết quả</p>
+									<p>Hiển thị ${paginate.start+1} - ${paginate.end} trong ${totalData } kết quả</p>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="shop__product__option__right">
 									<p>Sắp xếp theo giá:</p>
-									<select>
-										<option value="">Thấp đến Cao</option>
-										<option value="">$0 - $55</option>
-										<option value="">$55 - $100</option>
+									<select name="sort">
+										<option value="">Giá</option>
+										<option value="asc">Thấp đến Cao</option>
+										<option value="desc">Cao đến Thấp</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row">
+<<<<<<< HEAD
 						<c:forEach items="${product}" var="p">
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item wow fadeInUp" data-wow-delay="0.5s">
@@ -165,27 +166,110 @@
 									</div>
 									<div class="product__item__text">
 										<a class="product-title" href="shop-details.html"><h6>${p.product_name}</h6></a>
+=======
+						<c:choose>
+							<c:when test="${empty product }">
+								<p>Không có sản phẩm nào được tìm thấy</p>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${product}" var="p" varStatus="loop">
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="product__item wow fadeInUp" data-wow-delay="0.5s">
+											<div class="product__item__pic " data-setbg="">
+												<a href="<c:url value='/shop-details/${p.product_name}'/>">
+													<img class="set-bg"
+													src="<c:url value='/template/web/images/${p.image }'/>" />
+												</a>
+												<ul class="product__hover">
+													<li><a href="#"><img
+															src="<c:url value='/template/web/img/icon/heart.png'/>"
+															alt="" /></a></li>
+													<li><a href="#"><img
+															src="<c:url value='/template/web/img/icon/compare.png'/>"
+															alt="" /> <span>Compare</span></a></li>
+													<li><a href="#"><img
+															src="<c:url value='/template/web/img/icon/search.png'/>"
+															alt="" /></a></li>
+													<li><a href="#"><img
+															src="<c:url value='/template/web/img/icon/cart.png'/>"
+															alt="" /></a></li>
+												</ul>
+											</div>
+											<div class="product__item__text">
+												<a class="product-title"
+													href="<c:url value='/shop-details/${p.product_name}'/>"><h6>${p.product_name}</h6></a>
+>>>>>>> e3e2936bb0b84a71d5c3f65ac4d2fd1772876bf2
 
-										<div class="rating">
-											<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-												class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-												class="fa fa-star-o"></i>
+												<div class="rating">
+													<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+														class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+														class="fa fa-star-o"></i>
+												</div>
+												<h5>
+													<fmt:formatNumber type="number" groupingUsed="true"
+														value="${p.price}" />
+													VND
+												</h5>
+											</div>
 										</div>
-										<h5>
-											<fmt:formatNumber type="number" groupingUsed="true"
-												value="${p.price}" />
-											VND
-										</h5>
 									</div>
-								</div>
-							</div>
-						</c:forEach>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="product__pagination">
-								<a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a>
-								<span>...</span> <a href="#">21</a>
+								<c:forEach var="item" begin="1" end="${paginate.totalPage}"
+									varStatus="loop">
+									<c:set var="categoryParam" value="${param.category}" />
+									<c:set var="brandParam" value="${param.brand}" />
+									<c:choose>
+										<c:when test="${param.category != null}">
+											<c:if test="${loop.index == paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                								<c:param name='category' value="${categoryParam}" />
+                								<c:param name='page' value="${loop.index}" />
+            									</c:url>"
+													class="active">${loop.index}</a>
+											</c:if>
+											<c:if test="${loop.index != paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                								<c:param name='category' value="${categoryParam}"/>
+                								<c:param name='page' value="${loop.index}" />
+            									</c:url>">${loop.index}</a>
+											</c:if>
+										</c:when>
+										<c:when test="${param.brand != null}">
+											<c:if test="${loop.index == paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                        							<c:param name='brand' value="${brandParam}" />
+                        							<c:param name='page' value="${loop.index}" />
+                    								</c:url>"
+													class="active">${loop.index}</a>
+											</c:if>
+											<c:if test="${loop.index != paginate.currentPage}">
+												<a
+													href="<c:url value='/shop'>
+                        						<c:param name='brand' value="${brandParam}" />
+                        						<c:param name='page' value="${loop.index}" />
+                    							</c:url>">${loop.index}</a>
+											</c:if>
+										</c:when>
+										<c:otherwise>
+											<c:if test="${loop.index == paginate.currentPage}">
+												<a href="<c:url value='/shop?page=${loop.index}'/>"
+													class="active">${loop.index}</a>
+											</c:if>
+											<c:if test="${loop.index != paginate.currentPage}">
+												<a href="<c:url value='/shop?page=${loop.index}'/>">${loop.index}</a>
+											</c:if>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -213,5 +297,3 @@
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
 </body>
 </html>
-
-

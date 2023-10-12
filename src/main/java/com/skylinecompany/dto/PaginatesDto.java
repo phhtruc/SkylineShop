@@ -7,6 +7,10 @@ public class PaginatesDto {
 	private int end;
 	private int totalPage;
 	
+	public PaginatesDto() {
+		
+	}
+	
 	public PaginatesDto(int currentPage, int limit, int start, int end, int totalPage) {
 		super();
 	}

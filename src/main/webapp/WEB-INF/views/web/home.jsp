@@ -30,21 +30,22 @@
 <link href="template/web/lib/animate/animate.min.css" rel="stylesheet" />
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="template/web/css/bootstrap.min.css"
+<link rel="stylesheet" href="/template/web/css/bootstrap.min.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/font-awesome.min.css"
+<link rel="stylesheet" href="/template/web/css/font-awesome.min.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/elegant-icons.css"
+<link rel="stylesheet" href="/template/web/css/elegant-icons.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/magnific-popup.css"
+<link rel="stylesheet" href="/template/web/css/magnific-popup.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/nice-select.css"
+<link rel="stylesheet" href="/template/web/css/nice-select.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/owl.carousel.min.css"
+<link rel="stylesheet" href="/template/web/css/owl.carousel.min.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/slicknav.min.css"
+<link rel="stylesheet" href="/template/web/css/slicknav.min.css"
 	type="text/css" />
-<link rel="stylesheet" href="template/web/css/style.css" type="text/css" />
+<link rel="stylesheet" href="/template/web/css/style.css"
+	type="text/css" />
 </head>
 
 <body>
@@ -69,8 +70,10 @@
 									chuyên tạo ra những sản phẩm thiết yếu sang trọng. Được xây
 									dựng có đạo đức với cam kết vững chắc về chất lượng vượt trội.
 								</p>
-								<a href="shop.html" class="primary-btn wow fadeInUp"
-									data-wow-delay="1.8s">Mua ngay <span class="arrow_right"></span></a>
+								<a href="<c:url value='/shop'/>"
+									class="primary-btn wow fadeInUp" data-wow-delay="1.8s">Mua
+									ngay <span class="arrow_right"></span>
+								</a>
 								<div class="hero__social">
 									<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
 										class="fa fa-twitter"></i></a> <a href="#"><i
@@ -96,8 +99,10 @@
 									chuyên tạo ra những sản phẩm thiết yếu sang trọng. Được xây
 									dựng có đạo đức với cam kết vững chắc về chất lượng vượt trội.
 								</p>
-								<a href="shop.html" class="primary-btn wow fadeInUp"
-									data-wow-delay="1.8s">Mua ngay <span class="arrow_right"></span></a>
+								<a href="<c:url value='/shop'/>"
+									class="primary-btn wow fadeInUp" data-wow-delay="1.8s">Mua
+									ngay <span class="arrow_right"></span>
+								</a>
 								<div class="hero__social">
 									<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
 										class="fa fa-twitter"></i></a> <a href="#"><i
@@ -121,12 +126,13 @@
 					<div class="banner__item">
 						<div class="banner__item__pic">
 							<img class="wow slideInLeft" data-wow-delay="0.5s"
-								src="template/web/img/banner/banner-1.jpg" alt="" />
+								src="template/web/images/dosiin-ssstutter-ao-croptop-nu-ssstutter-co-cao-nhun-beo-chat-cotton-thoang-mat-vase-top-353555353555.jpg"
+								alt="" />
 						</div>
 						<div class="banner__item__text wow fadeInRight"
 							data-wow-delay="0.5s">
-							<h2>Bộ sưu tập quần áo 2030</h2>
-							<a href="shop.html">Mua ngay</a>
+							<h2>Bộ sưu tập quần áo 2023</h2>
+							<a href="<c:url value='/shop'/>">Mua ngay</a>
 						</div>
 					</div>
 				</div>
@@ -134,23 +140,27 @@
 					<div class="banner__item banner__item--middle">
 						<div class="banner__item__pic wow fadeOutRight"
 							data-wow-delay="0.5s">
-							<img src="template/web/img/banner/banner-2.jpg" alt="" />
+							<img
+								src="template/web/images/dosiin-vong-tay-paracord-sjb-steed-403391403391.jpg"
+								alt="" />
 						</div>
 						<div class="banner__item__text wow fadeOutLeft"
 							data-wow-delay="0.5s">
-							<h2>Áo hottrend</h2>
-							<a href="shop.html">Mua ngay</a>
+							<h2>Phụ kiện đa dạng</h2>
+							<a href="<c:url value='/shop'/>">Mua ngay</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<div class="banner__item banner__item--last">
 						<div class="banner__item__pic wow zoomIn" data-wow-delay="1.5s">
-							<img src="template/web/img/banner/banner-3.jpg" alt="" />
+							<img
+								src="template/web/images/dosiin-converse-giay-sneakers-converse-chuck-taylor-all-star-s-recycled-rpet-canvas-c-391790391790.jpg"
+								alt="" />
 						</div>
 						<div class="banner__item__text wow zoomInUp" data-wow-delay="1.5s">
-							<h2>Quần siêu rẻ</h2>
-							<a href="shop.html">Mua ngay</a>
+							<h2>Giày hottrend</h2>
+							<a href="<c:url value='/shop'/>">Mua ngay</a>
 						</div>
 					</div>
 				</div>
@@ -165,38 +175,42 @@
 			<div class="row wow fadeInUp" data-wow-delay="0.6s">
 				<div class="col-lg-12">
 					<ul class="filter__controls">
-						<li class="active" data-filter=".best-selling">Sản phẩm bán
-							chạy nhất</li>
+						<li class="active" data-filter="*">Sản phẩm bán chạy nhất</li>
 						<li data-filter=".new-arrivals">Hàng mới về</li>
 						<li data-filter=".hot-sale">Khuyến mãi hot</li>
 					</ul>
 				</div>
 			</div>
 			<div class="row product__filter">
-				<c:forEach items="${product}" var="b">
+				<c:forEach items="${best}" var="b">
 					<div
-						class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix 
-            	${b.id_product % 2 == 0? 'hot-sale' : ''} 
-            	${b.id_product % 3 == 0 && b.id_product % 2 != 0? 'new-arrivals' : ''} 
-            	${b.id_product % 5 == 0 && b.id_product % 2 != 0 && b.id_product % 3 != 0? 'best-selling' : ''}">
+						class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix
+               ${(b.id_product % 2 == 0)? 'hot-sale' : 'new-arrivals'}
+               ">
 						<div class="product__item wow fadeInUpBig" data-wow-delay="0.6s">
-							<div class="product__item__pic " data-setbg="">
-								<img class="set-bg"
-									src="<c:url value='template/web/images/${b.image }'/>" />
+							<div class="product__item__pic" data-setbg="">
+								<a href="<c:url value='/shop-details/${b.product_name}'/>">
+									<img class="set-bg"
+									src="<c:url value='/template/web/images/${b.image }'/>" />
+								</a>
 								<ul class="product__hover">
 									<li><a href="#"><img
-											src="template/web/img/icon/heart.png" alt="" /></a></li>
+											src="<c:url value='/template/web/img/icon/heart.png'/>"
+											alt="" /></a></li>
 									<li><a href="#"><img
-											src="template/web/img/icon/compare.png" alt="" /> <span>Compare</span></a>
+											src="<c:url value='/template/web/img/icon/compare.png'/>"
+											alt="" /> <span>Compare</span></a></li>
+									<li><a href="#"><img
+											src="<c:url value='/template/web/img/icon/search.png'/>"
+											alt="" /></a></li>
+									<li><a href="#"><img
+											src="<c:url value='/template/web/img/icon/cart.png'/>" alt="" /></a>
 									</li>
-									<li><a href="#"><img
-											src="template/web/img/icon/search.png" alt="" /></a></li>
-									<li><a href="#"><img
-											src="template/web/img/icon/cart.png" alt="" /></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">
-								<a class="product-title" href="shop-details.html"><h6>${b.product_name}</h6></a>
+								<a class="product-title"
+									href="<c:url value='/shop-details/${b.product_name}'/>"><h6>${b.product_name}</h6></a>
 								<div class="rating">
 									<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 										class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
@@ -212,77 +226,6 @@
 					</div>
 				</c:forEach>
 			</div>
-			<%-- <div
-				class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-				<c:forEach items="${hotSale}" var="h">
-					<div class="product__item wow fadeInUpBig" data-wow-delay="0.6s">
-						<div class="product__item__pic " data-setbg="">
-							<img class="set-bg"
-								src="<c:url value='template/web/images/${h.image }'/>" />
-							<ul class="product__hover">
-								<li><a href="#"><img
-										src="template/web/img/icon/heart.png" alt="" /></a></li>
-								<li><a href="#"><img
-										src="template/web/img/icon/compare.png" alt="" /> <span>Compare</span></a>
-								</li>
-								<li><a href="#"><img
-										src="template/web/img/icon/search.png" alt="" /></a></li>
-								<li><a href="#"><img
-										src="template/web/img/icon/cart.png" alt="" /></a></li>
-							</ul>
-						</div>
-						<div class="product__item__text">
-							<a class="product-title" href="shop-details.html"><h6>${h.product_name}</h6></a>
-							<div class="rating">
-								<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-									class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-									class="fa fa-star-o"></i>
-							</div>
-							<h5>
-								<fmt:formatNumber type="number" groupingUsed="true"
-									value="${h.price}" />
-								VND
-							</h5>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-			<div
-				class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-				<c:forEach items="${newArrivals}" var="n">
-					<div class="product__item wow fadeInUpBig" data-wow-delay="0.6s">
-						<div class="product__item__pic " data-setbg="">
-							<img class="set-bg"
-								src="<c:url value='template/web/images/${n.image }'/>" />
-							<ul class="product__hover">
-								<li><a href="#"><img
-										src="template/web/img/icon/heart.png" alt="" /></a></li>
-								<li><a href="#"><img
-										src="template/web/img/icon/compare.png" alt="" /> <span>Compare</span></a>
-								</li>
-								<li><a href="#"><img
-										src="template/web/img/icon/search.png" alt="" /></a></li>
-								<li><a href="#"><img
-										src="template/web/img/icon/cart.png" alt="" /></a></li>
-							</ul>
-						</div>
-						<div class="product__item__text">
-							<a class="product-title" href="shop-details.html"><h6>${n.product_name}</h6></a>
-							<div class="rating">
-								<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-									class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-									class="fa fa-star-o"></i>
-							</div>
-							<h5>
-								<fmt:formatNumber type="number" groupingUsed="true"
-									value="${n.price}" />
-								VND
-							</h5>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-		</div> --%>
 		</div>
 	</section>
 	<!-- Product Section End -->
@@ -301,7 +244,9 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="categories__hot__deal">
-						<img src="template/web/img/product-sale.png" alt="" />
+						<img
+							src="<c:url value='/template/web/images/dosiin-lata-tui-xach-nu-cao-cap-lata-tx-228532228532.jpg'/>"
+							alt="" />
 						<div class="hot__deal__sticker">
 							<span>Giảm giá</span>
 							<h5>199k</h5>
@@ -330,7 +275,7 @@
 								<p>Giây</p>
 							</div>
 						</div>
-						<a href="shop.html" class="primary-btn">Mua ngay</a>
+						<a href="<c:url value='/shop'/>" class="primary-btn">Mua ngay</a>
 					</div>
 				</div>
 			</div>
@@ -393,7 +338,7 @@
 							<span><img src="template/web/img/icon/calendar.png" alt="" />
 								16 tháng 2 2020</span>
 							<h5>Áo nào hợp với mùa hè nhất</h5>
-							<a href="blog-details.html">Đọc thêm</a>
+							<a href="<c:url value='/blog-details'/>">Đọc thêm</a>
 						</div>
 					</div>
 				</div>
@@ -405,7 +350,7 @@
 							<span><img src="template/web/img/icon/calendar.png" alt="" />
 								Ngày 21 tháng 2 2020</span>
 							<h5>Xả kho cùng Skyline team</h5>
-							<a href="blog-details.html">Đọc thêm</a>
+							<a href="<c:url value='/blog-details'/>">Đọc thêm</a>
 						</div>
 					</div>
 				</div>
@@ -417,7 +362,7 @@
 							<span><img src="template/web/img/icon/calendar.png" alt="" />
 								Ngày 28 tháng 2 2020</span>
 							<h5>Mua rẻ hơn với Skyline Shop</h5>
-							<a href="blog-details.html">Đọc thêm</a>
+							<a href="<c:url value='/blog-details'/>">Đọc thêm</a>
 						</div>
 					</div>
 				</div>

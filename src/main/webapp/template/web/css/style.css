@@ -1057,6 +1057,9 @@ ol {
   -o-transition: all, 0.3s;
   transition: all, 0.3s;
 }
+/*.product__item__text .add-cart:hover {
+  color: #0056b3;
+}*/
 
 .product__item__text .rating {
   margin-bottom: 6px;
