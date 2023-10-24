@@ -336,3 +336,8 @@ WHERE p.product_name like N'%Áo%'
 select id_brand
 from Brand
 where Brand.brand_name = N'?'
+
+-- Thêm dữ liệu cho bảng [User]
+INSERT INTO [User] (username, email, phone, [password], id_role)
+VALUES
+    ('user3', 'user3@example.com', '0915558610', 'user789', 2);

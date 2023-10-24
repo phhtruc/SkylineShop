@@ -143,30 +143,7 @@
 						</div>
 					</div>
 					<div class="row">
-<<<<<<< HEAD
-						<c:forEach items="${product}" var="p">
-							<div class="col-lg-4 col-md-6 col-sm-6">
-								<div class="product__item wow fadeInUp" data-wow-delay="0.5s">
-									<div class="product__item__pic " data-setbg="">
 
-										<img class="set-bg"
-											src="<c:url value='/template/web/images/${p.image }'/>" />
-
-										<ul class="product__hover">
-											<li><a href="#"><img
-													src="template/web/img/icon/heart.png" alt="" /></a></li>
-											<li><a href="#"><img
-													src="template/web/img/icon/compare.png" alt="" /> <span>Compare</span></a>
-											</li>
-											<li><a href="#"><img
-													src="template/web/img/icon/search.png" alt="" /></a></li>
-											<li><a href="#"><img
-													src="template/web/img/icon/cart.png" alt="" /></a></li>
-										</ul>
-									</div>
-									<div class="product__item__text">
-										<a class="product-title" href="shop-details.html"><h6>${p.product_name}</h6></a>
-=======
 						<c:choose>
 							<c:when test="${empty product }">
 								<p>Không có sản phẩm nào được tìm thấy</p>
@@ -198,7 +175,7 @@
 											<div class="product__item__text">
 												<a class="product-title"
 													href="<c:url value='/shop-details/${p.product_name}'/>"><h6>${p.product_name}</h6></a>
->>>>>>> e3e2936bb0b84a71d5c3f65ac4d2fd1772876bf2
+
 
 												<div class="rating">
 													<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
