@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<h2 class="text-center">Đăng Nhập</h2> 
+	
 	<div class="login-form-wrapper container-wrapper">
 	<form:form action="dang-nhap" method="POST" modelAttribute="user" class="form-signin rounded-sm shadow">  
 
@@ -24,6 +24,7 @@
 			<div class="tab-content">
 				<!-- Tab1 -->
 				<div id="login" class="container tab-pane active">
+					<h2 class="text-center mb-4">Đăng Nhập</h2> 
 					<label for="loginEmail" class="sr-only">Email address</label> 
 						<form:input   type="email" class="form-control mb-4" placeholder="Email" path="email" />  
 					<label for="loginPassword" class="sr-only">Password</label>
@@ -34,12 +35,16 @@
 								checked="checked" value="remember-me" /> Lưu mật khẩu
 							</label>
 						</div>
-						<a class="forgot" href="#!">Quên mật khẩu?</a>
+						
 					</div>
-					<a class="forgot" href="<c:url value='/dang-ky'/>">Bạn chưa có tài khoản</a> 
+					
 
-					<button class="btn btn-lg btn-login btn-block"
+					<button class="btn btn-lg btn-login btn-block mb-3"
 						onclick="loginUser()">Đăng nhập</button>
+						<div class="d-flex justify-content-center">
+							<a class="me-1" href="#!">Quên mật khẩu? </a>
+						<a class="" href="<c:url value='/dang-ky'/>"> Bạn chưa có tài khoản</a> 
+						</div>
 					<p class="mt-4 mb-0 text-muted small">Hãy đăng nhập ngay để
 						khám phá thế giới thời trang tại cửa hàng Skyline Shop.</p>
 				</div>
