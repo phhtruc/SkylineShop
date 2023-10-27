@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -13,26 +14,20 @@
 </head>
 
 <body>
+	<h2 class="text-center">Đăng Nhập</h2> 
 	<div class="login-form-wrapper container-wrapper">
-		<form class="form-signin rounded-sm shadow">
+	<form:form action="dang-nhap" method="POST" modelAttribute="user" class="form-signin rounded-sm shadow">  
+
 			<!-- Nav tabs -->
-			<ul class="nav nav-pills mb-4">
-				<li class="nav-item pill-1"><a
-					class="nav-link active rounded-0" data-toggle="tab" href="#login">Đăng
-						nhập</a></li>
-				<li class="nav-item pill-2"><a class="nav-link rounded-0"
-					data-toggle="tab" href="#register">Đăng ký</a></li>
-			</ul>
+
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<!-- Tab1 -->
 				<div id="login" class="container tab-pane active">
-					<label for="loginEmail" class="sr-only">Email address</label> <input
-						name="email_lg" type="email" id="loginEmail"
-						class="form-control mb-4" placeholder="Email" required autofocus />
-					<label for="loginPassword" class="sr-only">Password</label> <input
-						name="pass_lg" type="password" id="loginPassword"
-						class="form-control mb-4" placeholder="Mật khẩu" required />
+					<label for="loginEmail" class="sr-only">Email address</label> 
+						<form:input   type="email" class="form-control mb-4" placeholder="Email" path="email" />  
+					<label for="loginPassword" class="sr-only">Password</label>
+						<form:input   type="password" class="form-control mb-4" placeholder="Mật khẩu" path="password" />
 					<div class="one-line mb-2">
 						<div class="checkbox">
 							<label> <input name="remember" type="checkbox"
@@ -41,34 +36,16 @@
 						</div>
 						<a class="forgot" href="#!">Quên mật khẩu?</a>
 					</div>
+					<a class="forgot" href="<c:url value='/dang-ky'/>">Bạn chưa có tài khoản</a> 
 
 					<button class="btn btn-lg btn-login btn-block"
 						onclick="loginUser()">Đăng nhập</button>
 					<p class="mt-4 mb-0 text-muted small">Hãy đăng nhập ngay để
 						khám phá thế giới thời trang tại cửa hàng Skyline Shop.</p>
 				</div>
-
-				<!-- Tab2 -->
-				<div id="register" class="container tab-pane fade">
-					<label for="Name" class="sr-only">Name</label> <input name="name"
-						type="text" id="Name" class="form-control mb-4"
-						placeholder="Tên người dùng" required /> <label
-						for="registerEmail" class="sr-only">Email address</label> <input
-						name="email_rg" type="email" id="registerEmail"
-						class="form-control mb-4" placeholder="Địa chỉ email" required
-						autofocus /> <label for="Mobile" class="sr-only">Mobile</label> <input
-						name="mobile" type="tel" id="Mobile" class="form-control mb-4"
-						placeholder="Số điện thoại" required /> <label
-						for="registerPassword" class="sr-only">Password</label> <input
-						name="pass_rg" type="password" id="registerPassword"
-						class="form-control mb-4" placeholder="Mật khẩu" required />
-					<button class="btn btn-lg btn-login btn-block"
-						onclick="registerUser()">Đăng ký</button>
-					<p class="mt-4 mb-0 text-muted small">Đăng ký ngay để nhận được
-						những ưu đãi hấp dẫn từ chúng tôi</p>
-				</div>
-			</div>
-		</form>
+</div>
+		</form:form>
+		
 	</div>
 </body>
 </html>
