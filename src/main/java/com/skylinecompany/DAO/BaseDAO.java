@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 public class BaseDAO {
 	
 	@Autowired
-	JdbcTemplate _jdbcTemplate;
+	public JdbcTemplate _jdbcTemplate;
 
 }

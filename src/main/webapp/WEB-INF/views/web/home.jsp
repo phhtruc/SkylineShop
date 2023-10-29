@@ -196,15 +196,15 @@
 								<ul class="product__hover">
 									<li><a href="#"><img
 											src="<c:url value='/template/web/img/icon/heart.png'/>"
-											alt="" /></a></li>
+											alt="" /><span>Favorite</span></a></li>
 									<li><a href="#"><img
 											src="<c:url value='/template/web/img/icon/compare.png'/>"
 											alt="" /> <span>Compare</span></a></li>
 									<li><a href="#"><img
 											src="<c:url value='/template/web/img/icon/search.png'/>"
-											alt="" /></a></li>
+											alt="" /><span>Search</span></a></li>
 									<li><a href="#"><img
-											src="<c:url value='/template/web/img/icon/cart.png'/>" alt="" /></a>
+											src="<c:url value='/template/web/img/icon/cart.png'/>" alt="" /><span>Add to cart</span></a>
 									</li>
 								</ul>
 							</div>

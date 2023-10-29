@@ -77,7 +77,7 @@
       </div>
     </section>
     <!-- Breadcrumb Section End -->
-
+	
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
       <div class="container">
@@ -128,6 +128,7 @@
                       <div class="quantity">
                         <div class="pro-qty-2">
                           <input type="text" value="1" />
+                        
                         </div>
                       </div>
                     </td>

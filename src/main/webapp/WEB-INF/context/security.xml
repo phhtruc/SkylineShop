@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http auto-config="false" use-expressions="true"
+		disable-url-rewriting="true">
+
+		<!-- /quan-tri/trang-chu chỉ có ADMIN được vào, User hay chưa ĐN nhập link 
+			vào thì trỏ đến trang đăng nhập -->
+		<intercept-url pattern="/quan-tri/trang-chu"
+			access="hasAnyRole('Admin')" />
+		<access-denied-handler
+			error-page="/accessDenied" /> <!-- Chặn kh cho user search link, controller -->
+
+		<form-login login-page="/dang-nhap"
+			username-parameter="j_username" 
+			password-parameter="j_password"
+			login-processing-url="/j_spring_security_check"
+			authentication-success-handler-ref="customSuccessHandler"
+			authentication-failure-url="/dang-nhap?incorrectAccount" />
+		<!-- <session-management invalid-session-url="/dang-nhap?sessionTimeout"/> -->
+		<session-management
+			invalid-session-url="/trang-chu" />
+		<logout delete-cookies="JSESSIONID" />
+	</http>
+
+	<!-- MD5 -->
+    <authentication-manager >
+        <authentication-provider user-service-ref="customUserDetailsService">
+        		<password-encoder ref="bcryptEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+    
+    <beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<beans:bean id="customUserDetailsService"
+		class="com.skylinecompany.service.web.impl.CustomUserDetailsService" /> <!--Cấu hình cho file CustomUserDetailsService -->
+	<beans:bean id="customSuccessHandler"
+		class="com.skylinecompany.security.CustomSuccessHandler" />
+</beans:beans>
+
+<!-- 13,14,15. Nhận từ bên login.jsp qua 16. Khai báo khi authentication 
+	thành công(push info vào security) thì chuyển đến trang CustomSuccessHandler 
+	để phân quyền 17. Không thành công thì trả về lại /dang-nhap 18. Tạo session 
+	thiết lập nếu user no action trong 15p thì logout và trả về lại /dang-nhap 
+	kèm theo thong báo login.jsp qua đây để cho security sử lý mật khẩu md5 rồi 
+	chueyern qua CustomUserDetailsService rồi trả về controller Cấu hình thêm 
+	ở service CustomUserDetailsService cho session Sử lý phân quyền ở CustomSuccessHandler -->
+
