@@ -8,8 +8,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<context-param> <!-- Load, khai báo cho applicationContext.xml -->
+
+	<!-- Load, khai báo cho applicationContext.xml and security.xml -->
+	<context-param> 
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
             /WEB-INF/context/applicationContext.xml

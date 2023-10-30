@@ -1,10 +1,4 @@
 create database skyline_shop
-go
-use skyshop
-go
---
-use master
-drop database skyshop
 
 create table [Role]
 (
@@ -15,10 +9,10 @@ create table [Role]
 create table [User]
 (
 	id_user int identity(1,1) primary key,
-	username nvarchar(50) unique,
-	email varchar(40) CHECK(email LIKE '%@%') unique,
+	fullName nvarchar(225),
+	email varchar(100) CHECK(email LIKE '%@%') unique,
 	phone varchar(10) CHECK(phone LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]') unique,
-	[password] char(30),
+	[password] varchar(225),
 	id_role int foreign key references [Role](id_role)
 	on delete cascade
 	on update cascade
@@ -29,29 +23,34 @@ create table [Category]
 	id_cate int identity(1,1) primary key,
 	cate_name nvarchar(max)
 )
+
 create table Brand (
 	id_brand int identity(1,1) primary key,
 	brand_name varchar(20),
 )
+
 create table [Product]
 (
 	id_product int identity(1,1) primary key,
 	product_name nvarchar(max),
 	price decimal check (price >= 0),
 	[desc] nvarchar(max),
+	id_brand int foreign key references Brand(id_brand),
 	id_cate int foreign key references Category(id_cate)
 	on delete cascade
 	on update cascade,
-	id_brand int foreign key references Brand(id_brand)
 )
+
 create table Size(
 	Size_name varchar(5) primary key,
 )
+
 create table DetailSizePd (
 	idDetailSPd int identity(1,1) primary key,
 	id_product int foreign key references Product(id_product),
 	Size_name varchar(5) foreign key references Size(Size_name)
 )
+
 create table [Product_Image]
 (
 	id_image int identity(1,1) primary key,
@@ -60,7 +59,6 @@ create table [Product_Image]
 	on delete cascade
 	on update cascade
 )
-
 
 create table Evaluation
 (
@@ -75,6 +73,7 @@ create table Evaluation
 	[image] text,
 	primary key(id_cust, id_product)
 )
+
 create table [Order]
 (
 	id_order int identity(1,1) primary key,
@@ -88,6 +87,7 @@ create table [Order]
 	note text,
 	payment_status nvarchar(30)
 )
+
 CREATE TABLE [Order_Detail]
 (
 	id_product int REFERENCES Product(id_product)
@@ -105,16 +105,15 @@ CREATE TABLE [Order_Detail]
 
  --Thêm dữ liệu cho bảng [Role]
 insert into [Role] (role_name)
-		values
-		('Admin'),
-		('User')
+values('Admin'),
+	  ('User')
 
 -- Thêm dữ liệu cho bảng [User]
-INSERT INTO [User] (username, email, phone, [password], id_role)
+INSERT INTO [User] (fullName, email, phone, [password], id_role)
 VALUES
-    ('admin', 'admin@example.com', '1234567890', 'admin123', 1),
-    ('user1', 'user1@example.com', '9876543210', 'user123', 2),
-    ('user2', 'user2@example.com', '5555555555', 'user456', 2);
+    ('Pham Thanh Truc','admin@skyline.com', '0706075950', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 1),
+    ('Truc Pham','kientruc582@gmail.com', '0706075959', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 2);
+
 -- Thêm dữ liệu cho bảng [Category]
 INSERT INTO [Category] (cate_name)
 VALUES
@@ -122,6 +121,7 @@ VALUES
     (N'Quần'),
     (N'Giày'),
 	(N'Phụ kiện');
+
 INSERT INTO [Size] (Size_name)
 VALUES
     ('S'),
@@ -136,18 +136,17 @@ VALUES
 	('37'),
 	('38');
 
-	Insert into Brand (Brand_name)
-	values 
-	('Adidas'),
-	('Converse'),
-	('Hades'),
-	('Lata'),
-	('Kilyeyewear'),
-	('New Balance'),
-	('Nike'),
-	('SSStutter'),
-	('Tepys Accessories'),
-	('Vans')
+Insert into Brand (Brand_name)
+	values ('Adidas'),
+			('Converse'),
+			('Hades'),
+			('Lata'),
+			('Kilyeyewear'),
+			('New Balance'),
+			('Nike'),
+			('SSStutter'),
+			('Tepys Accessories'),
+			('Vans')
 
 INSERT INTO [Product] (product_name, price, [desc], id_brand,id_cate)
 VALUES
@@ -307,7 +306,6 @@ VALUES
 --    (2, 2, 1, 'L', 49.99);
 ------------------------------------------------------------------------------------------
 
-go
 select * from [Role]
 select * from [User]
 select * from Category
@@ -327,12 +325,32 @@ select Product.product_name, Category.cate_name
 from Product inner join Category on Product.id_brand = Category.id_cate
 where Category.cate_name = N'Áo'
 
-SELECT  p.id_product, p.product_name, p.price,(
-           SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product
-       ) AS [image]
-FROM Product p 
-WHERE p.product_name like N'%Áo%'
-
 select id_brand
 from Brand
 where Brand.brand_name = N'?'
+
+select *
+from Product_Image
+where id_product = 1
+
+select id_product
+from Product
+where product_name = N'Áo Phông - Áo thun Tập Luyện Nam Adidas'
+
+select * from Product
+where id_cate =2
+
+SELECT p.id_product, p.product_name, p.price, p.id_cate, (
+    SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product
+) AS [image]
+FROM Product p
+where p.id_cate=1
+ORDER BY p.id_product
+OFFSET 0 ROWS
+FETCH NEXT 12 ROWS ONLY;
+
+SELECT    p.id_product,     p.product_name,     p.price,     p.[desc],     p.id_brand,     p.id_cate,     (SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product) AS [image] FROM Product p	WHERE p.id_cate = 1    ORDER BY p.id_product    OFFSET 0 ROWS    FETCH NEXT 12 ROWS ONLY
+
+select * from [User]
+
+select * from Role where id_role = 1

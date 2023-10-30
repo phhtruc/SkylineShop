@@ -17,6 +17,9 @@
 			access="hasAnyRole('Admin')" />
 		<access-denied-handler
 			error-page="/accessDenied" /> <!-- Chặn kh cho user search link, controller -->
+			
+		<!-- Cấu hình tính năng Nhớ Mật khẩu -->
+    	<remember-me key="yourSecretKey" remember-me-parameter="remember-me" />
 
 		<form-login login-page="/dang-nhap"
 			username-parameter="j_username" 
@@ -44,11 +47,4 @@
 		class="com.skylinecompany.security.CustomSuccessHandler" />
 </beans:beans>
 
-<!-- 13,14,15. Nhận từ bên login.jsp qua 16. Khai báo khi authentication 
-	thành công(push info vào security) thì chuyển đến trang CustomSuccessHandler 
-	để phân quyền 17. Không thành công thì trả về lại /dang-nhap 18. Tạo session 
-	thiết lập nếu user no action trong 15p thì logout và trả về lại /dang-nhap 
-	kèm theo thong báo login.jsp qua đây để cho security sử lý mật khẩu md5 rồi 
-	chueyern qua CustomUserDetailsService rồi trả về controller Cấu hình thêm 
-	ở service CustomUserDetailsService cho session Sử lý phân quyền ở CustomSuccessHandler -->
 

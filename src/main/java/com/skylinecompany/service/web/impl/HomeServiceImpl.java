@@ -16,20 +16,19 @@ import com.skylinecompany.entity.RoleEntity;
 import com.skylinecompany.service.web.IHomeService;
 
 @Service
-public class HomeServiceImpl implements IHomeService{
-	
+public class HomeServiceImpl implements IHomeService {
+
 	@Autowired
 	HotSalesDAO h;
-	
+
 	@Autowired
 	NewArrivalsDAO n;
-	
+
 	@Autowired
 	BestSellingProductDAO best;
-	
+
 	@Autowired
 	RoleDAO r;
-	
 
 	@Override
 	public List<HotSalesDto> findHotSalesProduct() {
@@ -54,6 +53,5 @@ public class HomeServiceImpl implements IHomeService{
 		// TODO Auto-generated method stub
 		return r.findAll(name);
 	}
-
 
 }

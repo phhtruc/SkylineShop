@@ -11,7 +11,7 @@ import com.skylinecompany.mapper.RoleMapper;
 public class RoleDAO extends BaseDAO {
 
 	private int findIdByUserName(String name) {
-		String sql = "select id_role from [User] where username = ?";
+		String sql = "select id_role from [User] where email = ?";
 		return _jdbcTemplate.queryForObject(sql, Integer.class, name);
 	}
 

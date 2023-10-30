@@ -143,6 +143,7 @@
 						</div>
 					</div>
 					<div class="row">
+
 						<c:choose>
 							<c:when test="${empty product }">
 								<p>Không có sản phẩm nào được tìm thấy</p>
@@ -174,6 +175,7 @@
 											<div class="product__item__text">
 												<a class="product-title"
 													href="<c:url value='/shop-details/${p.product_name}'/>"><h6>${p.product_name}</h6></a>
+
 
 												<div class="rating">
 													<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i

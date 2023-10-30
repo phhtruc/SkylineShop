@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	// @Service mới chạy được
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private RoleDAO roleDAO;
 
@@ -38,8 +38,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (userEntity == null) {
 			System.out.println("User not found");
 		}
+		
 
-	    
 		// account tồn tại thì push info vào security, xong rồi chuyển sang
 		// CustomSuccessHandler để làm authozication
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -49,9 +49,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 
 		// Thông tin được push vào MyUser(MyUser đươcj sử dụng như session)
-		MyUser myUser = new MyUser(userEntity.getUserName(), userEntity.getPassword(), true, true, true, true, authorities); // nhu tao session
+		MyUser myUser = new MyUser(userEntity.getEmail(), userEntity.getPassword(), true, true, true, true,
+				authorities); // nhu tao session
 		myUser.setFullName(userEntity.getFullName());
 		return myUser;
+
 	}
+
 
 }
