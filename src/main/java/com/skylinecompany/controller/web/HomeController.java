@@ -78,4 +78,24 @@ public class HomeController {
 		}
 		return mav;	
 	}
+	@RequestMapping(value="/quen-mat-khau", method = RequestMethod.GET)
+	public ModelAndView forgotPassPage() {
+		ModelAndView mav = new ModelAndView("forgotpass");
+		mav.addObject("user", new UserEntity());
+		return mav;
+	}
+	@RequestMapping(value="/quen-mat-khau", method = RequestMethod.POST)
+	public ModelAndView forgotPass(@ModelAttribute("user") UserEntity user) {
+		ModelAndView mav= new ModelAndView("forgotpass");
+		int count = a.UpdateAccount(user);
+		if(count>0) {
+			mav.addObject("status", "Đổi mật khẩu thành công! Hãy đăng nhập");
+			mav.setViewName("login");
+		}
+		else {
+			mav.addObject("error", "Hãy xem lại phần email hoặc mật khẩu đã trùng chưa");
+			mav.setViewName("forgotpass");
+		}
+		return mav;	
+	}
 }
