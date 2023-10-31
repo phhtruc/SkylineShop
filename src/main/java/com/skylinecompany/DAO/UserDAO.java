@@ -36,4 +36,14 @@ public class UserDAO extends BaseDAO {
 
 		return insert;
 	}
+    public int UpdateAccount(UserEntity user) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("Update [User] ");
+		sql.append("set [password]='"+user.getPassword()+"' ");
+		sql.append("where email = '"+user.getEmail()+"'");
+
+		int insert = _jdbcTemplate.update(sql.toString());
+
+		return insert;
+	}
 }

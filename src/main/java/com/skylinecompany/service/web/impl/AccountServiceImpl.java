@@ -24,4 +24,16 @@ public class AccountServiceImpl implements IAccountService {
 	    	return u.AddAccount(user);
 	    }
 	}
+	public int UpdateAccount(UserEntity user) {
+		if(user.getPasswordconfirm().equals(user.getPassword())) {
+			
+			user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12)));
+			// Số điện thoại hoặc email của người dùng đã tồn tại
+			return u.UpdateAccount(user);
+		}
+		else {
+			return 0;
+		}
+	    
+	}
 }
