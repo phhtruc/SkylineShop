@@ -16,7 +16,7 @@
 <body>
 	<div class="login-form-wrapper container-wrapper">
 		<form:form action="dang-ky" method="POST" modelAttribute="user"
-			class="form-signin rounded-sm shadow">
+			class="form-signin rounded-sm shadow" required="required" >
 			<!-- Tab2 -->
 			<div id="register" class="container tab-pane ">
 				<h2 class="text-center mb-4">Đăng ký</h2>
@@ -27,22 +27,21 @@
 				    <div class="alert alert-danger">${error}</div>
 				</c:if>
 				<label for="registerFullName" class="sr-only">Tên</label>
-				<form:input type="text" class="form-control mb-4" placeholder="Tên"
-					path="fullName" />
+				<form:input type="text" class="form-control mb-4" placeholder="Tên" required="required" path="fullName" />
 
 				<label for="registerEmail" class="sr-only">Email address</label>
-				<form:input type="email" class="form-control mb-4"
+				<form:input type="email" class="form-control mb-4" required="required"
 					placeholder="Địa chỉ email" path="email" />
 
 				<label for="Mobile" class="sr-only">Mobile</label>
-				<form:input type="text" class="form-control mb-4"
-					placeholder="Nhập số điện thoại" path="phone" />
+				<form:input type="tel" class="form-control mb-4" required="required"
+					placeholder="Nhập số điện thoại" path="phone" pattern="^\d{10}$"/>
 
 				<label for="registerPassword" class="sr-only">Password</label>
-				<form:input type="password" class="form-control mb-4"
+				<form:input type="password" class="form-control mb-4" required="required"
 					placeholder="Nhập mật khẩu" path="password" />
 
-				<form:input type="hidden" class="form-control mb-4" value="1"
+				<form:input type="hidden" class="form-control mb-4" value="2"
 					path="id_role" />
 				<button class="btn btn-lg btn-login btn-block mb-3" type="submit"
 					onclick="registerUser()">Đăng ký</button>

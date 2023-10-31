@@ -21,7 +21,7 @@
 						</security:authorize>
 						<security:authorize access="isAuthenticated()">
 							<div class="header__top__links">
-								<a href="<c:url value='/dang-nhap'/>"><%=SecurityUtils.getPrincipal().getFullName() %></a> <a href="<c:url value='/thoat'/>">Thoát</a>
+								<a href=""><%=SecurityUtils.getPrincipal().getFullName()%></a> <a href="<c:url value='/thoat'/>">Thoát</a>
 							</div>
 						</security:authorize>
 					</div>

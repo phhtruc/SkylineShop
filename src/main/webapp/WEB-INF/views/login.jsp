@@ -29,9 +29,9 @@
 				    	<div class="alert alert-success">${status}</div>
 					</c:if>
 					<label for="loginEmail" class="sr-only">Email address</label>
-					<input type="email" class="form-control mb-4" placeholder="Email" name="j_username" />
+					<input type="email" required class="form-control mb-4" placeholder="Email" name="j_username" />
 					<label for="loginPassword" class="sr-only">Password</label>
-					<input type="password" class="form-control mb-4" placeholder="Mật khẩu" name="j_password" />
+					<input type="password" required class="form-control mb-4" placeholder="Mật khẩu" name="j_password" />
 					<div class="one-line mb-2">
 						<div class="checkbox">
 							<label> 

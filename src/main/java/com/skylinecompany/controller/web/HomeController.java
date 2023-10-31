@@ -25,12 +25,16 @@ public class HomeController {
 	
 	@Autowired
 	AccountServiceImpl a;
+	
+	@Autowired
+	HttpServletRequest request;
+	
+	//@Autowired
+	//private TokenBasedRememberMeServices tokenBasedRememberMeServices;
     
 	@RequestMapping(value="/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/home");
-		mav.addObject("hotSale", h.findHotSalesProduct());
-		mav.addObject("newArrivals", h.findNewArricalsProduct());
 		mav.addObject("best", h.findBestSellingProduct());
 		return mav;
 	}
@@ -40,15 +44,19 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("login");
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/thoat", method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return new ModelAndView("redirect:/trang-chu");
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null) {
+	        // Hủy token Remember-Me
+	        //tokenBasedRememberMeServices.logout(request, response, auth);
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "redirect:/trang-chu";
 	}
+
+
 	
 	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
 	public ModelAndView accessDenied() {
