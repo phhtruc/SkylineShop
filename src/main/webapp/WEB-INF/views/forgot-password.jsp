@@ -20,25 +20,20 @@
 			<!-- Tab2 -->
 			<div id="register" class="container tab-pane ">
 				<h2 class="text-center mb-4">Quên mật khẩu</h2>
-				<c:if test="${status != null}">
-						<div class="alert alert-danger">Tài khoản hoặc mật khẩu không đúng</div>
-				</c:if>
 				<c:if test="${not empty error}">
 				    <div class="alert alert-danger">${error}</div>
 				</c:if>
-				<label for="registerEmail" class="sr-only">Email address</label>
+				
 				<form:input type="email" class="form-control mb-4"
-					placeholder="Địa chỉ email" path="email" />
+					placeholder="Nhập Email đã đăng ký" path="email" />
 
-				<label for="registerPassword" class="sr-only">Password</label>
 				<form:input type="password" class="form-control mb-4"
 					placeholder="Nhập mật khẩu" path="password" />
-				<label for="forgotPassword" class="sr-only">Password</label>
+				
 				<form:input type="password" class="form-control mb-4"
 					placeholder="Nhập lại mật khẩu" path="passwordconfirm" />
 
-				<form:input type="hidden" class="form-control mb-4" value="2"
-					path="id_role" />
+				
 				<button class="btn btn-lg btn-login btn-block mb-3" type="submit"
 					onclick="registerUser()">Đổi mật khẩu</button>
 				<div class="d-flex justify-content-center">

@@ -9,6 +9,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Skyline Shop - Đăng ký</title>
 
 </head>
@@ -16,7 +17,7 @@
 <body>
 	<div class="login-form-wrapper container-wrapper">
 		<form:form action="dang-ky" method="POST" modelAttribute="user"
-			class="form-signin rounded-sm shadow" required="required" >
+			class="form-signin rounded-sm shadow" required="required" accept-charset="utf-8">
 			<!-- Tab2 -->
 			<div id="register" class="container tab-pane ">
 				<h2 class="text-center mb-4">Đăng ký</h2>

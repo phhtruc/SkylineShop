@@ -10,4 +10,7 @@ public interface  IAccountService {
 	
 	@Autowired
 	public int AddAccount(UserEntity user);
+	
+	@Autowired
+	public int UpdateAccount(UserEntity user);
 }

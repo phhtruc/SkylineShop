@@ -1,5 +1,7 @@
 package com.skylinecompany.controller.web;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -75,6 +77,7 @@ public class HomeController {
 	@RequestMapping(value="/dang-ky", method = RequestMethod.POST)
 	public ModelAndView createAccount(@ModelAttribute("user") UserEntity user) {
 		ModelAndView mav = new ModelAndView("register");
+		user.setFullName(new String(user.getFullName().getBytes(), StandardCharsets.UTF_8));
 		int count = a.AddAccount(user);
 		if(count>0) {
 			mav.addObject("status", "Đăng ký tài khoản thành công! Hãy đăng nhập");
@@ -86,23 +89,25 @@ public class HomeController {
 		}
 		return mav;	
 	}
+	
 	@RequestMapping(value="/quen-mat-khau", method = RequestMethod.GET)
 	public ModelAndView forgotPassPage() {
-		ModelAndView mav = new ModelAndView("forgotpass");
+		ModelAndView mav = new ModelAndView("forgot-password");
 		mav.addObject("user", new UserEntity());
 		return mav;
 	}
+	
 	@RequestMapping(value="/quen-mat-khau", method = RequestMethod.POST)
 	public ModelAndView forgotPass(@ModelAttribute("user") UserEntity user) {
-		ModelAndView mav= new ModelAndView("forgotpass");
+		ModelAndView mav= new ModelAndView("forgot-password");
 		int count = a.UpdateAccount(user);
 		if(count>0) {
 			mav.addObject("status", "Đổi mật khẩu thành công! Hãy đăng nhập");
 			mav.setViewName("login");
 		}
 		else {
-			mav.addObject("error", "Hãy xem lại phần email hoặc mật khẩu đã trùng chưa");
-			mav.setViewName("forgotpass");
+			mav.addObject("error", "Email hoặc mật khẩu nhập lại không đúng");
+			mav.setViewName("forgot-password");
 		}
 		return mav;	
 	}
