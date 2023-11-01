@@ -30,7 +30,8 @@ public class UserDAO extends BaseDAO {
     public int AddAccount(UserEntity user) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO [User] (email, phone, password, id_role, fullName) ");
-		sql.append("VALUES ('"+user.getEmail()+"', '"+user.getPhone()+"', '"+user.getPassword()+"', '"+user.getId_role()+"', '"+user.getFullName()+"')");
+		String test = user.getFullName();
+		sql.append("VALUES ('"+user.getEmail()+"', '"+user.getPhone()+"', '"+user.getPassword()+"', '"+user.getId_role()+"', N'"+user.getFullName()+"')");
 
 		int insert = _jdbcTemplate.update(sql.toString());
 

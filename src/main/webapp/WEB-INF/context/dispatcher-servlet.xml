@@ -35,6 +35,7 @@
 		<property name="suffix" value=".jsp" />
 
 	</bean>
+	
 	<mvc:resources location="/template/" mapping="/template/**"/>
 	 
  <!-- Để sử dụng được <C:url trong decorators -->	

@@ -15,7 +15,7 @@
 
 <body>
 	<div class="login-form-wrapper container-wrapper">
-		<form:form action="dang-ky" method="POST" modelAttribute="user"
+		<form:form action="dang-ky" accept-charset="UTF-8" method="POST" modelAttribute="user"
 			class="form-signin rounded-sm shadow">
 			<!-- Tab2 -->
 			<div id="register" class="container tab-pane ">
