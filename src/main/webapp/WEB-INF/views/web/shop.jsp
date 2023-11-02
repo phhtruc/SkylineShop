@@ -166,7 +166,7 @@
 															src="<c:url value='/template/web/img/icon/compare.png'/>"
 															alt="" /> <span>Compare</span></a></li>
 													<li><a
-														href="<c:url value='/add-cart/${p.id_product }'/>"><img
+														href="#"><img
 															src="<c:url value='/template/web/img/icon/search.png'/>"
 															alt="" /></a></li>
 													<li>
@@ -282,7 +282,7 @@
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() {
+		$(document).ready(function() {
 		  $(".add-to-cart").on("click", function() {
 		    var productId = $(this).data("product-id");
 		    var urlink="<c:url value='/add-cart/'/>" + productId;
@@ -290,11 +290,12 @@
 		      type: "GET",
 		      url: urlink,
 		      success: function(response) {
-		        // Xử lý phản hồi từ REST endpoint ở đây
-		        alert(response); // Ví dụ: hiển thị thông báo
+		        alert(response);
+		        setTimeout(function() {
+		          alert.close();
+		        }, 3000);
 		      },
 		      error: function(error) {
-		        // Xử lý lỗi nếu có
 		        console.error("Lỗi: " + error);
 		      }
 		    });

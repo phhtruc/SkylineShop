@@ -21,6 +21,7 @@ public class CartDAO{
 		if(product != null && cart.containsKey(id)) {
 			items = cart.get(id);
 			items.setQuantity(items.getQuantity() + quantity);
+			items.setTotalPrice(product.getPrice() * items.getQuantity());
 		}
 		else {
 			items.setProduct(product);

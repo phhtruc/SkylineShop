@@ -40,4 +40,26 @@ public class ShoppingCartController {
 		//return "redirect:"+request.getHeader("Referer");
 		return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng.");
 	}
+	
+	@RequestMapping(value="/edit-cart/{id}/{quantity}", method = RequestMethod.GET, produces = "text/plain; charset=UTF-8")
+	public ResponseEntity<String> EditCart(HttpServletRequest request, HttpSession session, @PathVariable Integer id ,@PathVariable Integer quantity) {
+		HashMap<Integer, ItemsDto> cart = (HashMap<Integer, ItemsDto>)session.getAttribute("Cart");
+		if(cart == null) {
+			cart = new HashMap<Integer, ItemsDto>();
+		}
+		cart = ca.EditCart(id, quantity, cart);
+		session.setAttribute("Cart", cart);
+		return ResponseEntity.ok("Sản phẩm đã được sửa.");
+	}
+	
+	@RequestMapping(value="/delete-cart/{id}", method = RequestMethod.GET, produces = "text/plain; charset=UTF-8")
+	public String DeleteCart(HttpServletRequest request, HttpSession session, @PathVariable Integer id ,@RequestParam(name = "quantity", required = false,  defaultValue = "1") Integer quantity ) {
+		HashMap<Integer, ItemsDto> cart = (HashMap<Integer, ItemsDto>)session.getAttribute("Cart");
+		if(cart == null) {
+			cart = new HashMap<Integer, ItemsDto>();
+		}
+		cart = ca.DeleteCart(id, cart);
+		session.setAttribute("Cart", cart);
+		return "redirect:"+request.getHeader("Referer");
+	}
 }

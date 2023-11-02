@@ -108,12 +108,16 @@
                     <td class="quantity__item">
                       <div class="quantity">
                         <div class="pro-qty-2">
-                          <input type="text" value="1" />
+                        <span class="fa fa-minus dec qtybtn editcart" data-product-id="${c.value.product.id_product}" data-product-quantity="${c.value.quantity}"></span>
+                          	<input type="text" value="${c.value.quantity }" />
+                          <span class="fa fa-plus inc qtybtn editcart" data-product-id="${c.value.product.id_product}" data-product-quantity="${c.value.quantity}"></span>
                         </div>
                       </div>
                     </td>
-                    <td class="cart__price">${c.value.totalPrice }</td>
-                    <td class="cart__close"><i class="fa fa-close"></i></td>
+                    <button class="edit-cartt">H</button>
+                    <td class="cart__price"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${c.value.totalPrice }" /> VND</td>
+                    <td class="cart__close"><a href="<c:url value='/delete-cart/${c.value.product.id_product }'/>"><i class="fa fa-close" ></i></a></td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -167,5 +171,25 @@
     <script src="template/web/lib/wow/wow.min.js"></script>
     <script src="template/web/lib/easing/easing.min.js"></script>
     <script src="template/web/js/main.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $(".edit-cartt").on("click", function() {
+		    var productId = $(this).data("product-id");
+		    var (int)productQuantity = $(this).data("product-quantity");
+		    var urlink="<c:url value='/edit-cart/'/>" + productId + "/" +productQuantity;
+		    $.ajax({
+		      type: "GET",
+		      url: urlink,
+		      success: function(response) {
+		    	  alert(reponse);
+		      },
+		      error: function(error) {
+		        console.error("Lỗi: " + error);
+		      }
+		    });
+		  });
+		});
+	</script>
   </body>
 </html>
