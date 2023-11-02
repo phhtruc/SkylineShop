@@ -127,7 +127,8 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="shop__product__option__left">
-									<p>Hiển thị ${paginate.start+1} - ${paginate.end} trong ${totalData } kết quả</p>
+									<p>Hiển thị ${paginate.start+1} - ${paginate.end} trong
+										${totalData } kết quả</p>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
@@ -164,12 +165,19 @@
 													<li><a href="#"><img
 															src="<c:url value='/template/web/img/icon/compare.png'/>"
 															alt="" /> <span>Compare</span></a></li>
-													<li><a href="#"><img
+													<li><a
+														href="<c:url value='/add-cart/${p.id_product }'/>"><img
 															src="<c:url value='/template/web/img/icon/search.png'/>"
 															alt="" /></a></li>
-													<li><a href="#"><img
-															src="<c:url value='/template/web/img/icon/cart.png'/>"
-															alt="" /></a></li>
+													<li>
+														<button class="add-to-cart"
+															data-product-id="${p.id_product}">
+															<img
+																src="<c:url value='/template/web/img/icon/cart.png'/>"
+																alt="" />
+														</button>
+													</li>
+
 												</ul>
 											</div>
 											<div class="product__item__text">
@@ -272,5 +280,26 @@
 	<script src="<c:url value='/template/web/js/main.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/easing/easing.min.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		  $(".add-to-cart").on("click", function() {
+		    var productId = $(this).data("product-id");
+		    var urlink="<c:url value='/add-cart/'/>" + productId;
+		    $.ajax({
+		      type: "GET",
+		      url: urlink,
+		      success: function(response) {
+		        // Xử lý phản hồi từ REST endpoint ở đây
+		        alert(response); // Ví dụ: hiển thị thông báo
+		      },
+		      error: function(error) {
+		        // Xử lý lỗi nếu có
+		        console.error("Lỗi: " + error);
+		      }
+		    });
+		  });
+		});
+	</script>
 </body>
 </html>

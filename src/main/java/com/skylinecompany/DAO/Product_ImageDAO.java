@@ -127,4 +127,17 @@ public class Product_ImageDAO extends BaseDAO {
 		listProducts = _jdbcTemplate.query(sql, new Product_ImageMapper());
 		return listProducts;
 	}
+	
+	// Card
+	private StringBuffer SqlFindProductById(int id) {
+		StringBuffer varname1 = SqlString();
+		varname1.append("WHERE p.id_product = "+id+"");
+		return varname1;
+	}
+
+	public Product_ImageDto findProductById(int id) {
+		String sql = SqlFindProductById(id).toString();
+		Product_ImageDto product = _jdbcTemplate.queryForObject(sql, new Product_ImageMapper());
+		return product;
+	}
 }

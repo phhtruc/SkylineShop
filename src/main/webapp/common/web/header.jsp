@@ -79,7 +79,7 @@
 						src="<c:url value ='/template/web/img/icon/search.png'/>" alt="" /></a>
 					<a href="#"><img
 						src="<c:url value ='/template/web/img/icon/heart.png'/>" alt="" /></a>
-					<a href="#"><img
+					<a href="<c:url value='/shopping-cart'/>"><img
 						src="<c:url value ='/template/web/img/icon/cart.png'/>" alt="" />
 						<span>0</span></a>
 					<div class="price">$0.00</div>
