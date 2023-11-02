@@ -79,9 +79,9 @@
 						src="<c:url value ='/template/web/img/icon/search.png'/>" alt="" /></a>
 					<a href="#"><img
 						src="<c:url value ='/template/web/img/icon/heart.png'/>" alt="" /></a>
-					<a href="<c:url value='/shopping-cart'/>"><img
+					<a href="<c:url value='/shopping-cart'/>"><img class="position-relative"
 						src="<c:url value ='/template/web/img/icon/cart.png'/>" alt="" />
-						<span>0</span></a>
+						<span class='quantity-item'>10</span></a>
 					<div class="price">$0.00</div>
 				</div>
 			</div>

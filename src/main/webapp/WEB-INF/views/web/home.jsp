@@ -203,8 +203,12 @@
 									<li><a href="#"><img
 											src="<c:url value='/template/web/img/icon/search.png'/>"
 											alt="" /><span>Search</span></a></li>
-									<li><a href="#"><img
-											src="<c:url value='/template/web/img/icon/cart.png'/>" alt="" /><span>Add to cart</span></a>
+									<li><button class="add-to-cart"
+															data-product-id="${p.id_product}">
+															<img
+																src="<c:url value='/template/web/img/icon/cart.png'/>"
+																alt="" />
+														</button><span>Add to cart</span></a>
 									</li>
 								</ul>
 							</div>

@@ -505,11 +505,17 @@ ol {
 }
 
 .header__nav__option a span {
-  color: #0d0d0d;
-  font-size: 11px;
-  position: absolute;
-  left: 5px;
-  top: 8px;
+     top: -9px;
+    position: absolute;
+    right: -14px;
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 11px;
 }
 
 .header__nav__option a:last-child {
@@ -4105,4 +4111,8 @@ ol {
   justify-content: center;
   font-weight: normal;
   border-radius: 0px;
+}
+.add-to-cart{
+	border:none;
+	padding:0;
 }
