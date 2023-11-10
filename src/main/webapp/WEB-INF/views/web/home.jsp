@@ -408,16 +408,22 @@
 				          	formattedPrice += ' VND';
 						$cartTotalPrice.text(formattedPrice);
 						
-				        Swal.fire({
-				            position: "top-end",
-				            icon: "success",
-				            title: "Sản phẩm đã được thêm vào giỏ hàng",
-				            showConfirmButton: false,
-				            timer: 1000,
-				            customClass: {
-				              popup: 'custom-popup-class'
-				            }
-				          });
+						const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-right',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Thêm vào giỏ hàng thành công'
+                        })
 					},
 					error : function(error) {
 						alert("Lỗi");
@@ -426,11 +432,5 @@
 			});
 		});
 	</script>
-		<style>
-		.custom-popup-class {
-			font-size:8px;
-			width: 300px;
-		}
-	</style>
 </body>
 </html>

@@ -52,10 +52,10 @@
 					           <span>FaceBook</span>
 					        </div>
 					         <div class= "col container-as">
-					         <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
+					         	<a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
     &client_id=946928910591-a6uhbkq7ahh2nv3lnrvss0si8ll2pvo6.apps.googleusercontent.com&approval_prompt=force">
-					           <img alt="" src="template/web/img/login_google.png">
-					           <span>Google</span></a>
+					           	<img alt="" src="template/web/img/login_google.png">
+					           	<span>Google</span></a>
 					        </div>
 					     </div>
 					</div>
