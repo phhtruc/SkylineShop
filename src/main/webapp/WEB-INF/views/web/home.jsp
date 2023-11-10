@@ -49,11 +49,6 @@
 </head>
 
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
 	<section class="hero">
 		<div class="hero__slider owl-carousel">
 			<div class="hero__items set-bg wow fadeInLeft" data-wow-delay="0.5s"

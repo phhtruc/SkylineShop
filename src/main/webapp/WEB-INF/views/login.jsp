@@ -52,14 +52,17 @@
 					           <span>FaceBook</span>
 					        </div>
 					         <div class= "col container-as">
+					         <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
+    &client_id=946928910591-a6uhbkq7ahh2nv3lnrvss0si8ll2pvo6.apps.googleusercontent.com&approval_prompt=force">
 					           <img alt="" src="template/web/img/login_google.png">
-					           <span>Google</span>
+					           <span>Google</span></a>
 					        </div>
 					     </div>
 					</div>
 					<p class="mt-4 mb-0 text-muted small">Hãy đăng nhập ngay để khám phá thế giới thời trang tại cửa hàng Skyline Shop.</p>
 				</div>
 			</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 	</div>
 </body>

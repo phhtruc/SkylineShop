@@ -45,18 +45,6 @@
   </head>
 
   <body>
-    <!-- Page Preloder 
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>-->
-
-    <!-- Offcanvas Menu Begin -->
-    
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
- 
-    <!-- Header Section End -->
 
     <!-- Blog Details Hero Begin -->
     <section class="blog-hero spad">

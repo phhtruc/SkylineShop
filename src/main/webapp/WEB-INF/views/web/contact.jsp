@@ -45,18 +45,6 @@
   </head>
 
   <body>
-    <!-- Page Preloder 
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>-->
-
-    <!-- Offcanvas Menu Begin -->
-    
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    
-    <!-- Header Section End -->
 
     <!-- Map Begin -->
     <div class="map">
