@@ -1,5 +1,8 @@
 # SkylineShop
-Team fontend vào branch fontend -> src\main\webapp\template\web\fe. Chứa các mục css js...
-src\main\webapp\WEB-INF\views\web\fe. Code giao diện -> chuyển qua .jsp luôn
-                                   
-Team backend code ở branch master
+Downloads project
+Open project
+Open "src/main/webapp/WEB-INF/context"
+Go to "applicationContext"
+Changes "url", "username", "password" to your account SQL Server
+Build project with Alt + F5
+Run
