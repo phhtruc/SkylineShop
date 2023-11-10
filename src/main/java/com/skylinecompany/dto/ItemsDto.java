@@ -41,5 +41,8 @@ public class ItemsDto {
 		this.product = product;
 	}
 	
+    public double calculateTotalPrice() {
+        return this.getQuantity() * this.getProduct().getPrice();
+    }
 
 }

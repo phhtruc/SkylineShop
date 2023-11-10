@@ -13,36 +13,40 @@ import com.skylinecompany.service.web.ICartService;
 public class CartServiceImpl implements ICartService{
 	
 	@Autowired
-	private CartDAO cartDto = new CartDAO();
+	private CartDAO cartDAO = new CartDAO();
 
 	@Override
 	public HashMap<Integer, ItemsDto> AddCart(int id, int quantity, HashMap<Integer, ItemsDto> cart) {
 		// TODO Auto-generated method stub
-		return cartDto.AddCart(id, quantity, cart);
+		return cartDAO.AddCart(id, quantity, cart);
 	}
 
 	@Override
 	public HashMap<Integer, ItemsDto> EditCart(int id, int quantity, HashMap<Integer, ItemsDto> cart) {
 		// TODO Auto-generated method stub
-		return cartDto.EditCart(id, quantity, cart);
+		return cartDAO.EditCart(id, quantity, cart);
 	}
 
 	@Override
 	public HashMap<Integer, ItemsDto> DeleteCart(int id, HashMap<Integer, ItemsDto> cart) {
 		// TODO Auto-generated method stub
-		return cartDto.DeleteCart(id, cart);
+		return cartDAO.DeleteCart(id, cart);
 	}
 
 	@Override
 	public int totalQuantityProduct(HashMap<Integer, ItemsDto> cart) {
 		// TODO Auto-generated method stub
-		return cartDto.totalQuantityProduct(cart);
+		return cartDAO.totalQuantityProduct(cart);
 	}
 
 	@Override
 	public double totalPriceProduct(HashMap<Integer, ItemsDto> cart) {
 		// TODO Auto-generated method stub
-		return cartDto.totalPriceProduct(cart);
+		return cartDAO.totalPriceProduct(cart);
+	}
+	
+	public double totalPriceProduct(HashMap<Integer, ItemsDto> cart, int productId) {
+		return cartDAO.totalPriceProduct(cart, productId);
 	}
 
 }

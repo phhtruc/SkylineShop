@@ -131,20 +131,23 @@
 							<div class="product__details__cart__option">
 								<div class="quantity">
 									<div class="pro-qty">
-										<input type="text" value="1" />
+                          				<input type="text" value="1" id="quantity" />
 									</div>
 								</div>
-								<a href="#" class="primary-btn">add to cart</a>
+								<button style="padding: 10px" class="primary-btn add-to-cart add-detail" data-product-id="${product.id_product }">add to cart</button>
 							</div>
 							<div class="product__details__btns__option">
-								<a href="#"><i class="fa fa-heart"></i> add to wishlist</a> <a
-									href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
+								<a class="add-to-cart" >
+									<i class="fa fa-heart"></i> add to wishlist
+								</a>
+								<a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
 							</div>
 							<div class="product__details__last__option">
 								<h5>
 									<span>Guaranteed Safe Checkout</span>
 								</h5>
-								<img src=<c:url value="/template/web/img/shop-details/details-payment.png"/>
+								<img
+									src=<c:url value="/template/web/img/shop-details/details-payment.png"/>
 									alt="" />
 							</div>
 						</div>
@@ -311,12 +314,10 @@
 											src="<c:url value='/template/web/img/icon/search.png'/>"
 											alt="" /></a></li>
 									<li><button class="add-to-cart"
-															data-product-id="${p.id_product}">
-															<img
-																src="<c:url value='/template/web/img/icon/cart.png'/>"
-																alt="" />
-														</button><span>Add to cart</span></a>
-									</li>
+											data-product-id="${p.id_product}">
+											<img src="<c:url value='/template/web/img/icon/cart.png'/>"
+												alt="" />
+										</button> <span>Add to cart</span></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">
@@ -356,5 +357,60 @@
 	<script src="<c:url value='/template/web/js/main.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/easing/easing.min.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
+		<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".add-to-cart").on("click", function() {
+				var productId = $(this).data("product-id");
+				var urlink = "<c:url value='/add-cart/'/>" + productId;
+				var quantity = 1;
+				var $cartSize = $("#cart-size");
+				var $cartTotalPrice = $(".cart-price");
+
+		        var $quantityInput = $("#quantity");
+		        if ($quantityInput.length > 0) {
+		            quantity = $quantityInput.val();
+		        }
+		        
+				$.ajax({
+					type : "GET",
+					url : urlink,
+					data : {
+						quantity : quantity
+					},
+					success : function(response) {
+						var cartSize = response.cartSize;
+						var cartTotal = response.totalPrice;
+
+						$cartSize.text(cartSize);
+						var formattedPrice = new Intl.NumberFormat('vi-VN').format(cartTotal);
+				          	formattedPrice += ' VND';
+						$cartTotalPrice.text(formattedPrice);
+						
+				        Swal.fire({
+				            position: "top-end",
+				            icon: "success",
+				            title: "Sản phẩm đã được thêm vào giỏ hàng",
+				            showConfirmButton: false,
+				            timer: 1000,
+				            customClass: {
+				              popup: 'custom-popup-class'
+				            }
+				          });
+					},
+					error : function(error) {
+						console.error("Lỗi: " + error);
+					}
+				});
+			});
+		});
+	</script>
+		<style>
+		.custom-popup-class {
+			font-size:8px;
+			width: 300px;
+		}
+	</style>
 </body>
 </html>

@@ -204,12 +204,12 @@
 											src="<c:url value='/template/web/img/icon/search.png'/>"
 											alt="" /><span>Search</span></a></li>
 									<li><button class="add-to-cart"
-															data-product-id="${p.id_product}">
+															data-product-id="${b.id_product}">
 															<img
 																src="<c:url value='/template/web/img/icon/cart.png'/>"
 																alt="" />
-														</button><span>Add to cart</span></a>
-									</li>
+														</button>
+														<span>Add to cart</span></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">
@@ -388,5 +388,54 @@
 	<script src="template/web/lib/wow/wow.min.js"></script>
 	<script src="template/web/lib/easing/easing.min.js"></script>
 	<script src="template/web/js/main.js"></script>
+		<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".add-to-cart").on("click", function() {
+				var productId = $(this).data("product-id");
+				var urlink = "<c:url value='/add-cart/'/>" + productId;
+				var $cartSize = $("#cart-size");
+				var $cartTotalPrice = $(".cart-price");
+
+				$.ajax({
+					type : "GET",
+					url : urlink,
+					data : {
+						quantity : 1
+					},
+					success : function(response) {
+						var cartSize = response.cartSize;
+						var cartTotal = response.totalPrice;
+
+						$cartSize.text(cartSize);
+						var formattedPrice = new Intl.NumberFormat('vi-VN').format(cartTotal);
+				          	formattedPrice += ' VND';
+						$cartTotalPrice.text(formattedPrice);
+						
+				        Swal.fire({
+				            position: "top-end",
+				            icon: "success",
+				            title: "Sản phẩm đã được thêm vào giỏ hàng",
+				            showConfirmButton: false,
+				            timer: 1000,
+				            customClass: {
+				              popup: 'custom-popup-class'
+				            }
+				          });
+					},
+					error : function(error) {
+						alert("Lỗi");
+					}
+				});
+			});
+		});
+	</script>
+		<style>
+		.custom-popup-class {
+			font-size:8px;
+			width: 300px;
+		}
+	</style>
 </body>
 </html>
