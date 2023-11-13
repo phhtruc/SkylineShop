@@ -50,21 +50,30 @@
 					<span>Bạn đã có tài khoản? <a class=" text-center"
 						href="<c:url value='/dang-nhap'/>">Hãy đăng nhập</a></span>
 				</div>
-				<div class = "another-signin mt-4">
-					     <p> <i>Hoặc đăng ký bằng </i></p>
+				
+					    
+					
+				<p class="mt-4 mb-4 text-muted small">Đăng ký ngay để nhận được
+					những ưu đãi hấp dẫn từ chúng tôi</p>
+					
+					<div class = "another-signin mt-4">
+					     <p> <i>Hoặc đăng nhập bằng </i></p>
 					     <div class = "row container d-flex justify-content-center gap-3">
 					        <div class= "col container-as">
 					           <img alt="" src="template/web/img/login_fb.png">
 					           <span>FaceBook</span>
 					        </div>
-					         <div class= "col container-as">
-					           <img alt="" src="template/web/img/login_google.png">
-					           <span>Google</span>
+					         <div class= "col container-as">	           
+					         	<a style="width: 100%; height: 100%" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
+    &client_id=946928910591-a6uhbkq7ahh2nv3lnrvss0si8ll2pvo6.apps.googleusercontent.com&approval_prompt=force">
+					           	<img alt="" src="template/web/img/login_google.png">
+					           	<span>Google</span></a>
+					           
 					        </div>
 					     </div>
+				
 					</div>
-				<p class="mt-4 mb-4 text-muted small">Đăng ký ngay để nhận được
-					những ưu đãi hấp dẫn từ chúng tôi</p>
+					</div>
 			</div>
 		</form:form>
 	</div>
