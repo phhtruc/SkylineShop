@@ -52,6 +52,20 @@
 				</div>
 				<p class="mt-4 mb-4 text-muted small">Đăng ký ngay để nhận được
 					những ưu đãi hấp dẫn từ chúng tôi</p>
+					
+					<div class = "another-signin mt-4">
+					     <p> <i>Hoặc đăng nhập bằng </i></p>
+					     <div class = "row container d-flex justify-content-center gap-3">
+					        <div class= "col container-as">
+					           <img alt="" src="template/web/img/login_fb.png">
+					           <span>FaceBook</span>
+					        </div>
+					         <div class= "col container-as">
+					           <img alt="" src="template/web/img/login_google.png">
+					           <span>Google</span>
+					        </div>
+					     </div>
+					</div>
 			</div>
 		</form:form>
 	</div>

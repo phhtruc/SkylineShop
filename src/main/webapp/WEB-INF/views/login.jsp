@@ -41,8 +41,21 @@
 					</div>
 					<button class="btn btn-lg btn-login btn-block mb-3" onclick="loginUser()">Đăng nhập</button>
 					<div class="d-flex justify-content-center">
-						<a class="" href="<c:url value='/quen-mat-khau'/>">Quên mật khẩu? </a>
+						<a class="" href="<c:url value='/quen-mat-khau'/>">Quên mật khẩu? </a> &nbsp;
 						<a class="" href="<c:url value='/dang-ky'/>"> Bạn chưa có tài khoản</a>
+					</div>
+					<div class = "another-signin mt-4">
+					     <p> <i>Hoặc đăng nhập bằng </i></p>
+					     <div class = "row container d-flex justify-content-center gap-3">
+					        <div class= "col container-as">
+					           <img alt="" src="template/web/img/login_fb.png">
+					           <span>FaceBook</span>
+					        </div>
+					         <div class= "col container-as">
+					           <img alt="" src="template/web/img/login_google.png">
+					           <span>Google</span>
+					        </div>
+					     </div>
 					</div>
 					<p class="mt-4 mb-0 text-muted small">Hãy đăng nhập ngay để khám phá thế giới thời trang tại cửa hàng Skyline Shop.</p>
 				</div>
