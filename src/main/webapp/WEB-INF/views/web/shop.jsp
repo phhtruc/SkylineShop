@@ -45,6 +45,7 @@
 <link rel="stylesheet" href="template/web/css/slicknav.min.css"
 	type="text/css" />
 <link rel="stylesheet" href="template/web/css/style.css" type="text/css" />
+
 </head>
 <body>
 	<!-- Breadcrumb Section Begin -->
@@ -165,8 +166,7 @@
 													<li><a href="#"><img
 															src="<c:url value='/template/web/img/icon/compare.png'/>"
 															alt="" /> <span>Compare</span></a></li>
-													<li><a
-														href="<c:url value='/add-cart/${p.id_product }'/>"><img
+													<li><a href="#"><img
 															src="<c:url value='/template/web/img/icon/search.png'/>"
 															alt="" /></a></li>
 													<li><button class="add-to-cart"
@@ -174,8 +174,7 @@
 															<img
 																src="<c:url value='/template/web/img/icon/cart.png'/>"
 																alt="" />
-														</button><span>Add to cart</span></a>
-													</li>
+														</button> <span>Add to cart</span></a></li>
 
 												</ul>
 											</div>
@@ -279,23 +278,62 @@
 	<script src="<c:url value='/template/web/js/main.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/easing/easing.min.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		  $(".add-to-cart").on("click", function() {
 		    var productId = $(this).data("product-id");
-		    var urlink="<c:url value='/add-cart/'/>" + productId;
+		    var urlink = "<c:url value='/add-cart/'/>" + productId;
+		    var $cartSize = $("#cart-size");
+		    var $cartTotalPrice = $(".cart-price");
+
+		    var response;
+
 		    $.ajax({
 		      type: "GET",
 		      url: urlink,
-		      success: function(response) {
-		        // Xử lý phản hồi từ REST endpoint ở đây
-		        alert(response); // Ví dụ: hiển thị thông báo
+		      data: {
+		        quantity: 1
+		      },
+		      success: function(data) {
+		        response = data;
+
+		        var cartSize = response.cartSize;
+		        var cartTotal = response.totalPrice;
+
+		        $cartSize.text(cartSize);
+		        var formattedPrice = new Intl.NumberFormat('vi-VN').format(cartTotal);
+		        formattedPrice += ' VND';
+		        $cartTotalPrice.text(formattedPrice);
+		       
+		        const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Thêm vào giỏ hàng thành công'
+                })
+
 		      },
 		      error: function(error) {
-		        // Xử lý lỗi nếu có
-		        console.error("Lỗi: " + error);
+		        alert("Lỗi");
 		      }
+		    }).always(function() {
+		      // Update the cart size and total price in the header using the response variable
+		      $("#cart-size").text(response.cartSize);
+		      var formattedPrice = new Intl.NumberFormat('vi-VN').format(response.totalPrice);
+		      formattedPrice += ' VND';
+		      $(".cart-price").text(formattedPrice);
 		    });
 		  });
 		});

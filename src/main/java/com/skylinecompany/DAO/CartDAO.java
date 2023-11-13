@@ -21,10 +21,11 @@ public class CartDAO{
 		if(product != null && cart.containsKey(id)) {
 			items = cart.get(id);
 			items.setQuantity(items.getQuantity() + quantity);
+			items.setTotalPrice(product.getPrice() * items.getQuantity());
 		}
 		else {
 			items.setProduct(product);
-			items.setQuantity(1);
+			items.setQuantity(quantity);
 			items.setTotalPrice(product.getPrice() * items.getQuantity());
 		}
 		cart.put(id, items);
@@ -71,4 +72,17 @@ public class CartDAO{
 		}
 		return totalPrice;
 	}
+	
+	public double totalPriceProduct(HashMap<Integer, ItemsDto> cart, int productId) {
+	    if (!cart.containsKey(productId)) {
+	        return 0;
+	    }
+
+	    // Get the product from the cart
+	    ItemsDto items = cart.get(productId);
+
+	    // Calculate the total price of the product
+	    return items.getQuantity() * items.getProduct().getPrice();
+	}
+	
 }

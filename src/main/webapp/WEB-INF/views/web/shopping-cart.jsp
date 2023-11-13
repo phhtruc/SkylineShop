@@ -46,18 +46,6 @@
   </head>
 
   <body>
-    <!-- Page Preloder 
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>-->
-
-    <!-- Offcanvas Menu Begin -->
-    
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    
-    <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
@@ -98,22 +86,26 @@
                   <tr>
                     <td class="product__cart__item">
                       <div class="product__cart__item__pic">
-                        <img src="<c:url value='/template/web/images/${c.value.product.image }'/>" alt="" />
+                        <a href="<c:url value='/shop-details/${c.value.product.product_name}'/>" ><img style="width:90px" src="<c:url value='/template/web/images/${c.value.product.image }'/>" alt="" /></a>
                       </div>
                       <div class="product__cart__item__text">
-                        <h6>${c.value.product.product_name}</h6>
-                        <h5>${c.value.product.price}</h5>
+                        <a href="<c:url value='/shop-details/${c.value.product.product_name}'/>" ><h6>${c.value.product.product_name}</h6></a>
+                        <h5><fmt:formatNumber type="number" groupingUsed="true"
+														value="${c.value.product.price}" /></h5>
                       </div>
                     </td>
                     <td class="quantity__item">
                       <div class="quantity">
                         <div class="pro-qty-2">
-                          <input type="text" value="1" />
+                        	<span class="fa fa-minus dec qtybtn edit-cart" data-product-id="${c.value.product.id_product}"></span>
+                          		<input type="text" value="${c.value.quantity }" id="quantity-${c.value.product.id_product}"/>
+                          	<span class="fa fa-plus inc qtybtn edit-cart" data-product-id="${c.value.product.id_product}"></span>
                         </div>
                       </div>
                     </td>
-                    <td class="cart__price">${c.value.totalPrice }</td>
-                    <td class="cart__close"><i class="fa fa-close"></i></td>
+                    <td class="cart__price" id="cart-price-${c.value.product.id_product}"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${c.value.totalPrice }" /> VND</td>
+                    <td class="cart__close"><a href="<c:url value='/delete-cart/${c.value.product.id_product }'/>"><i class="fa fa-close" ></i></a></td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -143,8 +135,8 @@
             <div class="cart__total">
               <h6>Cart total</h6>
               <ul>
-                <li>Subtotal <span>$ 169.50</span></li>
-                <li>Total <span>$ 169.50</span></li>
+                <li>Total<span class="cart-price"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${TotalPrice}" /> VND</span></li>
               </ul>
               <a href="#" class="primary-btn">Proceed to checkout</a>
             </div>
@@ -167,5 +159,49 @@
     <script src="template/web/lib/wow/wow.min.js"></script>
     <script src="template/web/lib/easing/easing.min.js"></script>
     <script src="template/web/js/main.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $(".edit-cart").on("click", function() {
+		    var productId = $(this).data("product-id");
+		    var $itemPrice = $("#cart-price-" + productId);
+		    var $cartSize = $("#cart-size");
+		    var $cartPrice = $(".cart-price");
+		    
+		    var $quantityInput = $("#quantity-" + productId);
+	        if ($quantityInput.length > 0) {
+	            quantity = $quantityInput.val();
+	        }
+	        
+		    var urlink="<c:url value='/edit-cart/'/>" + productId + "/" + quantity;
+		    
+		    $.ajax({
+		      type: "GET",
+		      url: urlink,
+		      data : {
+					quantity : quantity
+				},
+		      success: function(response) {
+		    	 
+		          var totalPrice = response.TotalPriceProduct;
+		          var cartPrice = response.totalPrice;
+		          var cartSize = response.cartSize;
+		          
+		    	  var formattedPrice = new Intl.NumberFormat('vi-VN').format(totalPrice);
+		          formattedPrice += ' VND';
+		          $itemPrice.html(formattedPrice);
+		          
+		          $cartSize.text(cartSize);
+		          var cartFormattedPrice = new Intl.NumberFormat('vi-VN').format(cartPrice);
+		          cartFormattedPrice += ' VND';
+		          $cartPrice.text(cartFormattedPrice);
+		          
+		      },
+		      error: function(error) {
+		    	  
+		      }
+		    });
+		  });
+		});
+	</script>
   </body>
 </html>

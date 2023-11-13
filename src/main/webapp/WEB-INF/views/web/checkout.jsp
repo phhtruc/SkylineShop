@@ -56,18 +56,6 @@
   </head>
 
   <body>
-    <!-- Page Preloder 
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>-->
-
-    <!-- Offcanvas Menu Begin -->
-    
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    
-    <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">

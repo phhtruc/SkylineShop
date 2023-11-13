@@ -3896,8 +3896,12 @@ ol {
 }
 .form-signin {
   background: white;
+
   padding: 50px 50px 20px 50px;
   min-height: 570px;
+  padding: 15px 50px 0px 50px;
+  min-height: 470px;
+
 }
 
 .form-signin .another-signin  p {
@@ -4145,4 +4149,39 @@ ol {
 .add-to-cart{
 	border:none;
 	padding:0;
+}
+
+/* Login form */
+.login-form-wrapper {
+  display: flex;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+}
+.form-signin {
+  background: white;
+  padding: 15px 50px 20px 50px;
+  min-height: 570px;
+}
+
+.form-signin .another-signin  p {
+	text-align: center;
+}
+
+.form-signin .another-signin .container-as{
+	  
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border: solid 2px rgb(128, 128, 128);
+    border-radius: 15px;
+    /* border-radius: revert-layer; */
+    box-shadow: 0 0 10px #6c757d;
+    cursor: pointer;
+}
+.form-signin .another-signin .container-as img{
+	width: 30px;
+}
+.form-signin .another-signin .container-as span{
+	padding-left: 15px;
 }
