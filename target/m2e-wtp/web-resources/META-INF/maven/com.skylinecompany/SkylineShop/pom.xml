@@ -169,6 +169,8 @@
 			<artifactId>fluent-hc</artifactId>
 			<version>4.5.5</version>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>

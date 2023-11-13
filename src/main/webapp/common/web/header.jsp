@@ -22,7 +22,7 @@
 						</security:authorize>
 						<security:authorize access="isAuthenticated()">
 							<div class="header__top__links">
-								<a href=""><%=SecurityUtils.getPrincipal().getFullName()%></a>
+								<a href="<c:url value='/tai-khoan-cua-toi'/>"><%=SecurityUtils.getPrincipal().getFullName()%></a>
 								<a href="<c:url value='/thoat'/>">Thoát</a>
 							</div>
 						</security:authorize>

@@ -31,8 +31,7 @@ public class HomeController {
 	@Autowired
 	HttpServletRequest request;
 	
-	//@Autowired
-	//private TokenBasedRememberMeServices tokenBasedRememberMeServices;
+
     
 	@RequestMapping(value="/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
@@ -111,5 +110,14 @@ public class HomeController {
 		}
 		return mav;	
 	}
+	
+	@RequestMapping(value="/send-email", method = RequestMethod.GET)
+	public ModelAndView sendEmail() {
+		ModelAndView mav = new ModelAndView("forgot-password");
+		//sendEmail("kientruc582@gmail.com","trucpham240420@gmail.com","hello","You forget password?");
+		return mav;
+	}
+	
+
 	
 }

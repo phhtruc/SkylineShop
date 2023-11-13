@@ -134,11 +134,11 @@
             </div>
             <div class="cart__total">
               <h6>Cart total</h6>
-              <ul>
+              <ul>    
                 <li>Total<span class="cart-price"><fmt:formatNumber type="number" groupingUsed="true"
 														value="${TotalPrice}" /> VND</span></li>
               </ul>
-              <a href="#" class="primary-btn">Proceed to checkout</a>
+              <a href="<c:url value='/checkout'/>" class="primary-btn">Proceed to checkout</a>
             </div>
           </div>
         </div>
@@ -159,6 +159,8 @@
     <script src="template/web/lib/wow/wow.min.js"></script>
     <script src="template/web/lib/easing/easing.min.js"></script>
     <script src="template/web/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 		  $(".edit-cart").on("click", function() {
@@ -203,5 +205,23 @@
 		  });
 		});
 	</script>
+	<c:if test="${status == 1}">
+	    <script>
+	        Swal.fire({
+	            title: "Giỏ hàng của bạn đang trống",
+	            text: "Vui lòng thêm ít nhất 1 sản phẩm vào giỏ hàng trước khi thanh toán",
+	            icon: "warning",
+	            showCancelButton: true,
+	            confirmButtonColor: "#3085d6",
+	            cancelButtonColor: "#d33",
+	            confirmButtonText: "Tiếp tục mua sắm",
+	            cancelButtonText: "Đóng"
+	        }).then((result) => {
+	            if (result.isConfirmed) {
+	                window.location.href = "<c:url value='/shop'/>";
+	            }
+	        });
+	    </script>
+	</c:if>
   </body>
 </html>

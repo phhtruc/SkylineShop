@@ -15,7 +15,7 @@
 
 <body>
 	<div class="login-form-wrapper container-wrapper">
-		<form:form action="quen-mat-khau" method="POST" modelAttribute="user"
+		<form:form action="send-email" method="POST" modelAttribute="user"
 			class="form-signin rounded-sm shadow">
 			<!-- Tab2 -->
 			<div id="register" class="container tab-pane ">
@@ -44,6 +44,7 @@
 					những ưu đãi hấp dẫn từ chúng tôi</p>
 			</div>
 		</form:form>
+		<a href="<c:url value='/send-email'/>">Send</a>
 	</div>
 </body>
 </html>

@@ -44,7 +44,6 @@ public class GoogleUtils {
 		InputStream inputStream = Request.Get(link).execute().returnContent().asStream();
 		ObjectMapper mapper = new ObjectMapper();
 		GooglePojo googlePojo = mapper.readValue(inputStream, GooglePojo.class);
-		System.out.println(googlePojo);
 		return googlePojo;
 	}
 

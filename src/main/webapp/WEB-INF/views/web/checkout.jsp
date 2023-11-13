@@ -171,14 +171,16 @@
                     Product <span>Total</span>
                   </div>
                   <ul class="checkout__total__products">
-                    <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
-                    <li>02. German chocolate <span>$ 170.0</span></li>
-                    <li>03. Sweet autumn <span>$ 170.0</span></li>
-                    <li>04. Cluten free mini dozen <span>$ 110.0</span></li>
+                  	<c:forEach items="${cart }" var="c" varStatus="loop">
+                  		<li>${loop.index+1}. ${c.value.product.product_name} <span><fmt:formatNumber type="number" groupingUsed="true"
+														value="${c.value.totalPrice}" />
+													VND</span></li>
+                  	</c:forEach>
                   </ul>
                   <ul class="checkout__total__all">
-                    <li>Subtotal <span>$750.99</span></li>
-                    <li>Total <span>$750.99</span></li>
+                    <li>Total <span><fmt:formatNumber type="number" groupingUsed="true"
+														value="${totalPriceCart}" />
+													VND</span></li>
                   </ul>
                   <div class="checkout__input__checkbox">
                     <label for="acc-or">
