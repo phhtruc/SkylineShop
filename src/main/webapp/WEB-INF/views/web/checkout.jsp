@@ -142,7 +142,7 @@
               </div>
               <div class="col-lg-5 col-md-6">
                 <div class="checkout__order">
-                  <h4 class="order__title">Đơn hàng của bạnr</h4>
+                  <h4 class="order__title">Đơn hàng của bạn</h4>
                   <div class="checkout__order__products">
                     Sản phẩm <span>Tổng</span>
                   </div>
