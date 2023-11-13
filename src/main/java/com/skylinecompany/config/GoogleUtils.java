@@ -45,7 +45,7 @@ public class GoogleUtils {
 		ObjectMapper mapper = new ObjectMapper();
 		GooglePojo googlePojo = mapper.readValue(inputStream, GooglePojo.class);
 		System.out.println(googlePojo);
-		return googlePojo;
+		return googlePojo	;
 	}
 
 	public UserDetails buildUser(GooglePojo googlePojo) {
@@ -53,6 +53,7 @@ public class GoogleUtils {
 		authorities.add(new SimpleGrantedAuthority("User"));
 		MyUser myUser = new MyUser(googlePojo.getEmail(), "", true, true, true, true,
 				authorities);
+		System.out.println(googlePojo);
 		myUser.setFullName(googlePojo.getName());
 		return myUser;
 	}
