@@ -48,8 +48,10 @@
 					     <p> <i>Hoặc đăng nhập bằng </i></p>
 					     <div class = "row container d-flex justify-content-center gap-3">
 					        <div class= "col container-as">
+					        	<a href="https://www.facebook.com/dialog/oauth?client_id=327907686544690&redirect_uri=https://localhost:8888/SkylineShop/login-facebook">
 					           <img alt="" src="template/web/img/login_fb.png">
 					           <span>FaceBook</span>
+					           </a>
 					        </div>
 					         <div class= "col container-as">
 

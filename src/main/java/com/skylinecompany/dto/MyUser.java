@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.User;
 
 public class MyUser extends User{
 
+	private String fullName;
+
 	public MyUser(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
@@ -14,14 +16,13 @@ public class MyUser extends User{
 		// TODO Auto-generated constructor stub
 	}
 	
-	private String fullName;
 
 	public String getFullName() {
 		return fullName;
 	}
 
 	public void setFullName(String fullName) {
-		this.fullName = fullName;
+		this.fullName = getUsername();
 	}
 	
 
