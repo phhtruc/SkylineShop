@@ -27,7 +27,7 @@ public class CheckoutController {
 		
 	    if (cart == null || cart.isEmpty()) {
 	    	mav.addObject("status", 1);
-			mav.setViewName("redirect:/shopping-cart");
+			mav.setViewName("web/shopping-cart");
 			return mav;
 	    }
 	    mav.addObject("cart", cart);

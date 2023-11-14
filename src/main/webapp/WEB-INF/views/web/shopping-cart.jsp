@@ -205,23 +205,24 @@
 		  });
 		});
 	</script>
-	<c:if test="${status == 1}">
 	    <script>
-	        Swal.fire({
-	            title: "Giỏ hàng của bạn đang trống",
-	            text: "Vui lòng thêm ít nhất 1 sản phẩm vào giỏ hàng trước khi thanh toán",
-	            icon: "warning",
-	            showCancelButton: true,
-	            confirmButtonColor: "#3085d6",
-	            cancelButtonColor: "#d33",
-	            confirmButtonText: "Tiếp tục mua sắm",
-	            cancelButtonText: "Đóng"
-	        }).then((result) => {
-	            if (result.isConfirmed) {
-	                window.location.href = "<c:url value='/shop'/>";
-	            }
-	        });
+		    var status = ${status};
+			
+		    if (status !== undefined && (status == 1 || status !== null)) {
+		    	Swal.fire({
+		    		  title: 'Giỏ hàng của bạn đang trống',
+		    		  text: "Vui lòng thêm ít nhất 1 sản phẩm vào giỏ hàng trước khi thanh toán",
+		    		  icon: 'warning',
+		    		  showCancelButton: true,
+		    		  confirmButtonColor: '#3085d6',
+		    		  cancelButtonColor: '#d33',
+		    		  confirmButtonText: 'Tiếp tục mua sắm'
+		    		}).then((result) => {
+		    		  if (result.isConfirmed) {
+		    			  window.location.href = "<c:url value='/shop'/>";
+		    		  }
+		    		})
+		    }
 	    </script>
-	</c:if>
   </body>
 </html>

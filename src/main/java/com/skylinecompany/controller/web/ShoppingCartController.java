@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,4 +95,27 @@ public class ShoppingCartController {
 		session.setAttribute("TotalPrice", ca.totalPriceProduct(cart));
 		return "redirect:" + request.getHeader("Referer");
 	}
+	
+	@RequestMapping(value = "/clear-cart", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> clearCartt(HttpSession session) {
+	    session.removeAttribute("Cart");
+	    return new ResponseEntity<>("Success", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/home", method = RequestMethod.GET)
+	public ModelAndView clearCart(HttpSession session) {
+		ModelAndView mav = new ModelAndView("web/home");
+		session.removeAttribute("Cart");
+		mav.addObject("status", 1);
+		return mav;
+	}
+	
+	@RequestMapping(value="/trangchu", method = RequestMethod.GET)
+	public ModelAndView clear_Cart(HttpSession session) {
+		ModelAndView mav = new ModelAndView("web/home");
+		session.removeAttribute("Cart");
+		return mav;
+	}
+
 }

@@ -383,8 +383,7 @@
 	<script src="template/web/lib/wow/wow.min.js"></script>
 	<script src="template/web/lib/easing/easing.min.js"></script>
 	<script src="template/web/js/main.js"></script>
-		<script
-		src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$(".add-to-cart").on("click", function() {
@@ -432,5 +431,18 @@
 			});
 		});
 	</script>
+	<script>
+	    var status = ${status};
+	
+	    if (status !== undefined && (status == 1 || status !== null)) {
+	        Swal.fire({
+	            title: "Thông báo",
+	            text: "Đơn hàng của bạn đã thanh toán thành công thành công, xem chi tiết tại tài khoản của tôi.",
+	            icon: "success",
+	            confirmButtonColor: "#3085d6"
+	        });
+	    }
+	</script>
+
 </body>
 </html>
