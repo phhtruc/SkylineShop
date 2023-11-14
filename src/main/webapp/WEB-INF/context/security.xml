@@ -17,47 +17,36 @@
 			access="hasAnyRole('Admin')" />
 		<access-denied-handler
 			error-page="/accessDenied" /> <!-- Chặn kh cho user search link, controller -->
-			
+
 		<!-- Cấu hình tính năng Nhớ Mật khẩu -->
-    	<!-- <remember-me key="yourSecretKey" remember-me-parameter="remember-me" token-validity-seconds="0"/> -->
+		<!-- <remember-me key="yourSecretKey" remember-me-parameter="remember-me" 
+			token-validity-seconds="0"/> -->
 
 		<form-login login-page="/dang-nhap"
-			username-parameter="j_username" 
+			username-parameter="j_username"
 			password-parameter="j_password"
 			login-processing-url="/j_spring_security_check"
 			authentication-success-handler-ref="customSuccessHandler"
 			authentication-failure-url="/dang-nhap?incorrectAccount" />
 		<!-- <session-management invalid-session-url="/dang-nhap?sessionTimeout"/> -->
-		<session-management invalid-session-url="/trang-chu" />
+		<session-management
+			invalid-session-url="/trang-chu" />
 		<logout delete-cookies="JSESSIONID" />
-		<form-login
-            login-page="/dang-nhap"
-            login-processing-url="/j_spring_security_login"
-            default-target-url="/trang-chu"
-            authentication-failure-url="/dang-nhap?message=error"
-            username-parameter="username"
-            password-parameter="password" />
-        <logout logout-url="/j_spring_security_logout"
-            logout-success-url="/login?message=logout" delete-cookies="JSESSIONID" />
+		<!-- <logout logout-url="/j_spring_security_logout" logout-success-url="/login?message=logout" 
+			delete-cookies="JSESSIONID" /> -->
 	</http>
 
 	<!-- MD5 -->
-    <authentication-manager >
-        <authentication-provider user-service-ref="customUserDetailsService">
-        		<password-encoder ref="bcryptEncoder"/>
-        </authentication-provider>
-    </authentication-manager>
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="kai" password="{noop}123456" authorities="ROLE_ADMIN" />
-                <user name="sena" password="{noop}123456" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
-    <beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<authentication-manager>
+		<authentication-provider
+			user-service-ref="customUserDetailsService">
+			<password-encoder ref="bcryptEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+	<beans:bean id="bcryptEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<beans:bean id="customUserDetailsService"
-		class="com.skylinecompany.service.web.impl.CustomUserDetailsService" /> <!--Cấu hình cho file CustomUserDetailsService -->
+		class="com.skylinecompany.service.web.impl.CustomUserDetailsService" />
 	<beans:bean id="customSuccessHandler"
 		class="com.skylinecompany.security.CustomSuccessHandler" />
 </beans:beans>
