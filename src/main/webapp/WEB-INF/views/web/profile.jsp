@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.skylinecompany.Util.SecurityUtils"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -53,32 +54,39 @@
 				<div class="col-md-9">
 					<div class="tab-content">
 						<div class="tab-pane fade active show" id="account-general">
+						
 							<div class="card-body media align-items-center">
-								<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-									alt class="d-block ui-w-80" />
+								<img id="previewImage" style="max-width: 100%; max-height: 200px;"
+									src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
+									class="d-block ui-w-80" />
 								<div class="media-body ml-4">
 									<label class="btn btn-outline-dark mt-2"> Tải ảnh mới
-										lên <input type="file" class="account-settings-fileinput" />
+										lên <input id="uploadImage" type="file"
+										class="account-settings-fileinput" />
 									</label> &nbsp;
-									<button type="button" class="btn btn-outline-dark md-btn-flat">
-										Làm mới</button>
+									<button type="button" class="btn btn-outline-dark md-btn-flat"
+										onclick="resetImage()">Làm mới</button>
 									<div class="small mt-1">Cho phép JPG, GIF hoặc PNG. Kích
 										thước tối đa 800K</div>
 								</div>
 							</div>
+
 							<hr class="border-light m-0" />
 							<div class="card-body">
 								<div class="form-group">
 									<label class="form-label">Tên đầy đủ</label> <input type="text"
-										class="form-control mb-1" value="userName" />
+										class="form-control mb-1"
+										value="<%=SecurityUtils.getPrincipal().getFullName()%>" />
 								</div>
 								<div class="form-group">
 									<label class="form-label">Số điện thoại</label> <input
-										type="text" class="form-control" value="0919191919" />
+										type="text" class="form-control"
+										value="<%=SecurityUtils.getPrincipal().getPhone()%>" />
 								</div>
 								<div class="form-group">
 									<label class="form-label">E-mail</label> <input type="text"
-										class="form-control mb-1" value="userName@mail.com" />
+										class="form-control mb-1"
+										value="<%=SecurityUtils.getPrincipal().getEmail()%>" />
 								</div>
 							</div>
 							<div class="text-right my-3 me-4">
@@ -480,6 +488,25 @@
 		</div>
 	</div>
 	<!-- About Section End -->
+	<script type="text/javascript">
+		// Lắng nghe sự kiện khi người dùng chọn file
+		document.getElementById('uploadImage').addEventListener('change', function(event) {
+		    // Kiểm tra xem có file nào được chọn không
+		    if (event.target.files.length > 0) {
+		        // Lấy đường dẫn của file hình ảnh đã chọn
+		        var imageUrl = URL.createObjectURL(event.target.files[0]);
+	
+		        // Cập nhật src của thẻ img với đường dẫn của file hình ảnh
+		        document.getElementById('previewImage').src = imageUrl;
+		    }
+		});
+	
+		// Hàm làm mới ảnh
+		function resetImage() {
+		    // Đặt lại src của thẻ img với đường dẫn mặc định
+		    document.getElementById('previewImage').src = 'https://bootdey.com/img/Content/avatar/avatar1.png';
+		}
+	</script>
 </body>
 
 </html>

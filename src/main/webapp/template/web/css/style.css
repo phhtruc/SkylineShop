@@ -4237,3 +4237,8 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .voucher-item {
   background-color: #f7f7f7;
 }
+
+#previewImage {
+   max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của phần tử chứa */
+   max-height: 200px; /* Đặt chiều cao tối đa để giữ hình ảnh trong giới hạn */
+}
