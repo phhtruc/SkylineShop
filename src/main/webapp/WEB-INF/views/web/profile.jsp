@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.skylinecompany.Util.SecurityUtils"%>
+<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -53,67 +53,68 @@
 				</div>
 				<div class="col-md-9">
 					<div class="tab-content">
-						<div class="tab-pane fade active show" id="account-general">
-						
+						<form:form action="update-profile" method="POST" modelAttribute="user" class="tab-pane fade active show" id="account-general" enctype="multipart/form-data" required="required" accept-charset="utf-8">
 							<div class="card-body media align-items-center">
-								<img id="previewImage" style="max-width: 100%; max-height: 200px;"
-									src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
-									class="d-block ui-w-80" />
+								<img id="preview" src="${pageContext.request.contextPath}/images/${user.getImageuser()}" style="max-width: 100%;"  class="d-block ui-w-80" />
 								<div class="media-body ml-4">
-									<label class="btn btn-outline-dark mt-2"> Tải ảnh mới
-										lên <input id="uploadImage" type="file"
-										class="account-settings-fileinput" />
+									<label class="btn btn-outline-dark mt-2"> Tải ảnh mới lên 
+									<input type="file" id="fileInput" name="file" class="account-settings-fileinput"  onchange="previewImage()" />
 									</label> &nbsp;
-									<button type="button" class="btn btn-outline-dark md-btn-flat"
-										onclick="resetImage()">Làm mới</button>
 									<div class="small mt-1">Cho phép JPG, GIF hoặc PNG. Kích
-										thước tối đa 800K</div>
+										thước tối đa 800K </div>
+										${filename}
 								</div>
 							</div>
 
 							<hr class="border-light m-0" />
 							<div class="card-body">
 								<div class="form-group">
-									<label class="form-label">Tên đầy đủ</label> <input type="text"
-										class="form-control mb-1"
-										value="<%=SecurityUtils.getPrincipal().getFullName()%>" />
+									<form:input type="hidden" class="form-control mb-4" value="${user.getId_user()}" path="id_user" />
 								</div>
 								<div class="form-group">
-									<label class="form-label">Số điện thoại</label> <input
-										type="text" class="form-control"
-										value="<%=SecurityUtils.getPrincipal().getPhone()%>" />
+									<form:input type="hidden" class="form-control mb-4" value="${user.getImageuser()}" path="imageuser" />
 								</div>
 								<div class="form-group">
-									<label class="form-label">E-mail</label> <input type="text"
-										class="form-control mb-1"
-										value="<%=SecurityUtils.getPrincipal().getEmail()%>" />
+									<label class="form-label">Tên đầy đủ</label> 
+									<form:input type="text" class="form-control mb-1"  path="fullName" value="${user.getFullName()}"/>
+								</div>
+								<div class="form-group">
+									<label class="form-label">Số điện thoại</label>
+										<form:input type="text" class="form-control"  path="phone" value="${user.getPhone()}" pattern="^\d{10}$"/>
+								</div>
+								<div class="form-group">
+									<label class="form-label">E-mail</label>
+										<form:input type="text" class="form-control mb-1" path="email" value="${user.getEmail()}" />
 								</div>
 							</div>
 							<div class="text-right my-3 me-4">
-								<button type="button" class="btn btn-dark">Lưu thay đổi
+								<button type="submit" class="btn btn-dark">Lưu thay đổi
 								</button>
 							</div>
-						</div>
-						<div class="tab-pane fade" id="account-change-password">
+						</form:form>
+						<form:form action="change-password" method="POST" modelAttribute="user" class="tab-pane fade" id="account-change-password" required="required" accept-charset="utf-8">
+
 							<div class="card-body pb-2">
+								${error}
+								${error1}
+								${error2}
 								<div class="form-group">
-									<label class="form-label">Mật khẩu cũ</label> <input
-										type="password" class="form-control" />
+									<label class="form-label">Mật khẩu cũ</label> 
+										<form:input type="password" class="form-control" path="password" />
 								</div>
 								<div class="form-group">
-									<label class="form-label">Mật khẩu mới</label> <input
-										type="password" class="form-control" />
+									<label class="form-label">Mật khẩu mới</label> 
+										<form:input type="password" class="form-control" path="passwordconfirm" />
 								</div>
 								<div class="form-group">
-									<label class="form-label">Nhập lại mật khẩu mới</label> <input
-										type="password" class="form-control" />
+									<label class="form-label">Nhập lại mật khẩu mới</label> 
+										<form:input type="password" class="form-control" path="passwordconfirm1" />
 								</div>
 							</div>
 							<div class="text-right my-3 me-4">
-								<button type="button" class="btn btn-dark">Lưu thay đổi
-								</button>
+								<button type="submit" class="btn btn-dark">Lưu thay đổi</button>
 							</div>
-						</div>
+						</form:form>
 						<div class="tab-pane fade" id="account-social-links">
 							<div class="container">
 								<div class="col-xxl-8 col-12">
@@ -489,6 +490,7 @@
 	</div>
 	<!-- About Section End -->
 	<script type="text/javascript">
+<<<<<<< HEAD
 		// Lắng nghe sự kiện khi người dùng chọn file
 		document.getElementById('uploadImage').addEventListener('change', function(event) {
 		    // Kiểm tra xem có file nào được chọn không
@@ -507,6 +509,23 @@
 		    document.getElementById('previewImage').src = 'https://bootdey.com/img/Content/avatar/avatar1.png';
 		}
 	</script>
+=======
+            function previewImage() {
+                var fileInput = document.getElementById('fileInput');
+                var preview = document.getElementById('preview');
+
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
+        </script>
+>>>>>>> 41346813d5c6ac29f14ed47e48f4de36b822ec42
 </body>
 
 </html>

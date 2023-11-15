@@ -41,4 +41,22 @@ public class AccountServiceImpl implements IAccountService {
 		}
 	    
 	}
+	public int UpdateAccountProfile(UserEntity user) {
+		if(user!=null) {
+			return u.UpdateAccountProfile(user);
+		}
+		else {
+			return 0;
+		}
+	    
+	}
+	public int ChangePassword(UserEntity user) {
+		if(user!=null) {
+			return u.UpdateAccountProfile(user);
+		}
+		else {
+			return 0;
+		}
+	    
+	}
 }
