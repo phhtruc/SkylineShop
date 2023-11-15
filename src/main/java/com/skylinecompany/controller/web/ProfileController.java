@@ -1,7 +1,6 @@
 package com.skylinecompany.controller.web;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,28 +11,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skylinecompany.DAO.UserDAO;
 import com.skylinecompany.Util.SecurityUtils;
 import com.skylinecompany.entity.UserEntity;
-import com.skylinecompany.mapper.UserMapper;
 import com.skylinecompany.service.web.impl.AccountServiceImpl;
 
 @Controller
 public class ProfileController {
+
 	@Autowired
 	AccountServiceImpl a;
 	
-	@Autowired
-	private UserDAO userDAO;
 
 	@RequestMapping(value="/tai-khoan-cua-toi", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 	    ModelAndView mav = new ModelAndView("web/profile");
-	    UserEntity userEntity = userDAO.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
+	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getEmail());
 	    mav.addObject("user", userEntity);
 	    return mav;
 	}
@@ -60,7 +55,7 @@ public class ProfileController {
 			}
 	    }
         int count = a.UpdateAccountProfile(user);
-	    UserEntity userEntity = userDAO.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
+	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
 	    if(count>0) {
 	    	mav.addObject("user", userEntity);
 		}
@@ -99,7 +94,7 @@ public class ProfileController {
 	    int count = a.ChangePassword(user);
 
 	    if((SecurityUtils.getPrincipal().getPassword()).equals(user.getPassword())) {
-	    	UserEntity userEntity = userDAO.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
+	    	UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
 	    	if(user.getPasswordconfirm().equals(user.getPasswordconfirm1())) {
 	    		if(count>0) {
 			    	mav.addObject("user", userEntity);

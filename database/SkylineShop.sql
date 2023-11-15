@@ -113,7 +113,7 @@ values('Admin'),
 INSERT INTO [User] (fullName, email, phone, [password], id_role)
 VALUES
     ('Pham Thanh Truc','admin@skyline.com', '0706075950', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 1),
-    ('Truc Pham','kientruc582@gmail.com', '0706075959', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 2);
+    ('Truc Pham','kientruc10@gmail.com', '0706075959', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 2);
 
 -- Thêm dữ liệu cho bảng [Category]
 INSERT INTO [Category] (cate_name)

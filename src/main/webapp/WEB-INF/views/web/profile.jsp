@@ -55,7 +55,7 @@
 					<div class="tab-content">
 						<form:form action="update-profile" method="POST" modelAttribute="user" class="tab-pane fade active show" id="account-general" enctype="multipart/form-data" required="required" accept-charset="utf-8">
 							<div class="card-body media align-items-center">
-								<img id="preview" src="${pageContext.request.contextPath}/images/${user.getImageuser()}" style="max-width: 100%;"  class="d-block ui-w-80" />
+								<img id="preview" src="${pageContext.request.contextPath}/images/${user.getImageuser()}" style="max-width: 100%; max-height: 200px"  class="d-block ui-w-80" />
 								<div class="media-body ml-4">
 									<label class="btn btn-outline-dark mt-2"> Tải ảnh mới lên 
 									<input type="file" id="fileInput" name="file" class="account-settings-fileinput"  onchange="previewImage()" />
@@ -490,26 +490,6 @@
 	</div>
 	<!-- About Section End -->
 	<script type="text/javascript">
-<<<<<<< HEAD
-		// Lắng nghe sự kiện khi người dùng chọn file
-		document.getElementById('uploadImage').addEventListener('change', function(event) {
-		    // Kiểm tra xem có file nào được chọn không
-		    if (event.target.files.length > 0) {
-		        // Lấy đường dẫn của file hình ảnh đã chọn
-		        var imageUrl = URL.createObjectURL(event.target.files[0]);
-	
-		        // Cập nhật src của thẻ img với đường dẫn của file hình ảnh
-		        document.getElementById('previewImage').src = imageUrl;
-		    }
-		});
-	
-		// Hàm làm mới ảnh
-		function resetImage() {
-		    // Đặt lại src của thẻ img với đường dẫn mặc định
-		    document.getElementById('previewImage').src = 'https://bootdey.com/img/Content/avatar/avatar1.png';
-		}
-	</script>
-=======
             function previewImage() {
                 var fileInput = document.getElementById('fileInput');
                 var preview = document.getElementById('preview');
@@ -525,7 +505,6 @@
                 }
             }
         </script>
->>>>>>> 41346813d5c6ac29f14ed47e48f4de36b822ec42
 </body>
 
 </html>
