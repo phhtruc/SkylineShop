@@ -52,7 +52,7 @@ public class AccountServiceImpl implements IAccountService {
 	}
 	public int ChangePassword(UserEntity user) {
 		if(user!=null) {
-			return u.UpdateAccountProfile(user);
+			return u.ChangePassword(user);
 		}
 		else {
 			return 0;

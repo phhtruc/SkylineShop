@@ -11,13 +11,14 @@ public class UserEntity {
 	private String passwordconfirm;
 	private String passwordconfirm1;
 	private String imageuser;
+	private String passwordold;
 	
 	public UserEntity() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public UserEntity(int id_user, String fullName, String email, String phone, String password, int id_role,
-			String passwordconfirm, String passwordconfirm1, String imageuser) {
+			String passwordconfirm, String passwordconfirm1, String imageuser, String passwordold) {
 		super();
 		this.id_user = id_user;
 		this.fullName = fullName;
@@ -28,6 +29,7 @@ public class UserEntity {
 		this.passwordconfirm = passwordconfirm;
 		this.passwordconfirm1 = passwordconfirm1;
 		this.imageuser = imageuser;
+		this.passwordold = passwordold;
 	}
 
 	public int getId_user() {
@@ -101,7 +103,15 @@ public class UserEntity {
 	public void setImageuser(String imageuser) {
 		this.imageuser = imageuser;
 	}
-	
+
+	public String getPasswordold() {
+		return passwordold;
+	}
+
+	public void setPasswordold(String passwordold) {
+		this.passwordold = passwordold;
+	}
+
 	
 
 }

@@ -31,7 +31,7 @@ public class UserDAO extends BaseDAO {
 	public int AddAccount(UserEntity user) {
 		  StringBuilder sql = new StringBuilder();
 		  sql.append("INSERT INTO [User] (email, phone, password, id_role, fullName) ");
-		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPassword().getBytes(), StandardCharsets.UTF_8) + "', '" + user.getId_role() + "', '" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "')");
+		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPassword().getBytes(), StandardCharsets.UTF_8) + "', '" + user.getId_role() + "', 'N" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "')");
 
 		  int insert = _jdbcTemplate.update(sql.toString());
 
@@ -65,7 +65,7 @@ public class UserDAO extends BaseDAO {
 	public int ChangePassword(UserEntity user) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("Update [User] ");
-		sql.append("set [password]='" + user.getPasswordconfirm() + "' ");
+		sql.append("set [password]='" + user.getPassword() + "' ");
 		sql.append("where id_user = " + user.getId_user() + "");
 		int insert = _jdbcTemplate.update(sql.toString());
 
