@@ -65,7 +65,7 @@ public class UserDAO extends BaseDAO {
 	public int ChangePassword(UserEntity user) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("Update [User] ");
-		sql.append("set [password]='" + user.getPasswordconfirm() + "' ");
+		sql.append("set [password]='" + user.getPassword() + "' ");
 		sql.append("where id_user = " + user.getId_user() + "");
 		int insert = _jdbcTemplate.update(sql.toString());
 

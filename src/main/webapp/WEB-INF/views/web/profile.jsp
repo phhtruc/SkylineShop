@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ include file="/common/taglib.jsp"%>
+=======
+	<%@ include file="/common/taglib.jsp"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+>>>>>>> 32be04240fe9af561ba8f8067390e2de0d25f488
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -55,17 +60,38 @@
 					<div class="tab-content">
 						<form:form action="update-profile" method="POST" modelAttribute="user" class="tab-pane fade active show" id="account-general" enctype="multipart/form-data" required="required" accept-charset="utf-8">
 							<div class="card-body media align-items-center">
+<<<<<<< HEAD
 								<img id="preview" src="${pageContext.request.contextPath}/images/${user.getImageuser()}" style="max-width: 100%; max-height: 200px"  class="d-block ui-w-80" />
+=======
+								
+								<c:choose>
+								    <c:when test="${not empty user.getImageuser()}">
+								        <img id="preview" src="${pageContext.request.contextPath}/images/${user.getImageuser()}" style="max-width: 100%; max-height: 200px" class="d-block ui-w-80" />
+								    </c:when>
+								    <c:otherwise>
+								        <img  src="${pageContext.request.contextPath}/images/1.png" style="max-width: 100%; max-height: 200px" class="d-block ui-w-80" />
+								    </c:otherwise>
+								</c:choose>
+>>>>>>> 32be04240fe9af561ba8f8067390e2de0d25f488
 								<div class="media-body ml-4">
 									<label class="btn btn-outline-dark mt-2"> Tải ảnh mới lên 
 									<input type="file" id="fileInput" name="file" class="account-settings-fileinput"  onchange="previewImage()" />
 									</label> &nbsp;
 									<div class="small mt-1">Cho phép JPG, GIF hoặc PNG. Kích
 										thước tối đa 800K </div>
-										${filename}
+										
 								</div>
 							</div>
+<<<<<<< HEAD
 
+=======
+							<c:choose>
+								    <c:when test="${not empty status}">
+								        <div class="alert alert-success">${status}</div>
+								    </c:when>
+								    
+								</c:choose>
+>>>>>>> 32be04240fe9af561ba8f8067390e2de0d25f488
 							<hr class="border-light m-0" />
 							<div class="card-body">
 								<div class="form-group">
@@ -95,12 +121,15 @@
 						<form:form action="change-password" method="POST" modelAttribute="user" class="tab-pane fade" id="account-change-password" required="required" accept-charset="utf-8">
 
 							<div class="card-body pb-2">
-								${error}
-								${error1}
-								${error2}
+								<div class="form-group">
+									<form:input type="hidden" class="form-control mb-4" value="${user.getId_user()}" path="id_user" />
+								</div>
+								<div class="form-group">
+										<form:input type="hidden" class="form-control mb-1" path="email" value="${user.getEmail()}" />
+								</div>
 								<div class="form-group">
 									<label class="form-label">Mật khẩu cũ</label> 
-										<form:input type="password" class="form-control" path="password" />
+										<form:input type="password" class="form-control" path="passwordold" />
 								</div>
 								<div class="form-group">
 									<label class="form-label">Mật khẩu mới</label> 

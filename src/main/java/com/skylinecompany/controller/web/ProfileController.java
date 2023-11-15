@@ -1,10 +1,10 @@
 package com.skylinecompany.controller.web;
 
 import java.io.File;
-
 import javax.servlet.http.HttpServletRequest;
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.skylinecompany.Util.SecurityUtils;
 import com.skylinecompany.entity.UserEntity;
 import com.skylinecompany.service.web.impl.AccountServiceImpl;
@@ -24,6 +23,8 @@ public class ProfileController {
 	@Autowired
 	AccountServiceImpl a;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@RequestMapping(value="/tai-khoan-cua-toi", method = RequestMethod.GET)
 	public ModelAndView homePage() {
@@ -88,30 +89,28 @@ public class ProfileController {
 //	    }
 //	    return mav;
 //	}
+	public boolean checkPassword(String rawPassword, String encodedPassword) {
+        // Kiểm tra mật khẩu
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
 	@RequestMapping(value="/change-password", method = RequestMethod.POST)
 	public ModelAndView changePass(@ModelAttribute("user") UserEntity user ) {
 	    ModelAndView mav = new ModelAndView("web/profile");
-	    int count = a.ChangePassword(user);
-
-	    if((SecurityUtils.getPrincipal().getPassword()).equals(user.getPassword())) {
-	    	UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
-	    	if(user.getPasswordconfirm().equals(user.getPasswordconfirm1())) {
-	    		if(count>0) {
-			    	mav.addObject("user", userEntity);
-			    	mav.setViewName("tai-khoan-cua-toi");
-				}
-				else {
-					mav.addObject("error", "Email hoặc số điện thoại đã được sử dụng");
-				}
+	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
+	    if( checkPassword(user.getPasswordold(), userEntity.getPassword())==true) {
+	    	user.setPassword(BCrypt.hashpw(user.getPasswordconfirm1(), BCrypt.gensalt(12)));
+	    	int count = a.ChangePassword(user);
+	    	if(count>0) {
+	    		mav.addObject("status","đã thay đổi thành công ");
 	    	}
 	    	else {
-	    		return mav.addObject("error2", "Mật khẩu chưa trùng khớp");
+	    		mav.addObject("status","thay đổi thất bại ");
 	    	}
 	    }
 	    else {
-	    	return mav.addObject("error1", "Mật khẩu củ chưa đúng");
+	    	mav.addObject("status", userEntity.getPassword());
 	    }
-	    
 	    return mav;
 	}
+	
 }
