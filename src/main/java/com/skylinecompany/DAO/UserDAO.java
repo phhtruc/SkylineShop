@@ -49,4 +49,26 @@ public class UserDAO extends BaseDAO {
 
 		return insert;
 	}
+	public int UpdateAccountProfile(UserEntity user) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("Update [User] ");
+		sql.append("set [fullName]=N'" + user.getFullName() + "' ");
+		sql.append(", [email]='" + user.getEmail() + "' ");
+		sql.append(", [phone]='" + user.getPhone() + "' ");
+		sql.append(", [imageuser]='" + user.getImageuser() + "' ");
+		sql.append("where id_user = " + user.getId_user() + "");
+
+		int insert = _jdbcTemplate.update(sql.toString());
+
+		return insert;
+	}
+	public int ChangePassword(UserEntity user) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("Update [User] ");
+		sql.append("set [password]='" + user.getPasswordconfirm() + "' ");
+		sql.append("where id_user = " + user.getId_user() + "");
+		int insert = _jdbcTemplate.update(sql.toString());
+
+		return insert;
+	}
 }
