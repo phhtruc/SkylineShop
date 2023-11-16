@@ -39,6 +39,25 @@
     <link rel="stylesheet" href="<c:url value='/template/web/css/owl.carousel.min.css'/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/template/web/css/slicknav.min.css'/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/template/web/css/style.css'/>" type="text/css"/>
+    <style>
+    	.add-to-cart{
+			border:none;
+			padding:0;
+		}
+		.header__nav__option a span {
+		    top: -9px;
+		    position: absolute;
+		    right: -14px;
+		    background-color: black;
+		    width: 20px;
+		    height: 20px;
+		    color: #ffffff;
+		    text-align: center;
+		    border-radius: 50%;
+		    padding: 3px;
+		    font-size: 11px;
+		}
+    </style>
   </head>
   <body>
   

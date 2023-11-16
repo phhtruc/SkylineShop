@@ -46,18 +46,6 @@
   </head>
 
   <body>
-    <!-- Page Preloder 
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>-->
-
-    <!-- Offcanvas Menu Begin -->
-    
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    
-    <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
@@ -87,106 +75,51 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${Cart}" var="c">
                   <tr>
                     <td class="product__cart__item">
                       <div class="product__cart__item__pic">
-                        <img src="template/web/img/shopping-cart/cart-1.jpg" alt="" />
+                        <a href="<c:url value='/shop-details/${c.value.product.product_name}'/>" ><img style="width:90px" src="<c:url value='/template/web/images/${c.value.product.image }'/>" alt="" /></a>
                       </div>
                       <div class="product__cart__item__text">
-                        <h6>T-shirt Contrast Pocket</h6>
-                        <h5>$98.49</h5>
+                        <a href="<c:url value='/shop-details/${c.value.product.product_name}'/>" ><h6>${c.value.product.product_name}</h6></a>
+                        <h5><fmt:formatNumber type="number" groupingUsed="true"
+														value="${c.value.product.price}" /></h5>
                       </div>
                     </td>
                     <td class="quantity__item">
                       <div class="quantity">
                         <div class="pro-qty-2">
-                          <input type="text" value="1" />
+                        	<span class="fa fa-minus dec qtybtn edit-cart" data-product-id="${c.value.product.id_product}"></span>
+                          		<input type="text" value="${c.value.quantity }" id="quantity-${c.value.product.id_product}"/>
+                          	<span class="fa fa-plus inc qtybtn edit-cart" data-product-id="${c.value.product.id_product}"></span>
                         </div>
                       </div>
                     </td>
-                    <td class="cart__price">$ 30.00</td>
-                    <td class="cart__close"><i class="fa fa-close"></i></td>
+                    <td class="cart__price" id="cart-price-${c.value.product.id_product}"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${c.value.totalPrice }" /> VND</td>
+                    <td class="cart__close"><a href="<c:url value='/delete-cart/${c.value.product.id_product }'/>"><i class="fa fa-close" ></i></a></td>
                   </tr>
-                  <tr>
-                    <td class="product__cart__item">
-                      <div class="product__cart__item__pic">
-                        <img src="template/web/img/shopping-cart/cart-2.jpg" alt="" />
-                      </div>
-                      <div class="product__cart__item__text">
-                        <h6>Diagonal Textured Cap</h6>
-                        <h5>$98.49</h5>
-                      </div>
-                    </td>
-                    <td class="quantity__item">
-                      <div class="quantity">
-                        <div class="pro-qty-2">
-                          <input type="text" value="1" />
-                        
-                        </div>
-                      </div>
-                    </td>
-                    <td class="cart__price">$ 32.50</td>
-                    <td class="cart__close"><i class="fa fa-close"></i></td>
-                  </tr>
-                  <tr>
-                    <td class="product__cart__item">
-                      <div class="product__cart__item__pic">
-                        <img src="template/web/img/shopping-cart/cart-3.jpg" alt="" />
-                      </div>
-                      <div class="product__cart__item__text">
-                        <h6>Basic Flowing Scarf</h6>
-                        <h5>$98.49</h5>
-                      </div>
-                    </td>
-                    <td class="quantity__item">
-                      <div class="quantity">
-                        <div class="pro-qty-2">
-                          <input type="text" value="1" />
-                        </div>
-                      </div>
-                    </td>
-                    <td class="cart__price">$ 47.00</td>
-                    <td class="cart__close"><i class="fa fa-close"></i></td>
-                  </tr>
-                  <tr>
-                    <td class="product__cart__item">
-                      <div class="product__cart__item__pic">
-                        <img src="template/web/img/shopping-cart/cart-4.jpg" alt="" />
-                      </div>
-                      <div class="product__cart__item__text">
-                        <h6>Basic Flowing Scarf</h6>
-                        <h5>$98.49</h5>
-                      </div>
-                    </td>
-                    <td class="quantity__item">
-                      <div class="quantity">
-                        <div class="pro-qty-2">
-                          <input type="text" value="1" />
-                        </div>
-                      </div>
-                    </td>
-                    <td class="cart__price">$ 30.00</td>
-                    <td class="cart__close"><i class="fa fa-close"></i></td>
-                  </tr>
+                </c:forEach>
                 </tbody>
               </table>
             </div>
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="continue__btn">
-                  <a href="#">Continue Shopping</a>
+                  <a href="<c:url value='/shop'/>">Continue Shopping</a>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="continue__btn update__btn">
-                  <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                  <a href="<c:url value='/shopping-cart'/>"><i class="fa fa-spinner"></i> Update cart</a>
                 </div>
               </div>
             </div>
@@ -201,11 +134,11 @@
             </div>
             <div class="cart__total">
               <h6>Cart total</h6>
-              <ul>
-                <li>Subtotal <span>$ 169.50</span></li>
-                <li>Total <span>$ 169.50</span></li>
+              <ul>    
+                <li>Total<span class="cart-price"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${TotalPrice}" /> VND</span></li>
               </ul>
-              <a href="#" class="primary-btn">Proceed to checkout</a>
+              <a href="<c:url value='/checkout'/>" class="primary-btn">Proceed to checkout</a>
             </div>
           </div>
         </div>
@@ -226,5 +159,70 @@
     <script src="template/web/lib/wow/wow.min.js"></script>
     <script src="template/web/lib/easing/easing.min.js"></script>
     <script src="template/web/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $(".edit-cart").on("click", function() {
+		    var productId = $(this).data("product-id");
+		    var $itemPrice = $("#cart-price-" + productId);
+		    var $cartSize = $("#cart-size");
+		    var $cartPrice = $(".cart-price");
+		    
+		    var $quantityInput = $("#quantity-" + productId);
+	        if ($quantityInput.length > 0) {
+	            quantity = $quantityInput.val();
+	        }
+	        
+		    var urlink="<c:url value='/edit-cart/'/>" + productId + "/" + quantity;
+		    
+		    $.ajax({
+		      type: "GET",
+		      url: urlink,
+		      data : {
+					quantity : quantity
+				},
+		      success: function(response) {
+		    	 
+		          var totalPrice = response.TotalPriceProduct;
+		          var cartPrice = response.totalPrice;
+		          var cartSize = response.cartSize;
+		          
+		    	  var formattedPrice = new Intl.NumberFormat('vi-VN').format(totalPrice);
+		          formattedPrice += ' VND';
+		          $itemPrice.html(formattedPrice);
+		          
+		          $cartSize.text(cartSize);
+		          var cartFormattedPrice = new Intl.NumberFormat('vi-VN').format(cartPrice);
+		          cartFormattedPrice += ' VND';
+		          $cartPrice.text(cartFormattedPrice);
+		          
+		      },
+		      error: function(error) {
+		    	  
+		      }
+		    });
+		  });
+		});
+	</script>
+	    <script>
+		    var status = ${status};
+			
+		    if (status !== undefined && (status == 1 || status !== null)) {
+		    	Swal.fire({
+		    		  title: 'Giỏ hàng của bạn đang trống',
+		    		  text: "Vui lòng thêm ít nhất 1 sản phẩm vào giỏ hàng trước khi thanh toán",
+		    		  icon: 'warning',
+		    		  showCancelButton: true,
+		    		  confirmButtonColor: '#3085d6',
+		    		  cancelButtonColor: '#d33',
+		    		  confirmButtonText: 'Tiếp tục mua sắm'
+		    		}).then((result) => {
+		    		  if (result.isConfirmed) {
+		    			  window.location.href = "<c:url value='/shop'/>";
+		    		  }
+		    		})
+		    }
+	    </script>
   </body>
 </html>

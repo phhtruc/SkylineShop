@@ -1,6 +1,7 @@
 <%@page import="com.skylinecompany.Util.SecurityUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
 <!-- Header Section Begin -->
 <header class="header">
 	<div class="header__top">
@@ -21,7 +22,8 @@
 						</security:authorize>
 						<security:authorize access="isAuthenticated()">
 							<div class="header__top__links">
-								<a href="<c:url value='/dang-nhap'/>"><%=SecurityUtils.getPrincipal().getFullName() %></a> <a href="<c:url value='/thoat'/>">Thoát</a>
+								<a href="<c:url value='/tai-khoan-cua-toi'/>"><%=SecurityUtils.getPrincipal().getFullName()%></a>
+								<a href="<c:url value='/thoat'/>">Thoát</a>
 							</div>
 						</security:authorize>
 					</div>
@@ -79,10 +81,16 @@
 						src="<c:url value ='/template/web/img/icon/search.png'/>" alt="" /></a>
 					<a href="#"><img
 						src="<c:url value ='/template/web/img/icon/heart.png'/>" alt="" /></a>
-					<a href="#"><img
+					<a href="<c:url value='/shopping-cart'/>"><img
+						class="position-relative"
 						src="<c:url value ='/template/web/img/icon/cart.png'/>" alt="" />
-						<span>0</span></a>
-					<div class="price">$0.00</div>
+					<c:if test="${Cart == null }">
+						<span class='quantity-item'>0</span></a>
+					</c:if>
+					<c:if test="${Cart != null }">
+						<span class='quantity-item' id="cart-size">${Cart.size()}</span></a>
+						<div class="price cart-price"><fmt:formatNumber type="number" groupingUsed="true" value="${TotalPrice}"/> VND</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

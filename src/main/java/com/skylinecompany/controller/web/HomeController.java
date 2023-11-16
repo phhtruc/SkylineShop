@@ -1,5 +1,7 @@
 package com.skylinecompany.controller.web;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,12 +27,15 @@ public class HomeController {
 	
 	@Autowired
 	AccountServiceImpl a;
+	
+	@Autowired
+	HttpServletRequest request;
+	
+
     
 	@RequestMapping(value="/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/home");
-		mav.addObject("hotSale", h.findHotSalesProduct());
-		mav.addObject("newArrivals", h.findNewArricalsProduct());
 		mav.addObject("best", h.findBestSellingProduct());
 		return mav;
 	} 
@@ -40,15 +45,19 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("login");
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/thoat", method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return new ModelAndView("redirect:/trang-chu");
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null) {
+	        // Hủy token Remember-Me
+	        //tokenBasedRememberMeServices.logout(request, response, auth);
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "redirect:/trang-chu";
 	}
+
+
 	
 	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
 	public ModelAndView accessDenied() {
@@ -67,6 +76,7 @@ public class HomeController {
 	@RequestMapping(value="/dang-ky", method = RequestMethod.POST)
 	public ModelAndView createAccount(@ModelAttribute("user") UserEntity user) {
 		ModelAndView mav = new ModelAndView("register");
+		user.setFullName(new String(user.getFullName().getBytes(), StandardCharsets.UTF_8));
 		int count = a.AddAccount(user);
 		if(count>0) {
 			mav.addObject("status", "Đăng ký tài khoản thành công! Hãy đăng nhập");
@@ -78,24 +88,36 @@ public class HomeController {
 		}
 		return mav;	
 	}
+	
 	@RequestMapping(value="/quen-mat-khau", method = RequestMethod.GET)
 	public ModelAndView forgotPassPage() {
-		ModelAndView mav = new ModelAndView("forgotpass");
+		ModelAndView mav = new ModelAndView("forgot-password");
 		mav.addObject("user", new UserEntity());
 		return mav;
 	}
+	
 	@RequestMapping(value="/quen-mat-khau", method = RequestMethod.POST)
 	public ModelAndView forgotPass(@ModelAttribute("user") UserEntity user) {
-		ModelAndView mav= new ModelAndView("forgotpass");
+		ModelAndView mav= new ModelAndView("forgot-password");
 		int count = a.UpdateAccount(user);
 		if(count>0) {
 			mav.addObject("status", "Đổi mật khẩu thành công! Hãy đăng nhập");
 			mav.setViewName("login");
 		}
 		else {
-			mav.addObject("error", "Hãy xem lại phần email hoặc mật khẩu đã trùng chưa");
-			mav.setViewName("forgotpass");
+			mav.addObject("error", "Email hoặc mật khẩu nhập lại không đúng");
+			mav.setViewName("forgot-password");
 		}
 		return mav;	
 	}
+	
+	@RequestMapping(value="/send-email", method = RequestMethod.GET)
+	public ModelAndView sendEmail() {
+		ModelAndView mav = new ModelAndView("forgot-password");
+		//sendEmail("kientruc582@gmail.com","trucpham240420@gmail.com","hello","You forget password?");
+		return mav;
+	}
+	
+
+	
 }

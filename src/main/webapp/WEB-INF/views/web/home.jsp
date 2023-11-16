@@ -49,11 +49,6 @@
 </head>
 
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
 	<section class="hero">
 		<div class="hero__slider owl-carousel">
 			<div class="hero__items set-bg wow fadeInLeft" data-wow-delay="0.5s"
@@ -203,9 +198,13 @@
 									<li><a href="#"><img
 											src="<c:url value='/template/web/img/icon/search.png'/>"
 											alt="" /><span>Search</span></a></li>
-									<li><a href="#"><img
-											src="<c:url value='/template/web/img/icon/cart.png'/>" alt="" /><span>Add to cart</span></a>
-									</li>
+									<li><button class="add-to-cart"
+															data-product-id="${b.id_product}">
+															<img
+																src="<c:url value='/template/web/img/icon/cart.png'/>"
+																alt="" />
+														</button>
+														<span>Add to cart</span></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">
@@ -384,5 +383,66 @@
 	<script src="template/web/lib/wow/wow.min.js"></script>
 	<script src="template/web/lib/easing/easing.min.js"></script>
 	<script src="template/web/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".add-to-cart").on("click", function() {
+				var productId = $(this).data("product-id");
+				var urlink = "<c:url value='/add-cart/'/>" + productId;
+				var $cartSize = $("#cart-size");
+				var $cartTotalPrice = $(".cart-price");
+
+				$.ajax({
+					type : "GET",
+					url : urlink,
+					data : {
+						quantity : 1
+					},
+					success : function(response) {
+						var cartSize = response.cartSize;
+						var cartTotal = response.totalPrice;
+
+						$cartSize.text(cartSize);
+						var formattedPrice = new Intl.NumberFormat('vi-VN').format(cartTotal);
+				          	formattedPrice += ' VND';
+						$cartTotalPrice.text(formattedPrice);
+						
+						const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-right',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Thêm vào giỏ hàng thành công'
+                        })
+					},
+					error : function(error) {
+						alert("Lỗi");
+					}
+				});
+			});
+		});
+	</script>
+	<script>
+	    var status = ${status};
+	
+	    if (status !== undefined && (status == 1 || status !== null)) {
+	        Swal.fire({
+	            title: "Thông báo",
+	            text: "Đơn hàng của bạn đã thanh toán thành công thành công, xem chi tiết tại tài khoản của tôi.",
+	            icon: "success",
+	            confirmButtonColor: "#3085d6"
+	        });
+	    }
+	</script>
+
 </body>
 </html>

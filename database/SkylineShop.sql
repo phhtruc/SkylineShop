@@ -13,6 +13,7 @@ create table [User]
 	email varchar(100) CHECK(email LIKE '%@%') unique,
 	phone varchar(10) CHECK(phone LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]') unique,
 	[password] varchar(225),
+	imageuser varchar(200),
 	id_role int foreign key references [Role](id_role)
 	on delete cascade
 	on update cascade

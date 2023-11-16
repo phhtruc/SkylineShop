@@ -45,6 +45,7 @@
 <link rel="stylesheet" href="template/web/css/slicknav.min.css"
 	type="text/css" />
 <link rel="stylesheet" href="template/web/css/style.css" type="text/css" />
+
 </head>
 <body>
 	<!-- Breadcrumb Section Begin -->
@@ -127,7 +128,8 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="shop__product__option__left">
-									<p>Hiển thị ${paginate.start+1} - ${paginate.end} trong ${totalData } kết quả</p>
+									<p>Hiển thị ${paginate.start+1} - ${paginate.end} trong
+										${totalData } kết quả</p>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
@@ -167,9 +169,13 @@
 													<li><a href="#"><img
 															src="<c:url value='/template/web/img/icon/search.png'/>"
 															alt="" /></a></li>
-													<li><a href="#"><img
-															src="<c:url value='/template/web/img/icon/cart.png'/>"
-															alt="" /></a></li>
+													<li><button class="add-to-cart"
+															data-product-id="${p.id_product}">
+															<img
+																src="<c:url value='/template/web/img/icon/cart.png'/>"
+																alt="" />
+														</button> <span>Add to cart</span></a></li>
+
 												</ul>
 											</div>
 											<div class="product__item__text">
@@ -272,5 +278,65 @@
 	<script src="<c:url value='/template/web/js/main.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/easing/easing.min.js'/>"></script>
 	<script src="<c:url value='/template/web/lib/wow/wow.min.js'/>"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		  $(".add-to-cart").on("click", function() {
+		    var productId = $(this).data("product-id");
+		    var urlink = "<c:url value='/add-cart/'/>" + productId;
+		    var $cartSize = $("#cart-size");
+		    var $cartTotalPrice = $(".cart-price");
+
+		    var response;
+
+		    $.ajax({
+		      type: "GET",
+		      url: urlink,
+		      data: {
+		        quantity: 1
+		      },
+		      success: function(data) {
+		        response = data;
+
+		        var cartSize = response.cartSize;
+		        var cartTotal = response.totalPrice;
+
+		        $cartSize.text(cartSize);
+		        var formattedPrice = new Intl.NumberFormat('vi-VN').format(cartTotal);
+		        formattedPrice += ' VND';
+		        $cartTotalPrice.text(formattedPrice);
+		       
+		        const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Thêm vào giỏ hàng thành công'
+                })
+
+		      },
+		      error: function(error) {
+		        alert("Lỗi");
+		      }
+		    }).always(function() {
+		      // Update the cart size and total price in the header using the response variable
+		      $("#cart-size").text(response.cartSize);
+		      var formattedPrice = new Intl.NumberFormat('vi-VN').format(response.totalPrice);
+		      formattedPrice += ' VND';
+		      $(".cart-price").text(formattedPrice);
+		    });
+		  });
+		});
+	</script>
 </body>
 </html>

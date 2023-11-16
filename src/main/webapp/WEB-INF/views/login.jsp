@@ -29,9 +29,9 @@
 				    	<div class="alert alert-success">${status}</div>
 					</c:if>
 					<label for="loginEmail" class="sr-only">Email address</label>
-					<input type="email" class="form-control mb-4" placeholder="Email" name="j_username" />
+					<input type="email" required class="form-control mb-4" placeholder="Email" name="j_username" />
 					<label for="loginPassword" class="sr-only">Password</label>
-					<input type="password" class="form-control mb-4" placeholder="Mật khẩu" name="j_password" />
+					<input type="password" required class="form-control mb-4" placeholder="Mật khẩu" name="j_password" />
 					<div class="one-line mb-2">
 						<div class="checkbox">
 							<label> 
@@ -41,12 +41,33 @@
 					</div>
 					<button class="btn btn-lg btn-login btn-block mb-3" onclick="loginUser()">Đăng nhập</button>
 					<div class="d-flex justify-content-center">
-						<a class="" href="<c:url value='/quen-mat-khau'/>">Quên mật khẩu? </a>
+						<a class="" href="<c:url value='/quen-mat-khau'/>">Quên mật khẩu? </a> &nbsp;
 						<a class="" href="<c:url value='/dang-ky'/>"> Bạn chưa có tài khoản</a>
+					</div>
+					<div class = "another-signin mt-4">
+					     <p> <i>Hoặc đăng nhập bằng </i></p>
+					     <div class = "row container d-flex justify-content-center gap-3">
+					        <div class= "col container-as">
+					           	<a href="https://www.facebook.com/dialog/oauth?client_id=1132561737721410&redirect_uri=http://localhost:8888/SkylineShop/login-facebook">
+					           		<img alt="" src="template/web/img/login_fb.png">
+					           		<span>FaceBook</span>
+					           	</a>
+					        </div>
+					         <div class= "col container-as">
+
+
+					         	<a style="width: 100%; height: 100%" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
+    &client_id=946928910591-a6uhbkq7ahh2nv3lnrvss0si8ll2pvo6.apps.googleusercontent.com&approval_prompt=force">
+					           		<img alt="" src="template/web/img/login_google.png">
+					           		<span>Google</span>
+					           	</a>
+					        </div>
+					     </div>
 					</div>
 					<p class="mt-4 mb-0 text-muted small">Hãy đăng nhập ngay để khám phá thế giới thời trang tại cửa hàng Skyline Shop.</p>
 				</div>
 			</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 	</div>
 </body>
