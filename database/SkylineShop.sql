@@ -1,5 +1,5 @@
 create database skyline_shop
-
+use skyline_shop
 create table [Role]
 (
 	id_role int identity(1,1) primary key,
