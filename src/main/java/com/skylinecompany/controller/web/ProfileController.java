@@ -33,6 +33,16 @@ public class ProfileController {
 	    mav.addObject("user", userEntity);
 	    return mav;
 	}
+	
+	@RequestMapping(value="/my-profile", method = RequestMethod.GET)
+	public ModelAndView homePageAlert() {
+	    ModelAndView mav = new ModelAndView("web/profile");
+	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getEmail());
+	    mav.addObject("alert",1);
+	    //mav.addObject("alert2",2);
+	    mav.addObject("user", userEntity);
+	    return mav;
+	}
 
 	@RequestMapping(value="/update-profile", method = RequestMethod.POST)
 	public ModelAndView updateProfile(@ModelAttribute("user") UserEntity user,@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap) {
@@ -47,70 +57,53 @@ public class ProfileController {
 			}
 			try {
 				commonsMultipartFiles.transferTo(new File(fileDir+File.separator+namefile));
-				System.out.println("Upload file thành công!");
 				user.setImageuser(namefile);
 				mav.addObject("user", user);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				System.out.println("Upload file thất bại!");
 			}
 	    }
         int count = a.UpdateAccountProfile(user);
-	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
+	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getEmail());
+	    
 	    if(count>0) {
 	    	mav.addObject("user", userEntity);
 		}
 		else {
 			mav.addObject("error", "Email hoặc số điện thoại đã được sử dụng");
 		}
+	    
 	    return mav;
 	}
-//	@RequestMapping(value="/upload-file", method = RequestMethod.POST)
-//	public ModelAndView iploadfile(@ModelAttribute("user") UserEntity user,@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap) {
-//	    ModelAndView mav = new ModelAndView("web/profile");
-//	    String namefile =commonsMultipartFiles.getOriginalFilename();
-//		if(!"".equals(namefile)){
-//			String dirFile = request.getServletContext().getRealPath("images");
-//			System.out.println(dirFile);
-//			File fileDir = new File(dirFile);
-//			if(!fileDir.exists()){
-//				fileDir.mkdir();
-//			}
-//			try {
-//				commonsMultipartFiles.transferTo(new File(fileDir+File.separator+namefile));
-//				System.out.println("Upload file thành công!");
-//				modelMap.addAttribute("filename", namefile);
-//				user.setImageuser(namefile);
-//				mav.addObject("user", user);
-//			} catch (Exception e) {
-//				System.out.println(e.getMessage());
-//				System.out.println("Upload file thất bại!");
-//			}
-//	    }
-//	    return mav;
-//	}
+	
+	// Kiểm tra mật khẩu
 	public boolean checkPassword(String rawPassword, String encodedPassword) {
-        // Kiểm tra mật khẩu
+
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
+	
+	
 	@RequestMapping(value="/change-password", method = RequestMethod.POST)
 	public ModelAndView changePass(@ModelAttribute("user") UserEntity user ) {
-	    ModelAndView mav = new ModelAndView("web/profile");
-	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getFullName());
+		
+	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getEmail());
 	    if( checkPassword(user.getPasswordold(), userEntity.getPassword())==true) {
 	    	user.setPassword(BCrypt.hashpw(user.getPasswordconfirm1(), BCrypt.gensalt(12)));
 	    	int count = a.ChangePassword(user);
 	    	if(count>0) {
-	    		mav.addObject("status","đã thay đổi thành công ");
+	    		ModelAndView mav = new ModelAndView("redirect:/my-profile");
+	    		return mav;
 	    	}
 	    	else {
-	    		mav.addObject("status","thay đổi thất bại ");
+	    		ModelAndView mav = new ModelAndView("redirect:/my-profile");
+	    		return mav;
 	    	}
 	    }
 	    else {
-	    	mav.addObject("status", userEntity.getPassword());
+	    	ModelAndView mav = new ModelAndView("web/profile");
+	        mav.addObject("status", userEntity.getPassword());
+	        return mav;
 	    }
-	    return mav;
 	}
 	
 }

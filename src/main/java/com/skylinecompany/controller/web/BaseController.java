@@ -50,7 +50,8 @@ public class BaseController {
 		UserEntity user = new UserEntity();
 		user.setEmail(googlePojo.getEmail());
 		user.setImageuser(googlePojo.getPicture());
-		user.setId_role(1);
+		user.setId_role(2);
+		user.setImageuser(googlePojo.getPicture());
 		
 		a.AddAccountGoogle(user);
 		return "redirect:/trang-chu";

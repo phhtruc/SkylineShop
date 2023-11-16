@@ -53,6 +53,7 @@ public class GoogleUtils {
 		MyUser myUser = new MyUser(googlePojo.getEmail(), "", true, true, true, true,
 				authorities);
 		myUser.setFullName(googlePojo.getName());
+		myUser.setEmail(googlePojo.getEmail());
 		return myUser;
 	}
 }

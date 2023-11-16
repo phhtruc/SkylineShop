@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
+<c:url var="APIurl" value="/api/order" />
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -85,117 +86,108 @@
 			<div class="checkout__form">
 
 				<div class="row">
-					<div class="col-lg-7 col-md-6">
-						<h6 class="coupon__code">
-							<span class="icon_tag_alt"></span> Bạn đã có mã giảm giá ? <a
-								href="#">Nhấn vào đây</a> để nhập mã của bạn
-						</h6>
-						<h6 class="checkout__title">Chi tiết thanh toán</h6>
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="checkout__input">
-									<p>
-										Tên<span>*</span>
-									</p>
-									<input type="text" />
+					<form id="formSubmit">
+						<div class="col-lg-7 col-md-6">
+							<h6 class="coupon__code">
+								<span class="icon_tag_alt"></span> Bạn đã có mã giảm giá ? <a
+									href="#">Nhấn vào đây</a> để nhập mã của bạn
+							</h6>
+							<h6 class="checkout__title">Chi tiết thanh toán</h6>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="checkout__input">
+										<p>
+											Họ và Tên<span>*</span>
+										</p>
+										<input type="text" name="name"/>
+									</div>
 								</div>
 							</div>
-							<div class="col-lg-6">
-								<div class="checkout__input">
-									<p>
-										Họ và tên đệm<span>*</span>
-									</p>
-									<input type="text" />
+
+							<div class="checkout__input">
+								<p>
+									Email<span>*</span>
+								</p>
+								<input type="text" name="email"/>
+							</div>
+							<div class="checkout__input">
+								<p>
+									Số điện thoại<span>*</span>
+								</p>
+								<input type="number" name="phone"/>
+							</div>
+							<div class="checkout__input">
+								<p>
+									Địa chỉ<span>*</span>
+								</p>
+								<input type="text" placeholder="Tên địa chỉ" name="address"/>
+
+							</div>
+							<div class="checkout__input">
+								<p>
+									Tỉnh/Thành Phố<span>*</span>
+								</p>
+								<input type="text" />
+							</div>
+							<div class="checkout__input">
+								<p>
+									Phường/Quận<span>*</span>
+								</p>
+								<input type="text" />
+							</div>
+
+
+
+							<div class="checkout__input">
+								<p>
+									Ghi chú đặt hàng<span>*</span>
+								</p>
+								<textarea name="note" id="note" rows="4" cols="71" class="p-3" type="text" placeholder="Ghi chú gì đó cho người giao hàng (nếu có)."></textarea>
+							</div>
+						</div>
+						<div class="col-lg-5 col-md-6">
+							<div class="checkout__order">
+								<h4 class="order__title">Đơn hàng của bạn</h4>
+								<div class="checkout__order__products">
+									Sản phẩm <span>Tổng</span>
+								</div>
+								<ul class="checkout__total__products">
+									<c:forEach items="${cart }" var="c" varStatus="loop">
+										<li>${loop.index+1}.${c.value.product.product_name}<span
+											id="price"><fmt:formatNumber type="number"
+													groupingUsed="true" value="${c.value.totalPrice}" /> VND</span></li>
+									</c:forEach>
+								</ul>
+								<ul class="checkout__total__all">
+									<li>Tổng <span><fmt:formatNumber type="number"
+												groupingUsed="true" value="${totalPriceCart}" /> VND</span></li>
+								</ul>
+								<div class="checkout_radio">
+									<div class="form_radio form-check p-2 py-3 ms-4 border-bottom">
+										<input class="form-check-input " type="radio"
+											name="flexRadioDefault" id="flexRadioDefault1"
+											value="flexRadioDefault1" checked> <label
+											class="form-check-label " for="flexRadioDefault1">
+											Thanh toán qua VNPAY-QR </label> <img
+											style="width: 10%; float: right" class="me-1 pb-2" alt=""
+											src="template/web/img/Icon-VNPAY-QR.webp">
+									</div>
+									<div class="form_radio form-check p-2 py-3 ms-4 border-bottom">
+										<input class="form-check-input " type="radio"
+											name="flexRadioDefault" id="flexRadioDefault2"
+											value="flexRadioDefault2"> <label
+											class="form-check-label " for="flexRadioDefault3">
+											Thanh toán khi nhận hàng </label> <img
+											style="width: 10%; float: right" class="me-1 pb-2" alt=""
+											src="template/web/img/money_pay.jpg">
+
+									</div>
+									<button id="checkout" class="btn btn-dark mt-4 site-btn">Thanh
+										toán</button>
 								</div>
 							</div>
 						</div>
-
-						<div class="checkout__input">
-							<p>
-								Email<span>*</span>
-							</p>
-							<input type="text" />
-						</div>
-						<div class="checkout__input">
-							<p>
-								Số điện thoại<span>*</span>
-							</p>
-							<input type="number" />
-						</div>
-						<div class="checkout__input">
-							<p>
-								Địa chỉ<span>*</span>
-							</p>
-							<input type="text" placeholder="Tên địa chỉ" />
-
-						</div>
-						<div class="checkout__input">
-							<p>
-								Tỉnh/Thành Phố<span>*</span>
-							</p>
-							<input type="text" />
-						</div>
-						<div class="checkout__input">
-							<p>
-								Phường/Quận<span>*</span>
-							</p>
-							<input type="text" />
-						</div>
-
-
-
-						<div class="checkout__input">
-							<p>
-								Ghi chú đặt hàng<span>*</span>
-							</p>
-							<textarea id="note" name="note" rows="4" cols="71" class="p-3"
-								type="text"
-								placeholder="Ghi chú gì đó cho người giao hàng (nếu có)."></textarea>
-
-
-						</div>
-					</div>
-					<div class="col-lg-5 col-md-6">
-						<div class="checkout__order">
-							<h4 class="order__title">Đơn hàng của bạn</h4>
-							<div class="checkout__order__products">
-								Sản phẩm <span>Tổng</span>
-							</div>
-							<ul class="checkout__total__products">
-								<c:forEach items="${cart }" var="c" varStatus="loop">
-									<li>${loop.index+1}.${c.value.product.product_name} <span
-										id="price"><fmt:formatNumber type="number"
-												groupingUsed="true" value="${c.value.totalPrice}" /> VND</span></li>
-								</c:forEach>
-							</ul>
-							<ul class="checkout__total__all">
-								<li>Tổng <span><fmt:formatNumber type="number"
-											groupingUsed="true" value="${totalPriceCart}" /> VND</span></li>
-							</ul>
-							<div class="checkout_radio">
-								<div class="form_radio form-check p-2 py-3 ms-4 border-bottom">
-									<input class="form-check-input " type="radio"
-										name="flexRadioDefault" id="flexRadioDefault1" value="flexRadioDefault1" checked>
-									<label class="form-check-label " for="flexRadioDefault1">
-										Thanh toán qua VNPAY-QR </label> <img style="width: 10%; float: right"
-										class="me-1 pb-2" alt=""
-										src="template/web/img/Icon-VNPAY-QR.webp">
-								</div>
-								<div class="form_radio form-check p-2 py-3 ms-4 border-bottom">
-									<input class="form-check-input " type="radio"
-										name="flexRadioDefault" id="flexRadioDefault2" value="flexRadioDefault2"> <label
-										class="form-check-label " for="flexRadioDefault3">
-										Thanh toán khi nhận hàng </label> <img
-										style="width: 10%; float: right" class="me-1 pb-2" alt=""
-										src="template/web/img/money_pay.jpg">
-
-								</div>
-								<button id="checkout" class="btn btn-dark mt-4 site-btn">Thanh
-									toán</button>
-							</div>
-						</div>
-					</div>
-
+					</form>
 				</div>
 			</div>
 		</div>
@@ -216,9 +208,67 @@
 	<script src="template/web/lib/easing/easing.min.js"></script>
 	<script src="template/web/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
-	<script>
+		<script>
+		$('#checkout').click(function (e) {
+		    e.preventDefault();
+		    var data = {};
+	        var formData = $('#formSubmit').serializeArray();// muốn lấy được tất cả giá trị thì trên mỗi value phải có name
+	        
+	        $.each(formData, function (i, v) {
+	            data[""+v.name+""] = v.value;
+	        });
+	        //data["content"] = editor.getData();
+	        
+	        	$.ajax({
+		            url: '${APIurl}',
+		            type: 'POST',
+		            contentType: 'application/json',
+		            data: JSON.stringify(data),
+		            dataType: 'json',
+		            success: function (result) {
+		                console.log(result);
+		            },
+		            error: function (error) {
+		                console.log(error);
+		            }
+		        });
+	
+		    var totalPrice = ${totalPriceCart};
+		    var integerValue = parseInt(totalPrice, 10);
+	
+		    // Lấy giá trị của trường radio được chọn
+		    var paymentMethod = document.querySelector('input[name="flexRadioDefault"]:checked').value;
+	
+		    // Nếu người dùng chọn thanh toán qua VNPAY-QR, hãy chuyển hướng người dùng đến trang thanh toán của Vnpay
+		    if (paymentMethod === "flexRadioDefault1") {
+		        window.location.href = "/SkylineShop/pay?price=" + integerValue;
+		    }
+	
+		    // Nếu người dùng chọn thanh toán khi nhận hàng, hãy chuyển hướng người dùng đến trang đơn hàng
+		    else if (paymentMethod === "flexRadioDefault2") {
+
+		    	Swal.fire({
+		    		title: "Thông báo",
+	                text: "Đơn hàng của bạn đã được đặt thành công, xem chi tiết tại đơn hàng của tôi.",
+	                icon: "success",
+	                confirmButtonColor: "#3085d6",
+		        }).then((result) => {
+		            if (result.isConfirmed) {
+		                window.location.href = "<c:url value='/trangchu'/>";
+		            }
+		        });
+		    }
+		});
+	</script>
+<!-- 	<script>
 		document.getElementById("checkout").addEventListener("click", function(event) {
 		    event.preventDefault();
+		    
+	        var formData = $('#formSubmit').serializeArray();// muốn lấy được tất cả giá trị thì trên mỗi value phải có name
+	        $.each(formData, function (i, v) {
+	            data[""+v.name+""] = v.value;
+	        });
+	        data["content"] = editor.getData();
 	
 		    var totalPrice = ${totalPriceCart};
 		    var integerValue = parseInt(totalPrice, 10);
@@ -243,8 +293,21 @@
 		                window.location.href = "<c:url value='/trangchu'/>";
 		            }
 		        });
+		        $.ajax({
+		            url: '${APIurl}',
+		            type: 'POST',
+		            contentType: 'application/json',
+		            data: JSON.stringify(data),
+		            dataType: 'json',
+		            success: function (result) {
+		                console.log(result);
+		            },
+		            error: function (error) {
+		                console.log(error);
+		            }
+		        });
 		    }
 		});
-	</script>
+	</script> -->
 </body>
 </html>

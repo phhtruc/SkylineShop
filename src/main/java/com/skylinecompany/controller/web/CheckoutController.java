@@ -35,4 +35,16 @@ public class CheckoutController {
 	    
 		return mav;
 	}
+	
+	@RequestMapping(value="/trangchu", method = RequestMethod.GET)
+	public ModelAndView clear_Cart(HttpSession session) {
+		ModelAndView mav = new ModelAndView("web/home");
+		HashMap<Integer, ItemsDto> cart = (HashMap<Integer, ItemsDto>) session.getAttribute("Cart");
+		if (cart == null) {
+			cart = new HashMap<>();
+		}
+		//cart = ca.AddOrder(cart);
+		session.removeAttribute("Cart");
+		return mav;
+	}
 }

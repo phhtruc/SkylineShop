@@ -110,12 +110,5 @@ public class ShoppingCartController {
 		mav.addObject("status", 1);
 		return mav;
 	}
-	
-	@RequestMapping(value="/trangchu", method = RequestMethod.GET)
-	public ModelAndView clear_Cart(HttpSession session) {
-		ModelAndView mav = new ModelAndView("web/home");
-		session.removeAttribute("Cart");
-		return mav;
-	}
 
 }

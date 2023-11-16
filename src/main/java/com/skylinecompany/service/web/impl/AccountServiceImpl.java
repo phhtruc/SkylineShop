@@ -37,7 +37,7 @@ public class AccountServiceImpl implements IAccountService {
 			user.setPhone(RandomNumberGenerator());
 			user.setPassword(" ");
 			user.setFullName(" ");
-			return u.AddAccount(user);
+			return u.AddAccountGoogle(user);
 		}
 	}
 
@@ -60,7 +60,6 @@ public class AccountServiceImpl implements IAccountService {
 		} else {
 			return 0;
 		}
-
 	}
 
 	public int ChangePassword(UserEntity user) {

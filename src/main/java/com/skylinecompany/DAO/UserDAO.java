@@ -37,6 +37,17 @@ public class UserDAO extends BaseDAO {
 
 		  return insert;
 	}
+	
+	public int AddAccountGoogle(UserEntity user) {
+		  StringBuilder sql = new StringBuilder();
+		  sql.append("INSERT INTO [User] (email, phone, id_role, fullName, imageuser)");
+		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "','" + user.getId_role() + "', '" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "','" + new String(user.getImageuser().getBytes(), StandardCharsets.UTF_8) + "')");
+
+		  int insert = _jdbcTemplate.update(sql.toString());
+
+		  return insert;
+	}
+	
 
 
 	public int UpdateAccount(UserEntity user) {
