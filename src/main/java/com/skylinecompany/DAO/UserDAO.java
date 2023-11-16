@@ -82,4 +82,5 @@ public class UserDAO extends BaseDAO {
 
 		return insert;
 	}
+	
 }

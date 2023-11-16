@@ -148,37 +148,30 @@
 													<div
 														class="d-flex align-items-center justify-content-between">
 														<h5 class="mb-0">Đơn hàng #GK00017</h5>
-														<span class="ms-2">Giao vào ngày 26 tháng 6 năm
-															2023</span>
-													</div>
-													<div
-														class="d-flex align-items-center justify-content-between">
-														<!-- link -->
-														<a href="#">Quản lý đơn hàng</a> <a href="#" class="ms-6">Xem
-															hóa đơn</a>
 													</div>
 												</div>
 												<!-- row -->
+												<c:forEach items="${product }" var="p">
 												<div class="row justify-content-between align-items-center">
 													<!-- col -->
 													<div class="col-lg-8 col-12">
 														<div class="d-md-flex">
 															<div>
 																<!-- img -->
-																<img src="./img/product/product-1.jpg" alt=""
+																<img style="max-width: 100%; max-height: 200px" src="<c:url value="/template/web/images/${p.image}"/>" alt=""
 																	class="img-4by3-xl rounded" />
 															</div>
 															<div class="ms-md-4 mt-2 mt-lg-0">
 																<!-- heading -->
-																<h5 class="mb-1">Trắng &amp; Giày thể thao Nike màu
-																	đỏ</h5>
+																<h5 class="mb-1">Trắng &amp; ${p.product_name}</h5>
 																<!-- text -->
-																<span>Màu: <span class="text-dark">Cam</span>,
-																	Size:<span class="text-dark"> 40</span>
+																<span>Số lượng <span class="text-dark">${p.quantity}</span>
 																</span>
 																<!-- text -->
 																<div class="mt-3">
-																	<h4>$49.00</h4>
+																	<h4><fmt:formatNumber type="number" groupingUsed="true"
+														value="${p.total}" />
+													VND</h4>
 																</div>
 															</div>
 														</div>
@@ -191,36 +184,7 @@
 													</div>
 												</div>
 												<hr class="my-3" />
-												<!-- row -->
-												<div class="row justify-content-between align-items-center">
-													<!-- col -->
-													<div class="col-lg-8 col-12">
-														<div class="d-md-flex">
-															<div>
-																<!-- img -->
-																<img src="./img/product/product-2.jpg" alt=""
-																	class="img-4by3-xl rounded" />
-															</div>
-															<!-- text -->
-															<div class="ms-md-4 mt-2 mt-lg-0">
-																<!-- heading -->
-																<h5 class="mb-1">Nike Đen và Trắng</h5>
-																<span>Màu: <span class="text-dark">Đen</span>,
-																	Size:<span class="text-dark"> 31</span>
-																</span>
-																<div class="mt-3">
-																	<h4>$79.00</h4>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- button -->
-													<div class="col-lg-3 col-12 d-grid">
-														<a href="products.html" class="btn btn-dark mb-2">Mua
-															lại </a> <a href="#" class="btn btn-secondary"> Sản phẩm
-															tương tự</a>
-													</div>
-												</div>
+												</c:forEach>
 											</div>
 											<div class="mb-6">
 												<!-- text -->
@@ -228,13 +192,6 @@
 													class="border-bottom mb-3 pb-3 d-lg-flex align-items-center justify-content-between">
 													<div class="d-flex align-items-center">
 														<h5 class="mb-0">Đơn hàng #GK00012</h5>
-														<span class="ms-2">Giao vào ngày 26 tháng 6 năm
-															2023</span>
-													</div>
-													<div>
-														<!-- link -->
-														<a href="#">Quản lý đơn hàng</a> <a href="#" class="ms-6">Xem
-															hóa đơn</a>
 													</div>
 												</div>
 												<!-- row -->

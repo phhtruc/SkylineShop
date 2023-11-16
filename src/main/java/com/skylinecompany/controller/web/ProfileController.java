@@ -30,6 +30,7 @@ public class ProfileController {
 	public ModelAndView homePage() {
 	    ModelAndView mav = new ModelAndView("web/profile");
 	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getEmail());
+	    mav.addObject("product", a.findAll(a.findIdUser(SecurityUtils.getPrincipal().getEmail())));
 	    mav.addObject("user", userEntity);
 	    return mav;
 	}

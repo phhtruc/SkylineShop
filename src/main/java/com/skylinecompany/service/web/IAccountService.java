@@ -1,8 +1,11 @@
 package com.skylinecompany.service.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skylinecompany.entity.Order_detais;
 import com.skylinecompany.entity.UserEntity;
 
 @Service
@@ -16,4 +19,7 @@ public interface  IAccountService {
 	
 	@Autowired
 	public UserEntity findOneByUserName(String name);
+	
+	@Autowired
+	public List<Order_detais> findAll(int id);
 }
