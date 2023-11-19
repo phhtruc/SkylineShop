@@ -2701,10 +2701,12 @@ ol {
   color: #111111;
   overflow: hidden;
   margin-bottom: 18px;
+  font-weight: bold;
 }
 
 .checkout__order__products span {
   float: right;
+  
 }
 
 .checkout__total__products {
@@ -2723,10 +2725,15 @@ ol {
 .checkout__total__products li:last-child {
   margin-bottom: 0;
 }
+.checkout__total__products li img {
+  width: 25%;
+}
 
 .checkout__total__products li span {
   color: #111111;
   float: right;
+  font-size: 14px;
+  width: 65%;
 }
 
 .checkout__total__all {
@@ -3488,6 +3495,10 @@ ol {
   .blog__details__share ul li:last-child {
     margin-right: 0;
   }
+  .checkout__total__products li span {
+
+  font-size: 11px;
+}
 }
 
 /* Wide Mobile = 480px */
@@ -3799,6 +3810,8 @@ ol {
   .checkout__order {
     margin-top: 20px;
   }
+  
+
   .blog__details__share {
     position: relative;
     left: 0;

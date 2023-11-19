@@ -114,31 +114,31 @@
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="continue__btn">
-                  <a href="<c:url value='/shop'/>">Continue Shopping</a>
+                  <a href="<c:url value='/shop'/>">Tiếp tục mua sắm</a>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="continue__btn update__btn">
-                  <a href="<c:url value='/shopping-cart'/>"><i class="fa fa-spinner"></i> Update cart</a>
+                  <a href="<c:url value='/shopping-cart'/>"><i class="fa fa-spinner"></i> Cập nhật giỏ hàng</a>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
             <div class="cart__discount">
-              <h6>Discount codes</h6>
+              <h6>Nhập mã giảm giá</h6>
               <form action="#">
-                <input type="text" placeholder="Coupon code" />
-                <button type="submit">Apply</button>
+                <input type="text" placeholder="Mã giảm giá" />
+                <button type="submit">Xác nhận</button>
               </form>
             </div>
             <div class="cart__total">
-              <h6>Cart total</h6>
+              <h6>Tổng giỏ hàng</h6>
               <ul>    
-                <li>Total<span class="cart-price"><fmt:formatNumber type="number" groupingUsed="true"
+                <li>Tổng tiền<span class="cart-price"><fmt:formatNumber type="number" groupingUsed="true"
 														value="${TotalPrice}" /> VND</span></li>
               </ul>
-              <a href="<c:url value='/checkout'/>" class="primary-btn">Proceed to checkout</a>
+              <a href="<c:url value='/checkout'/>" class="primary-btn">Tiếp tục thanh toán</a>
             </div>
           </div>
         </div>

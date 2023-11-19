@@ -32,7 +32,7 @@
 			value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
 		<property name="url"
 			value="jdbc:sqlserver://localhost:1433;databaseName=skyline_shop"></property>
-		<property name="username" value="TrucPham"></property>
+		<property name="username" value="sa"></property>
 		<property name="password" value="12345"></property>
 	</bean>
 
@@ -47,7 +47,7 @@
 		<property name="driverClassName"
 			value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
 		<property name="url"
-			value="jdbc:sqlserver://localhost:1433;databaseName=skyline_shop"></property>
-		<property name="username" value="TrucPham"></property>
+			value="jdbc:sqlserver://localhost:1433;databaseName=skyshop"></property>
+		<property name="username" value="sa"></property>
 		<property name="password" value="12345"></property>
 	</bean> -->
