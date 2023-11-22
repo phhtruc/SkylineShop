@@ -158,6 +158,7 @@
 										
 										 ${loop.index+1}.  <img alt="" src="<c:url value='/template/web/images/${c.value.product.image }'/>">
 										 <span> ${c.value.product.product_name}</span>
+										 <span> Số lượng: ${c.value.quantity}</span>
 										 </div>
 										  <div class= "col-lg-4 col-md-3 col-4">
 										 <span class = "w-100"
@@ -219,7 +220,7 @@
 	<script src="template/web/lib/easing/easing.min.js"></script>
 	<script src="template/web/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
-		<script>
+	<script>
 		$('#checkout').click(function (e) {
 		    e.preventDefault();
 		    var data = {};
@@ -271,54 +272,5 @@
 		    }
 		});
 	</script>
-<!-- 	<script>
-		document.getElementById("checkout").addEventListener("click", function(event) {
-		    event.preventDefault();
-		    
-	        var formData = $('#formSubmit').serializeArray();// muốn lấy được tất cả giá trị thì trên mỗi value phải có name
-	        $.each(formData, function (i, v) {
-	            data[""+v.name+""] = v.value;
-	        });
-	        data["content"] = editor.getData();
-	
-		    var totalPrice = ${totalPriceCart};
-		    var integerValue = parseInt(totalPrice, 10);
-	
-		    // Lấy giá trị của trường radio được chọn
-		    var paymentMethod = document.querySelector('input[name="flexRadioDefault"]:checked').value;
-	
-		    // Nếu người dùng chọn thanh toán qua VNPAY-QR, hãy chuyển hướng người dùng đến trang thanh toán của Vnpay
-		    if (paymentMethod === "flexRadioDefault1") {
-		        window.location.href = "/SkylineShop/pay?price=" + integerValue;
-		    }
-	
-		    // Nếu người dùng chọn thanh toán khi nhận hàng, hãy chuyển hướng người dùng đến trang đơn hàng
-		    else if (paymentMethod === "flexRadioDefault2") {
-		    	Swal.fire({
-		    		title: "Thông báo",
-	                text: "Đơn hàng của bạn đã được đặt thành công, xem chi tiết tại đơn hàng của tôi.",
-	                icon: "success",
-	                confirmButtonColor: "#3085d6",
-		        }).then((result) => {
-		            if (result.isConfirmed) {
-		                window.location.href = "<c:url value='/trangchu'/>";
-		            }
-		        });
-		        $.ajax({
-		            url: '${APIurl}',
-		            type: 'POST',
-		            contentType: 'application/json',
-		            data: JSON.stringify(data),
-		            dataType: 'json',
-		            success: function (result) {
-		                console.log(result);
-		            },
-		            error: function (error) {
-		                console.log(error);
-		            }
-		        });
-		    }
-		});
-	</script> -->
 </body>
 </html>

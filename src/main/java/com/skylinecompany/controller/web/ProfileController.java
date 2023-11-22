@@ -1,6 +1,9 @@
 package com.skylinecompany.controller.web;
 
 import java.io.File;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.skylinecompany.Util.SecurityUtils;
 import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.entity.VoucherEntity;
 import com.skylinecompany.service.web.impl.AccountServiceImpl;
 
 @Controller
@@ -31,6 +35,14 @@ public class ProfileController {
 	    ModelAndView mav = new ModelAndView("web/profile");
 	    UserEntity userEntity = a.findOneByUserName(SecurityUtils.getPrincipal().getEmail());
 	    mav.addObject("product", a.findAll(a.findIdUser(SecurityUtils.getPrincipal().getEmail())));
+	    //mav.addObject("voucher", a.findAllVoucher(a.findIdUser(SecurityUtils.getPrincipal().getEmail())));
+	    List<VoucherEntity> list = a.findAllVoucher(a.findIdUser(SecurityUtils.getPrincipal().getEmail()));
+	    for (VoucherEntity voucher : list) {
+	        voucher.setDiscountAmount((int)voucher.getDiscountAmount());
+	    }
+
+	    mav.addObject("voucher", list);
+
 	    mav.addObject("user", userEntity);
 	    return mav;
 	}

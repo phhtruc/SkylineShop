@@ -29,6 +29,7 @@ public class ShoppingCartController {
 	@RequestMapping(value = "/shopping-cart", method = RequestMethod.GET)
 	public ModelAndView shopCartPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView("web/shopping-cart");
+		session.removeAttribute("discountAmount");
 		return mav;
 	}
 
@@ -100,6 +101,7 @@ public class ShoppingCartController {
 	@ResponseBody
 	public ResponseEntity<String> clearCartt(HttpSession session) {
 	    session.removeAttribute("Cart");
+	    session.removeAttribute("discountAmount");
 	    return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 	
@@ -107,6 +109,9 @@ public class ShoppingCartController {
 	public ModelAndView clearCart(HttpSession session) {
 		ModelAndView mav = new ModelAndView("web/home");
 		session.removeAttribute("Cart");
+		session.removeAttribute("discountAmount");
+		session.removeAttribute("TotalPrice");
+		session.removeAttribute("voucherCode");
 		mav.addObject("status", 1);
 		return mav;
 	}

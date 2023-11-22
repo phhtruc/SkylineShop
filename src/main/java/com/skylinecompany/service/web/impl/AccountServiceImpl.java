@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.skylinecompany.DAO.OrderDAO;
 import com.skylinecompany.DAO.UserDAO;
+import com.skylinecompany.DAO.VoucherDAO;
 import com.skylinecompany.entity.Order_detais;
 import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.entity.VoucherEntity;
 import com.skylinecompany.service.web.IAccountService;
 
 @Service
@@ -22,6 +24,9 @@ public class AccountServiceImpl implements IAccountService {
 	
 	@Autowired
 	OrderDAO o = new OrderDAO();
+	
+	@Autowired
+	VoucherDAO v = new VoucherDAO();
 	
 
 	@Override
@@ -104,7 +109,11 @@ public class AccountServiceImpl implements IAccountService {
 	public List<Order_detais> findAll(int id){
 		return o.findAll(id);
 	}
-	
-	
+
+	@Override
+	public List<VoucherEntity> findAllVoucher(int id) {
+		// TODO Auto-generated method stub
+		return v.findAllVoucher(id);
+	}
 
 }

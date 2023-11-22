@@ -16,6 +16,8 @@ public class Order_Details_Mapper implements RowMapper<Order_detais>{
 		o.setQuantity(rs.getInt("quantity"));
 		o.setTotal(rs.getDouble("total"));
 		o.setImage(rs.getString("image"));
+		o.setId_product(rs.getInt("id_product"));
+		o.setId_order(rs.getInt("id_order"));
 		return o;
 	}
 

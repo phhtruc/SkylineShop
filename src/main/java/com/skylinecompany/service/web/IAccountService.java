@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.skylinecompany.entity.Order_detais;
 import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.entity.VoucherEntity;
 
 @Service
 public interface  IAccountService {
@@ -22,4 +23,8 @@ public interface  IAccountService {
 	
 	@Autowired
 	public List<Order_detais> findAll(int id);
+	
+	@Autowired
+	public List<VoucherEntity> findAllVoucher(int id);
+	
 }
