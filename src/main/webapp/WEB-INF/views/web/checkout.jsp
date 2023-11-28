@@ -84,10 +84,10 @@
 	<section class="checkout spad">
 		<div class="container">
 			<div class="checkout__form">
-
+               <form id="formSubmit">
 				<div class="row">
-					<form id="formSubmit">
-						<div class="col-lg-7 col-md-6">
+					
+						<div class="col-lg-7 col-md-6 col-12">
 							<h6 class="coupon__code">
 								<span class="icon_tag_alt"></span> Bạn đã có mã giảm giá ? <a
 									href="#">Nhấn vào đây</a> để nhập mã của bạn
@@ -145,18 +145,29 @@
 								<textarea name="note" id="note" rows="4" cols="71" class="p-3" type="text" placeholder="Ghi chú gì đó cho người giao hàng (nếu có)."></textarea>
 							</div>
 						</div>
-						<div class="col-lg-5 col-md-6">
+						<div class="col-lg-5 col-md-6 col-12">
 							<div class="checkout__order">
 								<h4 class="order__title">Đơn hàng của bạn</h4>
-								<div class="checkout__order__products">
-									Sản phẩm <span>Tổng</span>
+								<div class="ms-3 checkout__order__products ">
+								Sản phẩm   <span class = "me-5">  Tổng </span> 
 								</div>
 								<ul class="checkout__total__products">
 									<c:forEach items="${cart }" var="c" varStatus="loop">
-										<li>${loop.index+1}.${c.value.product.product_name}<span
-											id="price"><fmt:formatNumber type="number"
-													groupingUsed="true" value="${c.value.totalPrice}" /> VND</span></li>
+										<li class = "list_checkout_order row">
+										 <div class= "col-lg-8 col-md-9 col-8">
+										
+										 ${loop.index+1}.  <img alt="" src="<c:url value='/template/web/images/${c.value.product.image }'/>">
+										 <span> ${c.value.product.product_name}</span>
+										 <span> Số lượng: ${c.value.quantity}</span>
+										 </div>
+										  <div class= "col-lg-4 col-md-3 col-4">
+										 <span class = "w-100"
+											id="price"><fmt:formatNumber type="number" 
+													groupingUsed="true" value="${c.value.totalPrice}" /> VND</span>
+										 </div>
+										</li>
 									</c:forEach>
+									
 								</ul>
 								<ul class="checkout__total__all">
 									<li>Tổng <span><fmt:formatNumber type="number"
@@ -187,8 +198,9 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					
 				</div>
+				</form>
 			</div>
 		</div>
 	</section>
@@ -208,7 +220,7 @@
 	<script src="template/web/lib/easing/easing.min.js"></script>
 	<script src="template/web/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
-		<script>
+	<script>
 		$('#checkout').click(function (e) {
 		    e.preventDefault();
 		    var data = {};
@@ -260,54 +272,5 @@
 		    }
 		});
 	</script>
-<!-- 	<script>
-		document.getElementById("checkout").addEventListener("click", function(event) {
-		    event.preventDefault();
-		    
-	        var formData = $('#formSubmit').serializeArray();// muốn lấy được tất cả giá trị thì trên mỗi value phải có name
-	        $.each(formData, function (i, v) {
-	            data[""+v.name+""] = v.value;
-	        });
-	        data["content"] = editor.getData();
-	
-		    var totalPrice = ${totalPriceCart};
-		    var integerValue = parseInt(totalPrice, 10);
-	
-		    // Lấy giá trị của trường radio được chọn
-		    var paymentMethod = document.querySelector('input[name="flexRadioDefault"]:checked').value;
-	
-		    // Nếu người dùng chọn thanh toán qua VNPAY-QR, hãy chuyển hướng người dùng đến trang thanh toán của Vnpay
-		    if (paymentMethod === "flexRadioDefault1") {
-		        window.location.href = "/SkylineShop/pay?price=" + integerValue;
-		    }
-	
-		    // Nếu người dùng chọn thanh toán khi nhận hàng, hãy chuyển hướng người dùng đến trang đơn hàng
-		    else if (paymentMethod === "flexRadioDefault2") {
-		    	Swal.fire({
-		    		title: "Thông báo",
-	                text: "Đơn hàng của bạn đã được đặt thành công, xem chi tiết tại đơn hàng của tôi.",
-	                icon: "success",
-	                confirmButtonColor: "#3085d6",
-		        }).then((result) => {
-		            if (result.isConfirmed) {
-		                window.location.href = "<c:url value='/trangchu'/>";
-		            }
-		        });
-		        $.ajax({
-		            url: '${APIurl}',
-		            type: 'POST',
-		            contentType: 'application/json',
-		            data: JSON.stringify(data),
-		            dataType: 'json',
-		            success: function (result) {
-		                console.log(result);
-		            },
-		            error: function (error) {
-		                console.log(error);
-		            }
-		        });
-		    }
-		});
-	</script> -->
 </body>
 </html>

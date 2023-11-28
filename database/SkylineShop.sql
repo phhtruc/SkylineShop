@@ -1,5 +1,4 @@
 create database skyline_shop
-
 --drop database skyline_shop
 use skyline_shop
 create table [Role]
@@ -77,6 +76,32 @@ create table Evaluation
 	primary key(id_cust, id_product)
 )
 
+CREATE TABLE Voucher (
+    VoucherID INT identity PRIMARY KEY,
+    VoucherCode VARCHAR(50) UNIQUE,
+    DiscountAmount DECIMAL(10, 2),
+    Percentage INT,
+    StartDate DATE,
+    EndDate DATE,
+    UsageLimit INT,
+    IsUsed BIT,
+    CreatedBy VARCHAR(50),
+    CreatedAt DATETIME,
+    ModifiedBy VARCHAR(50),
+    ModifiedAt DATETIME,
+	ConditionPrice decimal CHECK (ConditionPrice >= 0)
+)
+
+create table Voucher_User
+(
+	VoucherID int REFERENCES Voucher(VoucherID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	id_user int REFERENCES [User](id_user)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	primary key(VoucherID,id_user)
+)
 create table [Order]
 (
 	id_order int identity(1,1) primary key,
@@ -88,7 +113,10 @@ create table [Order]
 	phone varchar(10),
 	email varchar(30) CHECK(email LIKE '%@%'),
 	note text,
-	payment_status nvarchar(30)
+	payment_status nvarchar(30),
+	VoucherID int REFERENCES Voucher(VoucherID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 )
 
 CREATE TABLE [Order_Detail]
@@ -105,6 +133,21 @@ CREATE TABLE [Order_Detail]
 	PRIMARY KEY (id_product, id_order)
 )
 
+
+
+-- Thêm dữ liệu cho bảng Voucher
+insert into Voucher(VoucherCode, DiscountAmount,[Percentage],StartDate,EndDate,UsageLimit,ConditionPrice)
+values('ABC1',100000,'','2023/11/20','2023/11/30',5,500000),
+('ABC2','',12,'2023/11/20', '2023/11/30',5,500000),
+('ABC3','50000','','2023/11/20', '2023/11/30',5,450000),
+('ABC4','',15,'2023/11/20', '2023/11/30',5,1000000),
+('ABC5','',12,'2023/11/20', '2023/11/30',5,500000),
+('ABC6','30000','','2023/11/20', '2023/11/30',5,500000),
+('ABC7','',10,'2023/11/20', '2023/11/30',5,800000),
+('ABC8','30000','','2023/11/20', '2023/11/30',5,300000)
+
+insert into Voucher_User(id_user, VoucherID)
+values(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8)
 
  --Thêm dữ liệu cho bảng [Role]
 insert into [Role] (role_name)
@@ -316,7 +359,11 @@ select * from Brand
 select * from Product
 select * from Product_Image
 select * from [Size]
-select * from [Order]
+select * from [User]
+select * from Voucher
+select * from Voucher_User
+
+
 
 select * from Product 
 Join Brand on Brand.id_brand= Product.id_brand

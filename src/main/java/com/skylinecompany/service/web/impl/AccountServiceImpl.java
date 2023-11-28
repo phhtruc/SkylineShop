@@ -1,14 +1,19 @@
 package com.skylinecompany.service.web.impl;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Random;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skylinecompany.DAO.OrderDAO;
 import com.skylinecompany.DAO.UserDAO;
+import com.skylinecompany.DAO.VoucherDAO;
+import com.skylinecompany.entity.Order_detais;
 import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.entity.VoucherEntity;
 import com.skylinecompany.service.web.IAccountService;
 
 @Service
@@ -16,6 +21,13 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Autowired
 	UserDAO u = new UserDAO();
+	
+	@Autowired
+	OrderDAO o = new OrderDAO();
+	
+	@Autowired
+	VoucherDAO v = new VoucherDAO();
+	
 
 	@Override
 	public int AddAccount(UserEntity user) {
@@ -53,6 +65,8 @@ public class AccountServiceImpl implements IAccountService {
 		}
 
 	}
+	
+	
 
 	public int UpdateAccountProfile(UserEntity user) {
 		if (user != null) {
@@ -85,6 +99,21 @@ public class AccountServiceImpl implements IAccountService {
 		String result = "0" + String.format("%09d", randomNumber);
 
 		return result;
+	}
+	
+	public int findIdUser(String name) {
+		return o.findIdUser(name);
+	}
+	
+	@Override
+	public List<Order_detais> findAll(int id){
+		return o.findAll(id);
+	}
+
+	@Override
+	public List<VoucherEntity> findAllVoucher(int id) {
+		// TODO Auto-generated method stub
+		return v.findAllVoucher(id);
 	}
 
 }

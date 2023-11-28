@@ -14,6 +14,8 @@ public class MyUser extends User{
 	private String email;
 	
 	private String picture;
+	
+	private int id;
 
 	public MyUser(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
@@ -22,6 +24,16 @@ public class MyUser extends User{
 		// TODO Auto-generated constructor stub
 	}
 	
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 	public String getFullName() {
 		return fullName;
