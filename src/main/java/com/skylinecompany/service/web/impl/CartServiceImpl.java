@@ -48,5 +48,9 @@ public class CartServiceImpl implements ICartService{
 	public double totalPriceProduct(HashMap<Integer, ItemsDto> cart, int productId) {
 		return cartDAO.totalPriceProduct(cart, productId);
 	}
+	
+	/*
+	 * public int AddOrder(cart) { return null; }
+	 */
 
 }

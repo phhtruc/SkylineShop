@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.skylinecompany.config.GoogleUtils;
 import com.skylinecompany.config.RestFB;
 import com.skylinecompany.dto.GooglePojo;
+import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.service.web.impl.AccountServiceImpl;
 
 @Controller
 public class BaseController {
@@ -25,6 +27,9 @@ public class BaseController {
 
 	@Autowired
 	private RestFB restFB;
+	
+	@Autowired
+	AccountServiceImpl a;
 
 	@RequestMapping("/login-google")
 	public String loginGoogle(HttpServletRequest request) throws ClientProtocolException, IOException {
@@ -41,6 +46,14 @@ public class BaseController {
 				userDetail.getAuthorities());
 		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		UserEntity user = new UserEntity();
+		user.setEmail(googlePojo.getEmail());
+		user.setImageuser(googlePojo.getPicture());
+		user.setId_role(2);
+		user.setImageuser(googlePojo.getPicture());
+		
+		a.AddAccountGoogle(user);
 		return "redirect:/trang-chu";
 	}
 

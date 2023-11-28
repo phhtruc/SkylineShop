@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="/common/taglib.jsp"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="/common/taglib.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -55,8 +55,7 @@
 				<div class="col-md-9">
 					<div class="tab-content">
 						<form:form action="update-profile" method="POST" modelAttribute="user" class="tab-pane fade active show" id="account-general" enctype="multipart/form-data" required="required" accept-charset="utf-8">
-							<div class="card-body media align-items-center">
-								
+							<div class="card-body media align-items-center">							
 								<c:choose>
 								    <c:when test="${not empty user.getImageuser()}">
 								        <img id="preview" src="${pageContext.request.contextPath}/images/${user.getImageuser()}" style="max-width: 100%; max-height: 200px" class="d-block ui-w-80" />
@@ -71,15 +70,13 @@
 									</label> &nbsp;
 									<div class="small mt-1">Cho phép JPG, GIF hoặc PNG. Kích
 										thước tối đa 800K </div>
-										
 								</div>
 							</div>
 							<c:choose>
 								    <c:when test="${not empty status}">
 								        <div class="alert alert-success">${status}</div>
 								    </c:when>
-								    
-								</c:choose>
+							</c:choose>
 							<hr class="border-light m-0" />
 							<div class="card-body">
 								<div class="form-group">
@@ -246,7 +243,7 @@
 														<div class="d-md-flex">
 															<div>
 																<!-- img -->
-																<img src="./img/product/product-3.jpg" alt=""
+																<img src="template/web/img/product/product-3.jpg" alt=""
 																	class="img-4by3-xl rounded" />
 															</div>
 															<div class="ms-md-4 mt-2 mt-lg-0">
@@ -505,6 +502,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>
 	<!-- About Section End -->
 	<script type="text/javascript">
             function previewImage() {
@@ -522,6 +520,25 @@
                 }
             }
         </script>
+	<script>
+	    var alert = ${alert1};
+	
+	    if (alert !== undefined && (alert == 1 || alert !== null)) {
+	        Swal.fire({
+	            title: "Thông báo",
+	            text: "Mật khẩu của bạn đã được thay đổi thành công!",
+	            icon: "success",
+	            confirmButtonColor: "#3085d6"
+	        });
+	    }
+	    if (alert !== undefined && (alert == 2 || alert !== null)){
+	    	Swal.fire({
+	    		  icon: 'error',
+	    		  title: 'Lỗi',
+	    		  text: 'Có thể mật khẩu cũ hoặc mật khẩu nhập lại không đúng!'
+	    		})
+	    }
+	</script>
 </body>
 
 </html>

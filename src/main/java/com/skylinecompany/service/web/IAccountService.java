@@ -13,4 +13,7 @@ public interface  IAccountService {
 	
 	@Autowired
 	public int UpdateAccount(UserEntity user);
+	
+	@Autowired
+	public UserEntity findOneByUserName(String name);
 }

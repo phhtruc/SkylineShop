@@ -21,7 +21,7 @@
               http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan
-		base-package="com.skylinecompany.controller" /> <!-- khi nhận yêu cầu, dispatcher sẽ gửi đến packet controller để tìm @controller 
+		base-package="com.skylinecompany.controller , com.skylinecompany.api" /> <!-- khi nhận yêu cầu, dispatcher sẽ gửi đến packet controller để tìm @controller 
 		có requestmaping là /... -->
 
 	<mvc:annotation-driven /> <!-- cấu hình để dùng được @Controller, @RequestMapping -->

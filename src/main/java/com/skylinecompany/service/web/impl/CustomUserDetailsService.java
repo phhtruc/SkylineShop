@@ -49,9 +49,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 
 		// Thông tin được push vào MyUser(MyUser đươcj sử dụng như session)
-		MyUser myUser = new MyUser(userEntity.getEmail(), userEntity.getPassword(), true, true, true, true,
+		MyUser myUser = new MyUser(userEntity.getFullName(), userEntity.getPassword(), true, true, true, true,
 				authorities); // nhu tao session
 		myUser.setFullName(userEntity.getFullName());
+		myUser.setPhone(userEntity.getPhone());
+		myUser.setEmail(userEntity.getEmail());
 		return myUser;
 
 	}

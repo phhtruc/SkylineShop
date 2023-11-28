@@ -11,7 +11,7 @@ import com.skylinecompany.mapper.UserMapper;
 public class UserDAO extends BaseDAO {
 
 	public UserEntity findOneByUserName(String name) {
-		String sql = "select * from [User]\r\n" + "where email = ?";
+		String sql = "select * from [User] where email = ?";
 		UserEntity user = _jdbcTemplate.queryForObject(sql, new Object[] { name }, new UserMapper());
 		return user;
 	}
@@ -30,13 +30,24 @@ public class UserDAO extends BaseDAO {
 
 	public int AddAccount(UserEntity user) {
 		  StringBuilder sql = new StringBuilder();
-		  sql.append("INSERT INTO [User] (email, phone, password, id_role, fullName) ");
-		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPassword().getBytes(), StandardCharsets.UTF_8) + "', '" + user.getId_role() + "', 'N" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "')");
+		  sql.append("INSERT INTO [User] (email, phone, password, id_role, fullName)");
+		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPassword().getBytes(), StandardCharsets.UTF_8) + "', '" + user.getId_role() + "', '" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "')");
 
 		  int insert = _jdbcTemplate.update(sql.toString());
 
 		  return insert;
 	}
+	
+	public int AddAccountGoogle(UserEntity user) {
+		  StringBuilder sql = new StringBuilder();
+		  sql.append("INSERT INTO [User] (email, phone, id_role, fullName, imageuser)");
+		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "','" + user.getId_role() + "', '" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "','" + new String(user.getImageuser().getBytes(), StandardCharsets.UTF_8) + "')");
+
+		  int insert = _jdbcTemplate.update(sql.toString());
+
+		  return insert;
+	}
+	
 
 
 	public int UpdateAccount(UserEntity user) {
