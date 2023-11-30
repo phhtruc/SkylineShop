@@ -38,7 +38,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/home");
 		mav.addObject("best", h.findBestSellingProduct());
 		return mav;
-	}
+	} 
 	
 	@RequestMapping(value="/dang-nhap", method = RequestMethod.GET)
 	public ModelAndView loginPage() {
