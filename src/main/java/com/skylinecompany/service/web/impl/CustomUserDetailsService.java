@@ -55,6 +55,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		myUser.setPhone(userEntity.getPhone());
 		myUser.setEmail(userEntity.getEmail());
 		myUser.setId(userEntity.getId_user());
+		myUser.setPicture(userEntity.getImageuser());
 		return myUser;
 
 	}

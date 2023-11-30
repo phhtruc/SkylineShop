@@ -8,32 +8,27 @@
             http://www.springframework.org/schema/security
             http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<http auto-config="false" use-expressions="true"
-		disable-url-rewriting="true">
+	<http auto-config="false" use-expressions="true" disable-url-rewriting="true">
 
 		<!-- /quan-tri/trang-chu chỉ có ADMIN được vào, User hay chưa ĐN nhập link 
 			vào thì trỏ đến trang đăng nhập -->
-		<intercept-url pattern="/quan-tri/trang-chu"
-			access="hasAnyRole('Admin')" />
-		<access-denied-handler
-			error-page="/accessDenied" /> <!-- Chặn kh cho user search link, controller -->
+		<intercept-url pattern="/quan-tri/trang-chu" access="hasAnyRole('Admin')" />
+		<access-denied-handler error-page="/accessDenied" /> <!-- Chặn kh cho user search link, controller -->
 
 		<!-- Cấu hình tính năng Nhớ Mật khẩu -->
 		<!-- <remember-me key="yourSecretKey" remember-me-parameter="remember-me" 
 			token-validity-seconds="0"/> -->
 
-		<form-login login-page="/dang-nhap"
-			username-parameter="j_username"
-			password-parameter="j_password"
-			login-processing-url="/j_spring_security_check"
-			authentication-success-handler-ref="customSuccessHandler"
-			authentication-failure-url="/dang-nhap?incorrectAccount" />
-		<!-- <session-management invalid-session-url="/dang-nhap?sessionTimeout"/> -->
-		<session-management
-			invalid-session-url="/trang-chu" />
-		<logout delete-cookies="JSESSIONID" />
-		<!-- <logout logout-url="/j_spring_security_logout" logout-success-url="/login?message=logout" 
-			delete-cookies="JSESSIONID" /> -->
+		<form-login  login-page="/dang-nhap"
+                     username-parameter="j_username"
+                     password-parameter="j_password"
+                     login-processing-url="/j_spring_security_check" 
+                     authentication-success-handler-ref="customSuccessHandler"
+                     default-target-url="/trang-chu"
+                     authentication-failure-url="/dang-nhap?incorrectAccount"/>
+        <!-- <session-management invalid-session-url="/dang-nhap?sessionTimeout"/>  -->
+        <session-management invalid-session-url="/trang-chu"/>
+        <logout delete-cookies="JSESSIONID"/>
 	</http>
 
 	<!-- MD5 -->

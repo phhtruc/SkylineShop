@@ -1,10 +1,12 @@
 package com.skylinecompany.DAO;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.mapper.UserAdminMapper;
 import com.skylinecompany.mapper.UserMapper;
 
 @Repository
@@ -81,6 +83,12 @@ public class UserDAO extends BaseDAO {
 		int insert = _jdbcTemplate.update(sql.toString());
 
 		return insert;
+	}
+	
+	public List<UserEntity> getAllUser(){
+		String sql = "SELECT id_user, fullName, email, phone, imageuser FROM [User]";
+		List<UserEntity> list = _jdbcTemplate.query(sql, new UserAdminMapper());
+		return list;
 	}
 	
 }

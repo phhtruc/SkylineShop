@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skylinecompany.DAO.BrandDAO;
-import com.skylinecompany.DAO.CategotyDAO;
+import com.skylinecompany.DAO.CategoryDAO;
 import com.skylinecompany.DAO.Product_ImageDAO;
 import com.skylinecompany.DAO.SearchDAO;
 import com.skylinecompany.dto.Product_ImageDto;
@@ -24,7 +24,7 @@ public class ShopServiceImpl implements IShopService {
 	Product_ImageDAO proIma;
 
 	@Autowired
-	CategotyDAO cate;
+	CategoryDAO cate;
 
 	@Autowired
 	BrandDAO b;

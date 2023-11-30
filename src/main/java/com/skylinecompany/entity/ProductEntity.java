@@ -4,45 +4,26 @@ public class ProductEntity {
 	
 	private int id_product;
 	private String product_name;
-	private double price;
+	private String price;
 	private String desc;
-	private String brand;
-	private int id_cate;
-	
-	public ProductEntity() {
-		
-	}
-	
-	public ProductEntity(int id_product, String product_name, double price, String desc, String brand, int id_cate) {
-		super();
-		this.id_product = id_product;
-		this.product_name = product_name;
-		this.price = price;
-		this.desc = desc;
-		this.brand = brand;
-		this.id_cate = id_cate;
-	}
-	
-	
-
+	private String brand_name;
+	private String cate_name;
 	public int getId_product() {
 		return id_product;
 	}
-
 	public void setId_product(int id_product) {
 		this.id_product = id_product;
 	}
-
 	public String getProduct_name() {
 		return product_name;
 	}
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public String getDesc() {
@@ -51,18 +32,20 @@ public class ProductEntity {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	public String getBrand() {
-		return brand;
+	public String getBrand_name() {
+		return brand_name;
 	}
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setBrand_name(String brand_name) {
+		this.brand_name = brand_name;
 	}
-	public int getId_cate() {
-		return id_cate;
+	public String getCate_name() {
+		return cate_name;
 	}
-	public void setId_cate(int id_cate) {
-		this.id_cate = id_cate;
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
 	}
+	
+	
 	
 	
 }

@@ -33,7 +33,7 @@
 		<property name="url"
 			value="jdbc:sqlserver://localhost:1433;databaseName=skyline_shop"></property>
 		<property name="username" value="TrucPham"></property>
-		<property name="password" value="12345"></property>
+		<property name="password" value="123"></property>
 	</bean>
 
 	<bean id="jdbcTemplate"

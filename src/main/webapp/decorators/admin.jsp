@@ -1,50 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp" %> 
+<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title><dec:title/></title>
+<meta charset="UTF-8">
+<title><dec:title /></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="Static &amp; Dynamic Tables" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<metaname ="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-
-	<!-- Custom fonts for This website-->
-	<link href="<c:url value='/template/admin/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css" />
-
-	<!-- Page level plugin CSS-->
-	<link href="<c:url value='/template/admin/vendor/datatables/dataTables.bootstrap4.css'/>" rel="stylesheet" type="text/css" />
+	<!-- bootstrap & fontawesome -->
+	<link href="<c:url value='/template/admin/css/bootstrap.min.css'/>" rel="stylesheet" />
+	<link href="<c:url value='/template/admin/font-awesome/4.2.0/css/font-awesome.min.css'/>" rel="stylesheet" />
 	
-	<!-- Custom styles for This website-->
-	<link href="<c:url value='/template/admin/css/sb-admin.css'/>" rel="stylesheet"/>
+	<!-- text fonts -->
+    <link href="<c:url value='/template/admin/fonts/fonts.googleapis.com.css'/>" rel="stylesheet" />
+	
+	<!-- ace styles -->
+	<link href="<c:url value='/template/admin/css/ace.min.css'/>" rel="stylesheet" class="ace-main-stylesheet" id="main-ace-style"/>
+	
+	<script src="<c:url value='/template/admin/js/ace-extra.min.js'/>"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 <body>
 
-	<%@ include file="/common/admin/header.jsp" %>
-  	
-  	<dec:body/>
-  	
-  	<!-- Bootstrap core JavaScript-->
-    <script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js'/>"></script>
-    <script src="<c:url value='/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+	<%@ include file="/common/admin/header.jsp"%>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<c:url value='/template/admin/vendor/jquery-easing/jquery.easing.min.js'/>"></script>
+	<dec:body />
+	
+	<%@ include file="/common/admin/footer.jsp"%>
 
-    <!-- Page level plugin JavaScript-->
-    <script src="<c:url value='/template/admin/vendor/chart.js/Chart.min.js'/>"></script>
-    <script src="<c:url value='/template/admin/vendor/datatables/jquery.dataTables.js'/>"></script>
-    <script src="<c:url value='/template/admin/vendor/datatables/dataTables.bootstrap4.js'/>"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="<c:url value='/template/admin/js/sb-admin.min.js'/>"></script>
-
-    <!-- Demo scripts for this page-->
-    <script src="<c:url value='/template/admin/js/demo/datatables-demo.js'/>"></script>
-    <script src="<c:url value='/template/admin/js/demo/chart-area-demo.js'/>"></script>
-  	
+	<!-- Bootstrap core JavaScript-->
+<%-- 	<script src="<c:url value='/template/admin/js/jquery.2.1.1.min.js'/>"></script> --%>
+	<script src="<c:url value='/template/admin/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/jquery.dataTables.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/jquery.dataTables.bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/dataTables.tableTools.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/dataTables.colVis.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/ace-elements.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/ace.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/jquery-ui.custom.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/js/jquery.ui.touch-punch.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/jquery.easypiechart.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/jquery.sparkline.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/jquery.flot.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/jquery.flot.pie.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/jquery.flot.resize.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/jquery.min.js'/>"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ public class MyUser extends User{
 	private String picture;
 	
 	private int id;
+	
 
 	public MyUser(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
