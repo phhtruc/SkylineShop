@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skylinecompany.DAO.UserDAO;
-import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.dto.UsersDto;
 import com.skylinecompany.service.admin.IUserService;
 
 @Service
@@ -16,8 +16,7 @@ public class UserServiceImpl implements IUserService{
 	UserDAO userDAO;
 
 	@Override
-	public List<UserEntity> getAllUser() {
-		// TODO Auto-generated method stub
+	public List<UsersDto> getAllUser() {
 		return userDAO.getAllUser();
 	}
 

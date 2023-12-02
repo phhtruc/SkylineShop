@@ -16,31 +16,21 @@ public class Order {
 	private String payment_status;
 	private Order_detais order_details;
 	private Product_ImageDto pro;
+	private String voucherID;
+
+	public String getVoucherID() {
+		return voucherID;
+	}
+
+	public void setVoucherID(String voucherID) {
+		this.voucherID = voucherID;
+	}
 
 	public Product_ImageDto getPro() {
 		return pro;
 	}
 
 	public void setPro(Product_ImageDto pro) {
-		this.pro = pro;
-	}
-
-	public Order() {
-
-	}
-
-	public Order(int id_order, int id_user, Date createDay, String address, String phone, String email, String note,
-			String payment_status, Order_detais order_details, Product_ImageDto pro) {
-		super();
-		this.id_order = id_order;
-		this.id_user = id_user;
-		this.createDay = createDay;
-		this.address = address;
-		this.phone = phone;
-		this.email = email;
-		this.note = note;
-		this.payment_status = payment_status;
-		this.order_details = order_details;
 		this.pro = pro;
 	}
 

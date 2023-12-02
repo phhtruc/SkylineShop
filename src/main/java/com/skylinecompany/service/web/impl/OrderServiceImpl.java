@@ -21,7 +21,7 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public void createOrderDetails(Order order, List<ItemsDto> cartItems) {
 		order.setId_user(o.findIdUser(SecurityUtils.getPrincipal().getEmail()));
-		order.setPayment_status("Chua thanh toan");
+		order.setPayment_status("Chưa thanh toán");
 		o.createOrderDetails(order, cartItems);
 	}
 

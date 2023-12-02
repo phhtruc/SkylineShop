@@ -229,7 +229,7 @@
 
 				<li class="light-blue"><a data-toggle="dropdown" href="#"
 					class="dropdown-toggle"> <img class="nav-user-photo"
-						src="<c:url value='/template/web/img/<%=SecurityUtils.getPrincipal().getPicture()%>'/>" alt="Jason's Photo" />
+						src="${pageContext.request.contextPath}/template/web/img/<%=SecurityUtils.getPrincipal().getPicture()%>" alt="Jason's Photo"  />
 						<span class="user-info"><%=SecurityUtils.getPrincipal().getFullName()%>
 					</span> <i class="ace-icon fa fa-caret-down"></i>
 				</a>

@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.skylinecompany.entity.UserEntity;
+import com.skylinecompany.dto.UsersDto;
 
 @Service
 public interface IUserService {
 	
-	public List<UserEntity> getAllUser();
+	public List<UsersDto> getAllUser();
 
 }

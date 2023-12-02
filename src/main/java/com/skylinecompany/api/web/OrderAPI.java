@@ -18,7 +18,7 @@ import com.skylinecompany.entity.Order;
 import com.skylinecompany.service.web.impl.OrderServiceImpl;
 
 
-@RestController
+@RestController(value = "orderRestControllerOfUser")
 public class OrderAPI {
 	
 	@Autowired

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.skylinecompany.dto.UsersDto;
 import com.skylinecompany.entity.UserEntity;
 import com.skylinecompany.mapper.UserAdminMapper;
 import com.skylinecompany.mapper.UserMapper;
@@ -85,9 +86,24 @@ public class UserDAO extends BaseDAO {
 		return insert;
 	}
 	
-	public List<UserEntity> getAllUser(){
-		String sql = "SELECT id_user, fullName, email, phone, imageuser FROM [User]";
-		List<UserEntity> list = _jdbcTemplate.query(sql, new UserAdminMapper());
+	private StringBuffer SqlGetAllUser() {
+		StringBuffer  varname1 = new StringBuffer();
+		varname1.append("SELECT U.id_user, U.fullName, U.phone, U.imageuser, U.email, ");
+		varname1.append("    COUNT(O.id_order) AS total_orders, ");
+		varname1.append("    MAX(O.id_order) AS latest_order_id, ");
+		varname1.append("    format(SUM(OD.total),'##,#\\ VNĐ','es-ES') AS total_order_amount ");
+		varname1.append("FROM \"User\" U ");
+		varname1.append("LEFT JOIN \"Order\" O ON U.id_user = O.id_cust ");
+		varname1.append("LEFT JOIN \"Order_Detail\" OD ON O.id_order = OD.id_order ");
+		varname1.append("WHERE U.id_role = 2 ");
+		varname1.append("GROUP BY U.id_user, U.fullName, U.phone, U.imageuser, U.email ");
+		varname1.append("ORDER BY U.id_user;");
+		return varname1;
+	}
+	
+	public List<UsersDto> getAllUser(){
+		String sql = SqlGetAllUser().toString();
+		List<UsersDto> list = _jdbcTemplate.query(sql, new UserAdminMapper());
 		return list;
 	}
 	

@@ -135,7 +135,9 @@
 								</p>
 								<input type="text" />
 							</div>
-
+							<c:if test="${voucherID != null}">
+								<input type="hidden" name="voucher" value="voucherID">
+							</c:if>
 
 
 							<div class="checkout__input">

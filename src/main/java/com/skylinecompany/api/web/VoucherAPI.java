@@ -49,6 +49,7 @@ public class VoucherAPI {
 
 				session.setAttribute("discountAmount", discountAmount);
 				session.setAttribute("voucherCode", voucherCode);
+				session.setAttribute("voucherID", voucher.getVoucherID());
 
 				jsonResponse = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData);
 			} else if (voucher != null && TotalPrice < conditionPrice) {
@@ -85,6 +86,7 @@ public class VoucherAPI {
 
 				session.setAttribute("discountAmount", discountAmount);
 				session.setAttribute("voucherCode", voucherCode);
+				session.setAttribute("voucherID", voucher.getVoucherID());
 
 				jsonResponse = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData);
 			} else {

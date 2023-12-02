@@ -12,15 +12,17 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.skylinecompany.dto.ItemsDto;
+import com.skylinecompany.dto.OrderDto;
 import com.skylinecompany.entity.Order;
 import com.skylinecompany.entity.Order_detais;
+import com.skylinecompany.mapper.OrderDtoMapper;
 import com.skylinecompany.mapper.Order_Details_Mapper;
 @Repository
 public class OrderDAO extends BaseDAO{
 	
 	public int createOrder(Order order) {
-	    String sql = "INSERT INTO [Order] (id_cust, date_create, [address], phone, email, note, payment_status) " +
-	                 "VALUES (?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?)";
+	    String sql = "INSERT INTO [Order] (id_cust, date_create, [address], phone, email, note, payment_status, voucherID) " +
+	                 "VALUES (?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?)";
 
 	    KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -34,6 +36,7 @@ public class OrderDAO extends BaseDAO{
 	            ps.setString(4, order.getEmail());
 	            ps.setString(5, order.getNote());
 	            ps.setString(6, order.getPayment_status());
+	            ps.setString(7,order.getVoucherID());
 	            return ps;
 	        }
 	    }, keyHolder);
@@ -93,6 +96,24 @@ public class OrderDAO extends BaseDAO{
 	public List<Order_detais> findAll(int id){
 		String sql = SqlfindALL(id).toString();
 		List<Order_detais> list = _jdbcTemplate.query(sql, new Order_Details_Mapper());
+		return list;
+	}
+	
+	private StringBuffer SqlFindAllOrderAdmin() {
+		StringBuffer  varname1 = new StringBuffer();
+		varname1.append("SELECT o.id_order, FORMAT(o.date_create, 'dd-MM-yyyy') AS date, u.fullName, o.payment_status, ");
+		varname1.append("format(SUM(od.total),'##,#\\ VNĐ','es-ES') AS total_amount ");
+		varname1.append("FROM \"Order\" o ");
+		varname1.append("JOIN \"User\" u ON o.id_cust = u.id_user ");
+		varname1.append("JOIN \"Order_Detail\" od ON o.id_order = od.id_order ");
+		varname1.append("WHERE u.id_role = 2 ");
+		varname1.append("GROUP BY o.id_order, o.date_create, u.fullName, o.payment_status;");
+		return varname1;
+	}
+	
+	public List<OrderDto> findAllOrderAdmin(){
+		String sql = SqlFindAllOrderAdmin().toString();
+		List<OrderDto> list = _jdbcTemplate.query(sql, new OrderDtoMapper());
 		return list;
 	}
 	

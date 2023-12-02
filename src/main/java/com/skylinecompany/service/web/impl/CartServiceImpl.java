@@ -49,8 +49,5 @@ public class CartServiceImpl implements ICartService{
 		return cartDAO.totalPriceProduct(cart, productId);
 	}
 	
-	/*
-	 * public int AddOrder(cart) { return null; }
-	 */
 
 }

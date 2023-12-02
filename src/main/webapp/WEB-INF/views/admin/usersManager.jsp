@@ -4,18 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Quản lý người dùng</title>
 <style>
-.modal-header .close {
-	margin-top: -22px;
-}
-
-@media ( min-width : 768px) {
-	.form-inline .form-group {
-		display: block;
-		margin-bottom: 15px;
+	.modal-header .close {
+		margin-top: -22px;
 	}
-}
+	
+	@media ( min-width : 768px) {
+		.form-inline .form-group {
+			display: block;
+			margin-bottom: 15px;
+		}
+	}
+	    /* Add this style to your HTML or CSS file */
+	.button-without-border {
+	        border: none !important;
+	        outline: none; /* Remove the outline when the button is clicked */
+	        background-color: transparent;
+	        cursor: pointer;
+	}
 </style>
 </head>
 <body class="no-skin">
@@ -176,6 +183,7 @@
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
+												<button id="green-loch">abc</button>
 												<div class="modal-body">
 													<form class="form-horizontal" role="form">
 														<div class="form-group">
@@ -283,141 +291,23 @@
 												</tr>
 											</thead>
 
-											<tbody>
+											<tbody id="table">
 												<tr>
 													<td class="center"><label class="pos-rel"> <input
 															type="checkbox" class="ace" /> <span class="lbl"></span>
 													</label></td>
 
-													<td><a href="#">app.com</a></td>
-													<td>$45</td>
-													<td class="hidden-480">3,330</td>
-													<td></td>
-													<td>Feb 12</td>
-
+													<td><a href="#">max.com</a></td>
+													<td>$60</td>
+													<td class="hidden-480">4,400</td>
+													<td>Mar 11</td>
+													<td>Mar 11</td>
 													<td class="hidden-480"><span
 														class="label label-sm label-warning">Expiring</span></td>
 
 													<td>
 														<div class="hidden-sm hidden-xs action-buttons">
-															<a class="green" href="#" data-toggle="modal"
-																data-target="#edỉtProduct"> <i
-																class="ace-icon fa fa-pencil bigger-130"></i>
-															</a>
-
-															<div class="modal fade" id="edỉtProduct" tabindex="-1"
-																role="dialog" aria-labelledby="exampleModalCenterTitle"
-																aria-hidden="true">
-																<div class="modal-dialog modal-dialog-centered"
-																	role="document">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<h5 class="modal-title" id="exampleModalLongTitle">
-																				Chỉnh sửa người dùng</h5>
-																			<button type="button" class="close"
-																				data-dismiss="modal" aria-label="Close">
-																				<span aria-hidden="true">&times;</span>
-																			</button>
-																		</div>
-																		<div class="modal-body">
-																			<form class="form-horizontal" role="form">
-																				<div class="form-group">
-																					<label
-																						class="col-sm-3 control-label no-padding-right"
-																						for="form-field-1"> Tên sản phẩm </label>
-
-																					<div class="col-sm-9">
-																						<input type="text" id="form-field-1"
-																							placeholder="Tên sản phẩm" class="col-xs-10" />
-																					</div>
-																				</div>
-																				<div class="space-4"></div>
-																				<div class="form-group">
-																					<label
-																						class="col-sm-3 control-label no-padding-right"
-																						for="form-field-1"> Giá </label>
-
-																					<div class="col-sm-9">
-																						<input type="text" id="form-field-1"
-																							placeholder="Giá" class="col-xs-10" />
-																					</div>
-																				</div>
-
-																				<div class="form-group">
-																					<label
-																						class="col-sm-3 control-label no-padding-right"
-																						for="form-field-1"> Mô tả </label>
-
-																					<div class="col-sm-9">
-																						<input type="text" id="form-field-1"
-																							placeholder="Mô tả " class="col-xs-10" />
-																					</div>
-																				</div>
-
-																				<div class="form-group">
-																					<label
-																						class="col-sm-3 control-label no-padding-right"
-																						for="form-field-1"> Ảnh </label>
-
-																					<div class="col-sm-9">
-																						<img id="img1"
-																							style="height: 100px; width: 100px; margin: 10px;" />
-																						<input type="file" id="id-input-file-1"
-																							onchange="updateImage(this,'img1')" /> <img
-																							id="img2"
-																							style="height: 100px; width: 100px; margin: 10px;" />
-																						<input type="file" id="id-input-file-2"
-																							onchange="updateImage(this,'img2')" /> <img
-																							id="img3"
-																							style="height: 100px; width: 100px; margin: 10px;" />
-																						<input type="file" id="id-input-file-3"
-																							onchange="updateImage(this,'img3')" />
-																					</div>
-																				</div>
-
-																				<div class="form-group">
-																					<label for="form-field-select-1"
-																						class="col-sm-3 me-2 control-label">Danh
-																						mục</label> <select class="col-sm-3"
-																						id="form-field-select-1">
-																						<option value=""></option>
-																						<option value="AL">Alabama</option>
-																						<option value="AK">Alaska</option>
-																						<option value="AZ">Arizona</option>
-																					</select>
-																				</div>
-
-																				<div class="form-group">
-																					<label for="form-field-select-1"
-																						class="col-sm-3 me-2 control-label">Brand</label>
-
-																					<select class="col-sm-3" id="form-field-select-1">
-																						<option value=""></option>
-																						<option value="AL">Alabama</option>
-																						<option value="AK">Alaska</option>
-																						<option value="AZ">Arizona</option>
-																					</select>
-																				</div>
-
-																				<div class="clearfix form-actions">
-																					<div class="col-md-offset-3 col-md-9">
-																						<button type="button" class="btn btn-secondary"
-																							data-dismiss="modal">Close</button>
-																						&nbsp; &nbsp; &nbsp;
-																						<button class="btn btn-info" type="button">
-																							<i class="ace-icon fa fa-check bigger-110"></i>
-																							Submit
-																						</button>
-																					</div>
-																				</div>
-																			</form>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<a class="red" href="#"> <i
-																class="ace-icon fa fa-trash-o bigger-130"></i>
-															</a>
+															<a class="green" href="#"><i class="fa fa-lock" aria-hidden="true"></i></a>
 														</div>
 
 														<div class="hidden-md hidden-lg">
@@ -438,12 +328,7 @@
 																		</span>
 																	</a></li>
 
-																	<li><a href="#" class="tooltip-success"
-																		data-rel="tooltip" title="Edit"> <span
-																			class="green"> <i
-																				class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																		</span>
-																	</a></li>
+																	<li><button id="green-lock" class="green"><i class="fa fa-lock bigger-130" aria-hidden="true"></i></button></li>
 
 																	<li><a href="#" class="tooltip-error"
 																		data-rel="tooltip" title="Delete"> <span
@@ -461,100 +346,124 @@
 									</div>
 								</div>
 							</div>
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			url : 'http://localhost:8888/SkylineShop/api/users',
+			type : 'GET',
+			dataType : 'json',
+			success : function(response) {
+				displayProducts(response);
+			},
+			error : function(error) {
+				console.error('Error fetching product list:', error);
+			}
+		});
+		
+		$(document).on('click', '.green-lock', function (e) {
+		    e.preventDefault();
+		    var userId = $(this).closest('tr').find('.user-id').val();
+		    $.ajax({
+		      url: 'http://localhost:8888/SkylineShop/api/users/'+ userId,
+		      type: 'PUT',
+		      processData: false,
+		      contentType: false,
+		      dataType: 'json',
+		      success: function (result) {
+		        console.log(result);
+		      },
+		      error: function (error) {
+		        console.log(error);
+		      },
+		    });
+		});
+		
+		$(document).on('click', '.red-delete', function (e) {
+		    e.preventDefault();
+		    var userId = $(this).closest('tr').find('.user-id').val();
+		    $.ajax({
+		      url: 'http://localhost:8888/SkylineShop/api/users/'+ userId,
+		      type: 'DELETE',
+		      processData: false,
+		      contentType: false,
+		      dataType: 'json',
+		      success: function (result) {
+		    	  console.log(result);
+		      },
+		      error: function (error) {
+		        console.log(error);
+		      },
+		    });
+		});
 
-							<div id="modal-table" class="modal fade" tabindex="-1">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header no-padding">
-											<div class="table-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">
-													<span class="white">&times;</span>
-												</button>
-												Results for "Latest Registered Domains
-											</div>
-										</div>
+		function displayProducts(response) {
+			// Lặp qua danh sách sản phẩm và thêm chúng vào tbody UL
+			var tbody = $('#table'); // ID của tbody trong bảng
+			// Xóa các dòng cũ trong tbody
+			tbody.empty();
+			// Lặp qua danh sách sản phẩm và thêm từng sản phẩm vào tbody
+			var input = $('<input type="hidden" id="userId" value="">');
+			for (var i = 0; i < response.length; i++) {
+				var user = response[i];
+				
+				// Tạo một dòng tr mới
+				var row = $('<tr>');
+				// Hidden input to store user ID
+		        var hiddenInput = $('<input type="hidden" class="user-id">').val(user.id_user);
+		        row.append(hiddenInput);
+				// Thêm checkbox
+				var checkboxCell = $('<td class="center">').html('<label class="pos-rel"><input type="checkbox" class="ace" /><span class="lbl"></span></label>');
+				row.append(checkboxCell);
+				// Thêm tên sản phẩm (ví dụ: <td><a href="#">max.com</a></td>)
+				var productNameCell = $('<td>').html('<a href="#">'+ user.fullName+ '</a>');
+				row.append(productNameCell);
+				// Thêm giá (ví dụ: <td>$60</td>)
+				var priceCell = $('<td>').text('' + user.email);
+				row.append(priceCell);
+				//Thêm mô tả <td class="hidden-480">4,400</td>
+				var desc = $('<td class="hidden-480">').text('' + user.phone);
+				row.append(desc);
+				// Thêm brand <td>Mar 11</td>
+				var brand = $('<td>').text('' + user.total_orders);
+				row.append(brand);
+				//Thêm danh mục <td class="hidden-480"><span class="label label-sm label-warning">Expiring</span></td>
+				var cate = $('<td class="hidden-480">').html('<a href="#">'+'#'+ user.latest_order_id+ '</a>');
+				row.append(cate);
+				//total
+				var total = $('<td class="hidden-480">').text('' + user.total_order_amount);
+				row.append(total);
+				// Thêm các nút "Edit" và "Delete"
+				var actionCell = $('<td>');
 
-										<div class="modal-body no-padding">
-											<table
-												class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-												<thead>
-													<tr>
-														<th>Domain</th>
-														<th>Price</th>
-														<th>Clicks</th>
+				// Nút "Edit" cho màn hình lớn
+				actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
+													+ '<button class="green green-lock" style="border: none !important; background-color: transparent;"><i class="fa fa-lock bigger-130" aria-hidden="true"></i></button>'
+													+ '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
+													+ '</div>');
 
-														<th><i class="ace-icon fa fa-clock-o bigger-110"></i>
-															Update</th>
-													</tr>
-												</thead>
+				// Nút "Edit" cho màn hình nhỏ
+				actionCell.append('<div class="hidden-md hidden-lg">'
+													+ '<div class="inline pos-rel">'
+													+ '<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">'
+													+ '<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>'
+													+ '</button>'
+													+ '<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">'
+													+ '<li><a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="ace-icon fa fa-search-plus bigger-120"></i></span></a></li>'
+													+ '<li><a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i></span></a></li>'
+													+ '<li><a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i></span></a></li>'
+													+ '</ul>'
+													+ '</div>'
+													+ '</div>');
 
-												<tbody>
-													<tr>
-														<td><a href="#">ace.com</a></td>
-														<td>$45</td>
-														<td>3,330</td>
-														<td>Feb 12</td>
-													</tr>
+				// Thêm cột actionCell vào dòng
+				row.append(actionCell);
 
-													<tr>
-														<td><a href="#">base.com</a></td>
-														<td>$35</td>
-														<td>2,595</td>
-														<td>Feb 18</td>
-													</tr>
-
-													<tr>
-														<td><a href="#">max.com</a></td>
-														<td>$60</td>
-														<td>4,400</td>
-														<td>Mar 11</td>
-													</tr>
-
-													<tr>
-														<td><a href="#">best.com</a></td>
-														<td>$75</td>
-														<td>6,500</td>
-														<td>Apr 03</td>
-													</tr>
-
-													<tr>
-														<td><a href="#">pro.com</a></td>
-														<td>$55</td>
-														<td>4,250</td>
-														<td>Jan 21</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-
-										<div class="modal-footer no-margin-top">
-											<button class="btn btn-sm btn-danger pull-left"
-												data-dismiss="modal">
-												<i class="ace-icon fa fa-times"></i> Close
-											</button>
-
-											<ul class="pagination pull-right no-margin">
-												<li class="prev disabled"><a href="#"> <i
-														class="ace-icon fa fa-angle-double-left"></i>
-												</a></li>
-
-												<li class="active"><a href="#">1</a></li>
-
-												<li><a href="#">2</a></li>
-
-												<li><a href="#">3</a></li>
-
-												<li class="next"><a href="#"> <i
-														class="ace-icon fa fa-angle-double-right"></i>
-												</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- /.modal-content -->
-								</div>
-								<!-- /.modal-dialog -->
-							</div>
+				// Thêm dòng vào tbody
+				tbody.append(row);
+			}
+		}
+	});  // Thêm dòng này để đóng thẻ <script>
+</script>			
 							<!-- PAGE CONTENT ENDS -->
 						</div>
 						<!-- /.col -->
@@ -570,21 +479,6 @@
 
 	</div>
 	<!-- /.main-container -->
-
-	<script type="text/javascript">
-		window.jQuery
-				|| document
-						.write("<script src='<c:url value="/template/admin/js/jquery.min.js"/>'>"
-								+ "<" + "/script>");
-	</script>
-
-	<script type="text/javascript">
-		if ("ontouchstart" in document.documentElement)
-			document
-					.write("<script src='<c:url value="/template/admin/js/jquery.mobile.custom.min.js"/>'>"
-							+ "<" +
-            "/script>");
-	</script>
 
 	<script type="text/javascript">
 		jQuery(function($) {
