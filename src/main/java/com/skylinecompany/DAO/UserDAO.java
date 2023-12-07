@@ -33,8 +33,8 @@ public class UserDAO extends BaseDAO {
 
 	public int AddAccount(UserEntity user) {
 		  StringBuilder sql = new StringBuilder();
-		  sql.append("INSERT INTO [User] (email, phone, password, id_role, fullName)");
-		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPassword().getBytes(), StandardCharsets.UTF_8) + "', '" + user.getId_role() + "', '" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "')");
+		  sql.append("INSERT INTO [User] (email, phone, password, id_role, status, fullName)");
+		  sql.append("VALUES ('" + new String(user.getEmail().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPhone().getBytes(), StandardCharsets.UTF_8) + "', '" + new String(user.getPassword().getBytes(), StandardCharsets.UTF_8) + "', '" + user.getId_role() + "', '" + user.getStatus() + "', '" + new String(user.getFullName().getBytes(), StandardCharsets.UTF_8) + "')");
 
 		  int insert = _jdbcTemplate.update(sql.toString());
 
@@ -63,6 +63,7 @@ public class UserDAO extends BaseDAO {
 
 		return insert;
 	}
+	
 	public int UpdateAccountProfile(UserEntity user) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("Update [User] ");
@@ -88,15 +89,15 @@ public class UserDAO extends BaseDAO {
 	
 	private StringBuffer SqlGetAllUser() {
 		StringBuffer  varname1 = new StringBuffer();
-		varname1.append("SELECT U.id_user, U.fullName, U.phone, U.imageuser, U.email, ");
+		varname1.append("SELECT U.id_user, U.fullName, U.phone, U.imageuser, U.email, U.status, ");
 		varname1.append("    COUNT(O.id_order) AS total_orders, ");
 		varname1.append("    MAX(O.id_order) AS latest_order_id, ");
 		varname1.append("    format(SUM(OD.total),'##,#\\ VNĐ','es-ES') AS total_order_amount ");
 		varname1.append("FROM \"User\" U ");
 		varname1.append("LEFT JOIN \"Order\" O ON U.id_user = O.id_cust ");
 		varname1.append("LEFT JOIN \"Order_Detail\" OD ON O.id_order = OD.id_order ");
-		varname1.append("WHERE U.id_role = 2 ");
-		varname1.append("GROUP BY U.id_user, U.fullName, U.phone, U.imageuser, U.email ");
+		//varname1.append("WHERE U.id_role = 2 ");
+		varname1.append("GROUP BY U.id_user, U.fullName, U.phone, U.imageuser, U.email, U.status ");
 		varname1.append("ORDER BY U.id_user;");
 		return varname1;
 	}
@@ -107,4 +108,21 @@ public class UserDAO extends BaseDAO {
 		return list;
 	}
 	
+	//Delete user with id
+	public List<UsersDto> deleteUserId(int id) {
+		String sql = "delete from [User] where id_user = ?";
+		int delete = _jdbcTemplate.update(sql, new Object[] {id});
+		List<UsersDto> list = getAllUser();
+		return list;
+	}
+	
+	//Update status in user
+	public List<UsersDto> updateUserId(int id) {
+		String sql = "UPDATE [User]\r\n"
+				+ "SET [status] = 2\r\n"
+				+ "WHERE id_user = ?";
+		int update = _jdbcTemplate.update(sql, new Object[] {id});
+		List<UsersDto> list = getAllUser();
+		return list;
+	}
 }

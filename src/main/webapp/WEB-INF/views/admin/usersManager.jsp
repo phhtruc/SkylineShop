@@ -168,7 +168,7 @@
 									</div>
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#exampleModalCenter">
-										Thêm mới tài khoản</button>
+										Thêm mới tài khoản Admin</button>
 									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 										role="dialog" aria-labelledby="exampleModalCenterTitle"
 										aria-hidden="true">
@@ -177,92 +177,67 @@
 											<div class="modal-content">
 												<div class="modal-header">
 													<h5 class="modal-title" id="exampleModalLongTitle">
-														Thêm mới tài khoản</h5>
+														Thêm mới tài khoản Admin</h5>
 													<button type="button" class="close" data-dismiss="modal"
 														aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<button id="green-loch">abc</button>
 												<div class="modal-body">
 													<form class="form-horizontal" role="form">
 														<div class="form-group">
 															<label class="col-sm-3 control-label no-padding-right"
-																for="form-field-1"> Tên sản phẩm </label>
+																for="form-field-1"> Tên</label>
 
 															<div class="col-sm-9">
-																<input type="text" id="form-field-1"
-																	placeholder="Tên sản phẩm" class="col-xs-10" />
+																<input type="text" name="fullName" id="form-field-1"
+																	placeholder="Tên người dùng" class="col-xs-10" />
 															</div>
 														</div>
-														<div class="space-4"></div>
+														
 														<div class="form-group">
 															<label class="col-sm-3 control-label no-padding-right"
-																for="form-field-1"> Giá </label>
+																for="form-field-1"> Email </label>
 
 															<div class="col-sm-9">
-																<input type="text" id="form-field-1" placeholder="Giá"
+																<input type="text" name="email" id="form-field-1" placeholder="Email"
 																	class="col-xs-10" />
 															</div>
 														</div>
 
 														<div class="form-group">
 															<label class="col-sm-3 control-label no-padding-right"
-																for="form-field-1"> Mô tả </label>
+																for="form-field-1"> Số điện thoại</label>
 
 															<div class="col-sm-9">
-																<input type="text" id="form-field-1"
-																	placeholder="Mô tả " class="col-xs-10" />
+																<input type="text" name="phone" id="form-field-1"
+																	placeholder="Số điện thoại" class="col-xs-10" />
 															</div>
 														</div>
-
+														
 														<div class="form-group">
 															<label class="col-sm-3 control-label no-padding-right"
-																for="form-field-1"> Ảnh </label>
+																for="form-field-1"> Mật khẩu</label>
 
 															<div class="col-sm-9">
-																<img id="img1"
-																	style="height: 100px; width: 100px; margin: 10px;" />
-																<input type="file" id="id-input-file-1"
-																	onchange="updateImage(this,'img1')" /> <img id="img2"
-																	style="height: 100px; width: 100px; margin: 10px;" />
-																<input type="file" id="id-input-file-2"
-																	onchange="updateImage(this,'img2')" /> <img id="img3"
-																	style="height: 100px; width: 100px; margin: 10px;" />
-																<input type="file" id="id-input-file-3"
-																	onchange="updateImage(this,'img3')" />
+																<input type="text" name="password" id="form-field-1"
+																	placeholder="Mật khẩu" class="col-xs-10" />
 															</div>
 														</div>
-
-														<div class="form-group">
-															<label for="form-field-select-1"
-																class="col-sm-3 me-2 control-label">Danh mục</label> <select
-																class="col-sm-3" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Alabama</option>
-																<option value="AK">Alaska</option>
-																<option value="AZ">Arizona</option>
-															</select>
-														</div>
-
-														<div class="form-group">
-															<label for="form-field-select-1"
-																class="col-sm-3 me-2 control-label">Brand</label> <select
-																class="col-sm-3" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Alabama</option>
-																<option value="AK">Alaska</option>
-																<option value="AZ">Arizona</option>
-															</select>
-														</div>
+														
+														<input type="hidden" name="id_role" id="form-field-1"
+																	value="1" class="col-xs-10" />
+																	
+														<input type="hidden" name="status" id="form-field-1"
+																	value="1" class="col-xs-10" />			
 
 														<div class="clearfix form-actions">
 															<div class="col-md-offset-3 col-md-9">
 																<button type="button" class="btn btn-secondary"
-																	data-dismiss="modal">Close</button>
+																	data-dismiss="modal">Thoát</button>
 																&nbsp; &nbsp; &nbsp;
-																<button class="btn btn-info" type="button">
-																	<i class="ace-icon fa fa-check bigger-110"></i> Submit
+																<button class="btn btn-info" id="submit" type="button">
+																	<i class="ace-icon fa fa-check bigger-110"></i>Đăng ký
 																</button>
 															</div>
 														</div>
@@ -270,7 +245,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div>								
 									<!-- div.dataTables_borderWrap -->
 									<div>
 										<table id="dynamic-table"
@@ -292,62 +267,16 @@
 											</thead>
 
 											<tbody id="table">
-												<tr>
-													<td class="center"><label class="pos-rel"> <input
-															type="checkbox" class="ace" /> <span class="lbl"></span>
-													</label></td>
-
-													<td><a href="#">max.com</a></td>
-													<td>$60</td>
-													<td class="hidden-480">4,400</td>
-													<td>Mar 11</td>
-													<td>Mar 11</td>
-													<td class="hidden-480"><span
-														class="label label-sm label-warning">Expiring</span></td>
-
-													<td>
-														<div class="hidden-sm hidden-xs action-buttons">
-															<a class="green" href="#"><i class="fa fa-lock" aria-hidden="true"></i></a>
-														</div>
-
-														<div class="hidden-md hidden-lg">
-															<div class="inline pos-rel">
-																<button
-																	class="btn btn-minier btn-yellow dropdown-toggle"
-																	data-toggle="dropdown" data-position="auto">
-																	<i
-																		class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																</button>
-
-																<ul
-																	class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																	<li><a href="#" class="tooltip-info"
-																		data-rel="tooltip" title="View"> <span
-																			class="blue"> <i
-																				class="ace-icon fa fa-search-plus bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><button id="green-lock" class="green"><i class="fa fa-lock bigger-130" aria-hidden="true"></i></button></li>
-
-																	<li><a href="#" class="tooltip-error"
-																		data-rel="tooltip" title="Delete"> <span
-																			class="red"> <i
-																				class="ace-icon fa fa-trash-o bigger-120"></i>
-																		</span>
-																	</a></li>
-																</ul>
-															</div>
-														</div>
-													</td>
-												</tr>
+												
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>							
 <script>
 	$(document).ready(function(){
+		//Lay danh sach user
 		$.ajax({
 			url : 'http://localhost:8888/SkylineShop/api/users',
 			type : 'GET',
@@ -360,42 +289,122 @@
 			}
 		});
 		
+		// Them moi
+		$('#submit').click(function (e){
+			e.preventDefault();
+			var data={};
+			var formData = $('.form-horizontal').serializeArray();
+			$.each(formData, function (i, v) {
+	            data[""+v.name+""] = v.value;
+	        });
+			$.ajax({
+	            url: 'http://localhost:8888/SkylineShop/api/users',
+	            type: 'POST',
+	            contentType: 'application/json',
+	            data: JSON.stringify(data),
+	            dataType: 'json',
+	            success: function (result) {
+	            	displayProducts(result);
+	                Swal.fire({
+	                	  title: 'Thêm mới tài khoản thành công',
+	                	  showClass: {
+	                	    popup: 'animate__animated animate__fadeInDown'
+	                	  },
+	                	  hideClass: {
+	                	    popup: 'animate__animated animate__fadeOutUp'
+	                	  }
+	                })
+	            },
+	            error: function (error) {
+	            	Swal.fire({
+	                	  title: 'Thêm mới tài khoản thất bại',
+	                	  showClass: {
+	                	    popup: 'animate__animated animate__fadeInDown'
+	                	  },
+	                	  hideClass: {
+	                	    popup: 'animate__animated animate__fadeOutUp'
+	                	  }
+	                })
+	            }
+	        });
+		});
+		
+		//Khoa tai khoan
 		$(document).on('click', '.green-lock', function (e) {
 		    e.preventDefault();
 		    var userId = $(this).closest('tr').find('.user-id').val();
-		    $.ajax({
-		      url: 'http://localhost:8888/SkylineShop/api/users/'+ userId,
-		      type: 'PUT',
-		      processData: false,
-		      contentType: false,
-		      dataType: 'json',
-		      success: function (result) {
-		        console.log(result);
-		      },
-		      error: function (error) {
-		        console.log(error);
-		      },
-		    });
+		    Swal.fire({
+		    	  title: 'Khóa tài khoản',
+		    	  text: "Bạn có chắc chắn muốn khóa người dùng này?",
+		    	  icon: 'warning',
+		    	  showCancelButton: true,
+		    	  confirmButtonColor: '#3085d6',
+		    	  cancelButtonColor: '#d33',
+		    	  confirmButtonText: 'Khóa'
+		    	}).then((result) => {
+		    	  if (result.isConfirmed) {
+		    		  var urlink = 'http://localhost:8888/SkylineShop/api/users/'+ userId;
+					    $.ajax({
+					      url: urlink,
+					      type: 'PUT',
+					      processData: false,
+					      contentType: false,
+					      dataType: 'json',
+					      success: function (result) {
+					    	  displayProducts(result);
+					      },
+					      error: function (error) {
+					        console.log(error);
+					      },
+					    });
+		    	    Swal.fire(
+		    	      'Thành công!',
+		    	      'Bạn đã khóa người dùng thành công',
+		    	      'success'
+		    	    )
+		    	  }
+		    	})
 		});
 		
+		//Xoa tai khoan
 		$(document).on('click', '.red-delete', function (e) {
 		    e.preventDefault();
 		    var userId = $(this).closest('tr').find('.user-id').val();
-		    $.ajax({
-		      url: 'http://localhost:8888/SkylineShop/api/users/'+ userId,
-		      type: 'DELETE',
-		      processData: false,
-		      contentType: false,
-		      dataType: 'json',
-		      success: function (result) {
-		    	  console.log(result);
-		      },
-		      error: function (error) {
-		        console.log(error);
-		      },
-		    });
+		    
+		    Swal.fire({
+		    	  title: 'Xóa tài khoản?',
+		    	  text: "Bạn có chắc chắn muốn xóa người dùng này?",
+		    	  icon: 'warning',
+		    	  showCancelButton: true,
+		    	  confirmButtonColor: '#3085d6',
+		    	  cancelButtonColor: '#d33',
+		    	  confirmButtonText: 'Xóa'
+		    	}).then((result) => {
+		    	  if (result.isConfirmed) {
+		    		  var urlink = 'http://localhost:8888/SkylineShop/api/users/'+ userId;
+					    $.ajax({
+					      url: urlink,
+					      type: 'DELETE',
+					      processData: false,
+					      contentType: false,
+					      dataType: 'json',
+					      success: function (result) {
+					    	  displayProducts(result);
+					      },
+					      error: function (error) {
+					        console.log(error);
+					      },
+					    });
+		    	    Swal.fire(
+		    	      'Thành công!',
+		    	      'Bạn đã xóa người dùng thành công',
+		    	      'success'
+		    	    )
+		    	  }
+		    	})
 		});
 
+		//Cap nhat giao dien
 		function displayProducts(response) {
 			// Lặp qua danh sách sản phẩm và thêm chúng vào tbody UL
 			var tbody = $('#table'); // ID của tbody trong bảng
@@ -436,10 +445,17 @@
 				var actionCell = $('<td>');
 
 				// Nút "Edit" cho màn hình lớn
-				actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
-													+ '<button class="green green-lock" style="border: none !important; background-color: transparent;"><i class="fa fa-lock bigger-130" aria-hidden="true"></i></button>'
-													+ '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
-													+ '</div>');
+				if (user.status == 2) {
+				    actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
+				        + '<button class="green green-lock" style="border: none !important; background-color: transparent;"><i class="fa fa-unlock bigger-130" aria-hidden="true"></i></i></button>'
+				        + '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
+				        + '</div>');
+				} else {
+				    actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
+				        + '<button class="green green-lock" style="border: none !important; background-color: transparent;"><i class="fa fa-lock bigger-130" aria-hidden="true"></i></button>'
+				        + '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
+				        + '</div>');
+				}
 
 				// Nút "Edit" cho màn hình nhỏ
 				actionCell.append('<div class="hidden-md hidden-lg">'

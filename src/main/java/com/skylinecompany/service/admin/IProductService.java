@@ -20,4 +20,6 @@ public interface IProductService {
 	
 	@Autowired
 	public List<BrandEntity> findAllBrand();
+	
+	public List<ProductEntity> deleteProductById(int id);
 }

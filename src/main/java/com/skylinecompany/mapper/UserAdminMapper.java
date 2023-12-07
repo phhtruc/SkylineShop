@@ -20,6 +20,7 @@ public class UserAdminMapper implements RowMapper<UsersDto>{
 		u.setLatest_order_id(rs.getString("latest_order_id"));
 		u.setTotal_order_amount(rs.getString("total_order_amount"));
 		u.setTotal_orders(rs.getInt("total_orders"));
+		u.setStatus(rs.getInt("status"));
 		return u;
 	}
 

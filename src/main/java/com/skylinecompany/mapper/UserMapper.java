@@ -19,6 +19,7 @@ public class UserMapper implements RowMapper<UserEntity>{
 		e.setPassword(rs.getString("password"));
 		e.setId_role(rs.getInt("id_role"));
 		e.setImageuser(rs.getString("imageuser"));
+		e.setStatus(rs.getInt("status"));
 		return e;
 	}
 	

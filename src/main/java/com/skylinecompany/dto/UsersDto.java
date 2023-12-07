@@ -10,6 +10,16 @@ public class UsersDto {
 	private int total_orders;
 	private String latest_order_id;
 	private String total_order_amount;
+	private int status;
+	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public int getId_user() {
 		return id_user;

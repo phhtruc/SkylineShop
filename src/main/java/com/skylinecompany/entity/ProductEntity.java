@@ -8,6 +8,7 @@ public class ProductEntity {
 	private String desc;
 	private String brand_name;
 	private String cate_name;
+	
 	public int getId_product() {
 		return id_product;
 	}

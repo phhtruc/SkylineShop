@@ -23,5 +23,12 @@ public class ProductDAO extends BaseDAO{
 		List<ProductEntity> list = _jdbcTemplate.query(sql, new ProductMapper());
 		return list;
 	}
+	
+	public List<ProductEntity> deleteProductById(int id) {
+		String sql = "delete from Product where id_product = ?";
+		int dl = _jdbcTemplate.update(sql, new Object[] {id});
+		List<ProductEntity> list = getAllProduct();
+		return list;
+	}
 
 }

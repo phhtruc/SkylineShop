@@ -1,6 +1,5 @@
 create database skyline_shop
---drop database skyline_shop
-use skyline_shop
+
 create table [Role]
 (
 	id_role int identity(1,1) primary key,
@@ -15,10 +14,12 @@ create table [User]
 	phone varchar(10) CHECK(phone LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]') unique,
 	[password] varchar(225),
 	imageuser varchar(200),
-	id_role int foreign key references [Role](id_role)
+	id_role int foreign key references [Role](id_role),
+	[status] int
 	on delete cascade
 	on update cascade
 )
+
 
 create table [Category]
 (
@@ -76,6 +77,37 @@ create table Evaluation
 	primary key(id_cust, id_product)
 )
 
+create table [Order]
+(
+	id_order int identity(1,1) primary key,
+	id_cust int foreign key references [User](id_user)
+	on delete cascade
+	on update cascade,
+	date_create date,
+	[address] nvarchar(max),
+	phone varchar(10),
+	email varchar(30) CHECK(email LIKE '%@%'),
+	note text,
+	payment_status nvarchar(30)
+	VoucherID int REFERENCES Voucher(VoucherID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+)
+
+CREATE TABLE [Order_Detail]
+(
+	id_product int REFERENCES Product(id_product)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	id_order int REFERENCES [Order](id_order)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	quantity int CHECK (quantity > 0),
+	size char(3),
+	total decimal CHECK (total >= 0),
+	PRIMARY KEY (id_product, id_order)
+)
+
 CREATE TABLE Voucher (
     VoucherID INT identity PRIMARY KEY,
     VoucherCode VARCHAR(50) UNIQUE,
@@ -102,38 +134,6 @@ create table Voucher_User
 		ON UPDATE CASCADE,
 	primary key(VoucherID,id_user)
 )
-create table [Order]
-(
-	id_order int identity(1,1) primary key,
-	id_cust int foreign key references [User](id_user)
-	on delete cascade
-	on update cascade,
-	date_create date,
-	[address] nvarchar(max),
-	phone varchar(10),
-	email varchar(30) CHECK(email LIKE '%@%'),
-	note text,
-	payment_status nvarchar(30),
-	VoucherID int REFERENCES Voucher(VoucherID)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-)
-
-CREATE TABLE [Order_Detail]
-(
-	id_product int REFERENCES Product(id_product)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	id_order int REFERENCES [Order](id_order)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	quantity int CHECK (quantity > 0),
-	size char(3),
-	total decimal CHECK (total >= 0),
-	PRIMARY KEY (id_product, id_order)
-)
-
-
 
 -- Thêm dữ liệu cho bảng Voucher
 insert into Voucher(VoucherCode, DiscountAmount,[Percentage],StartDate,EndDate,UsageLimit,ConditionPrice)
@@ -155,10 +155,10 @@ values('Admin'),
 	  ('User')
 
 -- Thêm dữ liệu cho bảng [User]
-INSERT INTO [User] (fullName, email, phone, [password], id_role)
+INSERT INTO [User] (fullName, email, phone, [password], id_role,[status])
 VALUES
-    ('Pham Thanh Truc','admin@skyline.com', '0706075950', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 1),
-    ('Truc Pham','kientruc10@gmail.com', '0706075959', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 2);
+    ('Pham Thanh Truc','admin@skyline.com', '0706075950', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 1,1),
+    ('Truc Pham','kientruc10@gmail.com', '0706075959', '$2a$12$04qOxG2W5EgiHcCROdbe/.IjI4904oXxyt/2fkrIEDnPeffy3b0x.', 2,1);
 
 -- Thêm dữ liệu cho bảng [Category]
 INSERT INTO [Category] (cate_name)
@@ -362,46 +362,3 @@ select * from [Size]
 select * from [User]
 select * from Voucher
 select * from Voucher_User
-
-
-
-select * from Product 
-Join Brand on Brand.id_brand= Product.id_brand
-
-select Product.*, Brand.brand_name from Product
-Join Brand on Brand.id_brand= Product.id_brand
-where Product.id_brand = 10
-
-select Product.product_name, Category.cate_name
-from Product inner join Category on Product.id_brand = Category.id_cate
-where Category.cate_name = N'Áo'
-
-select id_brand
-from Brand
-where Brand.brand_name = N'?'
-
-select *
-from Product_Image
-where id_product = 1
-
-select id_product
-from Product
-where product_name = N'Áo Phông - Áo thun Tập Luyện Nam Adidas'
-
-select * from Product
-where id_cate =2
-
-SELECT p.id_product, p.product_name, p.price, p.id_cate, (
-    SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product
-) AS [image]
-FROM Product p
-where p.id_cate=1
-ORDER BY p.id_product
-OFFSET 0 ROWS
-FETCH NEXT 12 ROWS ONLY;
-
-SELECT    p.id_product,     p.product_name,     p.price,     p.[desc],     p.id_brand,     p.id_cate,     (SELECT TOP 1 [image] FROM Product_Image WHERE id_product = p.id_product) AS [image] FROM Product p	WHERE p.id_cate = 1    ORDER BY p.id_product    OFFSET 0 ROWS    FETCH NEXT 12 ROWS ONLY
-
-select * from [User]
-
-select * from Role where id_role = 1

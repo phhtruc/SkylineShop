@@ -44,4 +44,10 @@ public class ProductServiceImpl implements IProductService{
 		return brandDAO.findAllBrand();
 	}
 
+	@Override
+	public List<ProductEntity> deleteProductById(int id) {
+		// TODO Auto-generated method stub
+		return productDAO.deleteProductById(id);
+	}
+
 }

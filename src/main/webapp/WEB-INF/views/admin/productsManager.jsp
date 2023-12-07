@@ -16,6 +16,12 @@
 		margin-bottom: 15px;
 	}
 }
+.button-without-border {
+	        border: none !important;
+	        outline: none; /* Remove the outline when the button is clicked */
+	        background-color: transparent;
+	        cursor: pointer;
+	}
 </style>
 
 </head>
@@ -246,42 +252,6 @@
 											</div>
 										</div>
 									</div>
-<script type="text/javascript">
-	$('#submit').click(function (e) {
-	    e.preventDefault();
-	    var data = {};
-	    var formData = $('#form-create-new-product').serializeArray();
-	
-	    $.each(formData, function (i, v) {
-	        data[v.name] = v.value;
-	    });
-	
-	    var fileData = new FormData();
-	    fileData.append('image1', $('#id-input-file-1')[0].files[0]);
-	    fileData.append('image2', $('#id-input-file-2')[0].files[0]);
-	    fileData.append('image3', $('#id-input-file-3')[0].files[0]);
-	
-	    var postData = {
-	        productData: JSON.stringify(data),
-	        fileData: fileData
-	    };
-	
-	    $.ajax({
-	        url: 'http://localhost:8888/SkylineShop/api/products',
-	        type: 'POST',
-	        processData: false,
-	        contentType: false,
-	        data: postData,
-	        dataType: 'json',
-	        success: function (result) {
-	            console.log(result);
-	        },
-	        error: function (error) {
-	            console.log(error);
-	        }
-	    });
-	});
-</script>
 
 									<!-- div.dataTables_borderWrap -->
 									<div>
@@ -634,27 +604,87 @@
 			}
 		}
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>		
 	<script>
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							// Thực hiện yêu cầu AJAX để lấy danh sách sản phẩm từ API
-							$
-									.ajax({
-										url : 'http://localhost:8888/SkylineShop/api/products',
-										type : 'GET',
-										dataType : 'json',
-										success : function(response) {
+							$.ajax({
+								url : 'http://localhost:8888/SkylineShop/api/products',
+								type : 'GET',
+								dataType : 'json',
+								success : function(response) {
+									displayProducts(response);
+								},
+								error : function(error) {
+									console.error('Error fetching product list:',error);
+								}
+							});
+							
+							//Them san pham
+							$('#submit').click(function (e) {
+							    e.preventDefault();
+							
+							    // Tạo đối tượng FormData và thêm giá trị từ form vào
+							    var formData = new FormData($('#form-create-new-product')[0]);
+							    console.log(formData);
+							    
+							    // Thêm các file vào FormData
+							    formData.append('image1', $('#id-input-file-1')[0].files[0]);
+							    formData.append('image2', $('#id-input-file-2')[0].files[0]);
+							    formData.append('image3', $('#id-input-file-3')[0].files[0]);
+							    console.log([...formData.entries()]);
+							    $.ajax({
+							        url: 'http://localhost:8888/SkylineShop/api/products',
+							        type: 'POST',
+							        processData: false,
+							        contentType: false,
+							        data: formData,
+							        success: function (result) {
+							            console.log(result);
+							        },
+							        error: function (error) {
+							            console.log(error);
+							        }
+							    });
+							});
 
-											displayProducts(response);
-										},
-										error : function(error) {
-											console
-													.error(
-															'Error fetching product list:',
-															error);
-										}
-									});
+							//Xoa san pham
+							$(document).on('click', '.red-delete', function (e) {
+							    e.preventDefault();
+							    var idProduct = $(this).closest('tr').find('.id-product').val();
+							    
+							    Swal.fire({
+							    	  title: 'Xóa sản phẩm?',
+							    	  text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+							    	  icon: 'warning',
+							    	  showCancelButton: true,
+							    	  confirmButtonColor: '#3085d6',
+							    	  cancelButtonColor: '#d33',
+							    	  confirmButtonText: 'Xóa'
+							    	}).then((result) => {
+							    	  if (result.isConfirmed) {
+							    		  var urlink = 'http://localhost:8888/SkylineShop/api/products/'+ idProduct;
+										    $.ajax({
+										      url: urlink,
+										      type: 'DELETE',
+										      processData: false,
+										      contentType: false,
+										      dataType: 'json',
+										      success: function (result) {
+										    	  displayProducts(result);
+										      },
+										      error: function (error) {
+										        console.log(error);
+										      },
+										    });
+							    	    Swal.fire(
+							    	      'Thành công!',
+							    	      'Bạn đã xóa sản phẩm thành công',
+							    	      'success'
+							    	    )
+							    	  }
+							    	})
+							});
 
 							function displayProducts(response) {
 								// Lặp qua danh sách sản phẩm và thêm chúng vào danh sách UL
@@ -666,6 +696,10 @@
 									var product = response.products[i];
 									// Tạo một dòng tr mới
 									var row = $('<tr>');
+									
+									var hiddenInput = $('<input type="hidden" class="id-product">').val(product.id_product);
+							        row.append(hiddenInput);
+							        
 									// Thêm checkbox
 									var checkboxCell = $('<td class="center">')
 											.html(
@@ -697,11 +731,10 @@
 									var actionCell = $('<td>');
 
 									// Nút "Edit" cho màn hình lớn
-									actionCell
-											.append('<div class="hidden-sm hidden-xs action-buttons">'
-													+ '<a class="green" href="#"> <i class="ace-icon fa fa-pencil bigger-130"></i></a>'
-													+ '<a class="red" href="#"> <i class="ace-icon fa fa-trash-o bigger-130"></i></a>'
-													+ '</div>');
+									actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
+				        							+ '<button class="green green-lock" style="border: none !important; background-color: transparent;"><i class="fa fa-pencil bigger-130" aria-hidden="true"></i></i></button>'
+				        							+ '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
+				        							+ '</div>');
 
 									// Nút "Edit" cho màn hình nhỏ
 									actionCell

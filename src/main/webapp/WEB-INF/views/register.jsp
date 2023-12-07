@@ -44,6 +44,8 @@
 
 				<form:input type="hidden" class="form-control mb-4" value="2"
 					path="id_role" />
+				<form:input type="hidden" class="form-control mb-4" value="1"
+					path="status" />
 				<button class="btn btn-lg btn-login btn-block mb-3" type="submit"
 					onclick="registerUser()">Đăng ký</button>
 				<div class="d-flex justify-content-center">
