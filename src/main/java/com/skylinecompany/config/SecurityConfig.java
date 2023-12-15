@@ -9,14 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
+	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .logout()
-                .logoutUrl("/thoat")
-                .and()
-            .authorizeRequests();
-                // Các cấu hình khác
+		
+        //http.multipart().disable(); // Disable multipart support in Spring Security
     }
 }
 

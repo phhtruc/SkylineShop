@@ -35,9 +35,9 @@
 		<property name="suffix" value=".jsp" />
 
 	</bean>
-		
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
 	<mvc:resources location="/template/" mapping="/template/**"/>
- <!-- Để sử dụng được <C:url trong decorators -->	
+
 </beans>

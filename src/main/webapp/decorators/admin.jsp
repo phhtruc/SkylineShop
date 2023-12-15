@@ -13,6 +13,7 @@
 
 	<!-- bootstrap & fontawesome -->
 	<link href="<c:url value='/template/admin/css/bootstrap.min.css'/>" rel="stylesheet" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link href="<c:url value='/template/admin/font-awesome/4.2.0/css/font-awesome.min.css'/>" rel="stylesheet" />
 	
 	<!-- text fonts -->

@@ -32,6 +32,11 @@ public class HomeController {
 	HttpServletRequest request;
 	
 
+	@RequestMapping(value="/server", method = RequestMethod.GET)
+	public ModelAndView serverPage() {
+		ModelAndView mav = new ModelAndView("Server");
+		return mav;
+	}
     
 	@RequestMapping(value="/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {

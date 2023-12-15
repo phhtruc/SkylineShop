@@ -63,12 +63,12 @@
 								<c:choose>
 									<c:when test="${not empty user.getImageuser()}">
 										<img id="preview"
-											src="${pageContext.request.contextPath}/images/${user.getImageuser()}"
+											src="${pageContext.request.contextPath}/template/web/img/${user.getImageuser()}"
 											style="max-width: 100%; max-height: 200px"
 											class="d-block ui-w-80" />
 									</c:when>
 									<c:otherwise>
-										<img src="${pageContext.request.contextPath}/images/1.png"
+										<img src="${pageContext.request.contextPath}/template/web/img/1.png"
 											style="max-width: 100%; max-height: 200px"
 											class="d-block ui-w-80" />
 									</c:otherwise>

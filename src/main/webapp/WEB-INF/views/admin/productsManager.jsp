@@ -174,16 +174,13 @@
 											role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLongTitle">
-														Thêm mới sản phẩm</h5>
 													<button type="button" class="close" data-dismiss="modal"
 														aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
 												<div class="modal-body">
-													<form class="form-horizontal" role="form"
-														id="form-create-new-product">
+													<form class="form-horizontal" role="form" id="form-create-new-product" enctype="multipart/form-data">
 														<div class="form-group">
 															<label class="col-sm-3 control-label no-padding-right"
 																for="form-field-1"> Tên sản phẩm </label>
@@ -214,6 +211,9 @@
 																	placeholder="Mô tả " class="col-xs-10" name="desc" />
 															</div>
 														</div>
+														
+														<input type="hidden" id="form-field-1 id_p"
+																	placeholder="Mô tả " class="col-xs-10" name="id_pro" />
 
 														<div class="form-group">
 															<label class="col-sm-3 control-label no-padding-right"
@@ -229,7 +229,7 @@
 																	onchange="previewImage2()" /> <img id="img3"
 																	style="max-width: 100%; max-height: 120px; margin: 10px;" />
 																<input type="file" id="id-input-file-3"
-																	onchange="previewImage3()" />
+																	onchange="previewImage3()" value="bantay.jpg"/>
 															</div>
 														</div>
 
@@ -242,7 +242,7 @@
 																<button type="button" class="btn btn-secondary"
 																	data-dismiss="modal">Close</button>
 																&nbsp; &nbsp; &nbsp;
-																<button class="btn btn-info" type="button" id="submit">
+																<button class="btn btn-info" type="button" id="edit">
 																	<i class="ace-icon fa fa-check bigger-110"></i> Submit
 																</button>
 															</div>
@@ -351,470 +351,295 @@
 	<!-- /.main-container -->
 
 	<!-- inline scripts related to this page -->
-	<script type="text/javascript">
-		jQuery(function($) {
-			//initiate dataTables plugin
-			var oTable1 = $("#dynamic-table")
-			//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-			.dataTable({
-				bAutoWidth : false,
-				aoColumns : [ {
-					bSortable : false
-				}, null, null, null, null, null, {
-					bSortable : false
-				}, ],
-				aaSorting : [],
-
-			//TableTools settings
-			TableTools.classes.container = "btn-group btn-overlap";
-			TableTools.classes.print = {
-				body : "DTTT_Print",
-				info : "tableTools-alert gritter-item-wrapper gritter-info gritter-center white",
-				message : "tableTools-print-navbar",
-			};
-
-			//initiate TableTools extension
-			var tableTools_obj = new $.fn.dataTable.TableTools(
-					oTable1,
-					{
-						sSwfPath : "assets/swf/copy_csv_xls_pdf.swf",
-
-						sRowSelector : "td:not(:last-child)",
-						sRowSelect : "multi",
-						fnRowSelected : function(row) {
-							//check checkbox when row is selected
-							try {
-								$(row).find("input[type=checkbox]").get(0).checked = true;
-							} catch (e) {
-							}
-						},
-						fnRowDeselected : function(row) {
-							//uncheck checkbox
-							try {
-								$(row).find("input[type=checkbox]").get(0).checked = false;
-							} catch (e) {
-							}
-						},
-
-						sSelectedClass : "success",
-						aButtons : [
-								{
-									sExtends : "copy",
-									sToolTip : "Copy to clipboard",
-									sButtonClass : "btn btn-white btn-primary btn-bold",
-									sButtonText : "<i class='fa fa-copy bigger-110 pink'></i>",
-									fnComplete : function() {
-										this
-												.fnInfo(
-														'<h3 class="no-margin-top smaller">Table copied</h3>\
-									<p>Copied '
-																+ oTable1
-																		.fnSettings()
-																		.fnRecordsTotal()
-																+ " row(s) to the clipboard.</p>",
-														1500);
-									},
-								},
-
-								{
-									sExtends : "csv",
-									sToolTip : "Export to CSV",
-									sButtonClass : "btn btn-white btn-primary  btn-bold",
-									sButtonText : "<i class='fa fa-file-excel-o bigger-110 green'></i>",
-								},
-
-								{
-									sExtends : "pdf",
-									sToolTip : "Export to PDF",
-									sButtonClass : "btn btn-white btn-primary  btn-bold",
-									sButtonText : "<i class='fa fa-file-pdf-o bigger-110 red'></i>",
-								},
-
-								{
-									sExtends : "print",
-									sToolTip : "Print view",
-									sButtonClass : "btn btn-white btn-primary  btn-bold",
-									sButtonText : "<i class='fa fa-print bigger-110 grey'></i>",
-
-									sMessage : "<div class='navbar navbar-default'><div class='navbar-header pull-left'><a class='navbar-brand' href='#'><small>Optional Navbar &amp; Text</small></a></div></div>",
-
-									sInfo : "<h3 class='no-margin-top'>Print view</h3>\
-									  <p>Please use your browser's print function to\
-									  print this table.\
-									  <br />Press <b>escape</b> when finished.</p>",
-								}, ],
-					});
-			//we put a container before our table and append TableTools element to it
-			$(tableTools_obj.fnContainer())
-					.appendTo($(".tableTools-container"));
-
-			//also add tooltips to table tools buttons
-			//addding tooltips directly to "A" buttons results in buttons disappearing (weired! don't know why!)
-			//so we add tooltips to the "DIV" child after it becomes inserted
-			//flash objects inside table tools buttons are inserted with some delay (100ms) (for some reason)
-			setTimeout(function() {
-				$(tableTools_obj.fnContainer()).find("a.DTTT_button").each(
-						function() {
-							var div = $(this).find("> div");
-							if (div.length > 0)
-								div.tooltip({
-									container : "body"
-								});
-							else
-								$(this).tooltip({
-									container : "body"
-								});
-						});
-			}, 200);
-
-			//ColVis extension
-			var colvis = new $.fn.dataTable.ColVis(oTable1, {
-				buttonText : "<i class='fa fa-search'></i>",
-				aiExclude : [ 0, 6 ],
-				bShowAll : true,
-				//"bRestore": true,
-				sAlign : "right",
-				fnLabel : function(i, title, th) {
-					return $(th).text(); //remove icons, etc
-				},
-			});
-
-			//style it
-			$(colvis.button()).addClass("btn-group").find("button").addClass(
-					"btn btn-white btn-info btn-bold");
-
-			//and append it to our table tools btn-group, also add tooltip
-			$(colvis.button()).prependTo(".tableTools-container .btn-group")
-					.attr("title", "Show/hide columns").tooltip({
-						container : "body"
-					});
-
-			//and make the list, buttons and checkboxed Ace-like
-			$(colvis.dom.collection)
-					.addClass(
-							"dropdown-menu dropdown-light dropdown-caret dropdown-caret-right")
-					.find("li").wrapInner('<a href="javascript:void(0)" />') //'A' tag is required for better styling
-					.find("input[type=checkbox]").addClass("ace").next()
-					.addClass("lbl padding-8");
-
-			/////////////////////////////////
-			//table checkboxes
-			$("th input[type=checkbox], td input[type=checkbox]").prop(
-					"checked", false);
-
-			//select/deselect all rows according to table header checkbox
-			$("#dynamic-table > thead > tr > th input[type=checkbox]").eq(0)
-					.on(
-							"click",
-							function() {
-								var th_checked = this.checked; //checkbox inside "TH" table header
-
-								$(this).closest("table").find("tbody > tr")
-										.each(function() {
-											var row = this;
-											if (th_checked)
-												tableTools_obj.fnSelect(row);
-											else
-												tableTools_obj.fnDeselect(row);
-										});
-							});
-
-			//select/deselect a row when the checkbox is checked/unchecked
-			$("#dynamic-table").on(
-					"click",
-					"td input[type=checkbox]",
-					function() {
-						var row = $(this).closest("tr").get(0);
-						if (!this.checked)
-							tableTools_obj.fnSelect(row);
-						else
-							tableTools_obj.fnDeselect($(this).closest("tr")
-									.get(0));
-					});
-
-			$(document).on("click", "#dynamic-table .dropdown-toggle",
-					function(e) {
-						e.stopImmediatePropagation();
-						e.stopPropagation();
-						e.preventDefault();
-					});
-
-			//And for the first simple table, which doesn't have TableTools or dataTables
-			//select/deselect all rows according to table header checkbox
-			var active_class = "active";
-			$("#simple-table > thead > tr > th input[type=checkbox]").eq(0).on(
-					"click",
-					function() {
-						var th_checked = this.checked; //checkbox inside "TH" table header
-
-						$(this).closest("table").find("tbody > tr").each(
-								function() {
-									var row = this;
-									if (th_checked)
-										$(row).addClass(active_class).find(
-												"input[type=checkbox]").eq(0)
-												.prop("checked", true);
-									else
-										$(row).removeClass(active_class).find(
-												"input[type=checkbox]").eq(0)
-												.prop("checked", false);
-								});
-					});
-
-			//select/deselect a row when the checkbox is checked/unchecked
-			$("#simple-table").on("click", "td input[type=checkbox]",
-					function() {
-						var $row = $(this).closest("tr");
-						if (this.checked)
-							$row.addClass(active_class);
-						else
-							$row.removeClass(active_class);
-					});
-
-			/********************************/
-			//add tooltip for small view action buttons in dropdown menu
-			$('[data-rel="tooltip"]').tooltip({
-				placement : tooltip_placement
-			});
-
-			//tooltip placement on right or left
-			function tooltip_placement(context, source) {
-				var $source = $(source);
-				var $parent = $source.closest("table");
-				var off1 = $parent.offset();
-				var w1 = $parent.width();
-
-				var off2 = $source.offset();
-				//var w2 = $source.width();
-
-				if (parseInt(off2.left) < parseInt(off1.left)
-						+ parseInt(w1 / 2))
-					return "right";
-				return "left";
-			}
-		});
-		function updateImage(fileInput, imgindex) {
-			var img = document.querySelector("#" + imgindex);
-			if (fileInput.files && fileInput.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					img.src = e.target.result;
-				};
-				reader.readAsDataURL(fileInput.files[0]);
-			}
-		}
-	</script>
+	
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest/dist/sweetalert2.all.min.js"></script>		
+	
 	<script>
 		$(document).ready(function() {
-							// Thực hiện yêu cầu AJAX để lấy danh sách sản phẩm từ API
-							$.ajax({
-								url : 'http://localhost:8888/SkylineShop/api/products',
-								type : 'GET',
-								dataType : 'json',
-								success : function(response) {
-									displayProducts(response);
-								},
-								error : function(error) {
-									console.error('Error fetching product list:',error);
-								}
-							});
-							
-							//Them san pham
-							$('#submit').click(function (e) {
-							    e.preventDefault();
-							
-							    // Tạo đối tượng FormData và thêm giá trị từ form vào
-							    var formData = new FormData($('#form-create-new-product')[0]);
-							    console.log(formData);
-							    
-							    // Thêm các file vào FormData
-							    formData.append('image1', $('#id-input-file-1')[0].files[0]);
-							    formData.append('image2', $('#id-input-file-2')[0].files[0]);
-							    formData.append('image3', $('#id-input-file-3')[0].files[0]);
-							    console.log([...formData.entries()]);
-							    $.ajax({
-							        url: 'http://localhost:8888/SkylineShop/api/products',
-							        type: 'POST',
-							        processData: false,
-							        contentType: false,
-							        data: formData,
-							        success: function (result) {
-							            console.log(result);
-							        },
-							        error: function (error) {
-							            console.log(error);
-							        }
-							    });
-							});
+			// Thực hiện yêu cầu AJAX để lấy danh sách sản phẩm từ API
+			$.ajax({
+				url : 'http://localhost:8888/SkylineShop/api/products',
+				type : 'GET',
+				dataType : 'json',
+				success : function(response) {
+					displayProducts(response);
+				},
+				error : function(error) {
+					console.error('Error fetching product list:',error);
+				}
+			});
+			
+			//Them san pham
+			$('#submit').click(function (e) {
+			    e.preventDefault();
+			   
+			    // Tạo đối tượng FormData và thêm giá trị từ form vào
+			    var formData = new FormData($('#form-create-new-product')[0]);
+			    
+			    // Thêm các file vào FormData
+			    formData.append('file', $('#id-input-file-1')[0].files[0]);
+			    formData.append('file', $('#id-input-file-2')[0].files[0]);
+			    formData.append('file', $('#id-input-file-3')[0].files[0]);
+			    $.ajax({
+			        url: 'http://localhost:8888/SkylineShop/api/products',
+			        type: 'POST',
+			        processData: false,
+			        contentType: false,
+			        data: formData,
+			        success: function (response) {
+			        	 displayProducts(response);
+			        	 Swal.fire({
+		                	  title: 'Thêm mới sản phẩm thành công',
+		                	  showClass: {
+		                	    popup: 'animate__animated animate__fadeInDown'
+		                	  },
+		                	  hideClass: {
+		                	    popup: 'animate__animated animate__fadeOutUp'
+		                	  }
+		                })
+			        },
+			        error: function (error) {
+			            console.log(error);
+			        }
+			    });
+			});
+			
+			// Sửa sản phẩm
+			$(document).on('click', '.green-edit', function (e) {
+				e.preventDefault();
+				var idProduct = $(this).closest('tr').find('.id-product').val();
+		        $.ajax({
+		            url: 'http://localhost:8888/SkylineShop/api/products/'+idProduct, // Thay đổi URL này thành địa chỉ URL thích hợp của bạn
+		            method: 'GET',
+		            dataType: 'json',
+		            success: function(response) {
+		            	$('#form-create-new-product input[name="product_name"]').val(response.productEntity.product_name);
+		                $('#form-create-new-product input[name="price"]').val(response.productEntity.price);
+		                $('#form-create-new-product input[name="desc"]').val(response.productEntity.desc);
+		                
+		                $('#form-create-new-product select[name="cate_name"]').val(response.productEntity.cate_name);
+		                $('#form-create-new-product select[name="brand_name"]').val(response.productEntity.brand_name);
+		                $('#form-create-new-product input[name="id_pro"]').val(response.productEntity.id_product);
+		                //var button = $("#submit");
+		                //button.attr("id", "edit");
 
-							//Xoa san pham
-							$(document).on('click', '.red-delete', function (e) {
-							    e.preventDefault();
-							    var idProduct = $(this).closest('tr').find('.id-product').val();
-							    
-							    Swal.fire({
-							    	  title: 'Xóa sản phẩm?',
-							    	  text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
-							    	  icon: 'warning',
-							    	  showCancelButton: true,
-							    	  confirmButtonColor: '#3085d6',
-							    	  cancelButtonColor: '#d33',
-							    	  confirmButtonText: 'Xóa'
-							    	}).then((result) => {
-							    	  if (result.isConfirmed) {
-							    		  var urlink = 'http://localhost:8888/SkylineShop/api/products/'+ idProduct;
-										    $.ajax({
-										      url: urlink,
-										      type: 'DELETE',
-										      processData: false,
-										      contentType: false,
-										      dataType: 'json',
-										      success: function (result) {
-										    	  displayProducts(result);
-										      },
-										      error: function (error) {
-										        console.log(error);
-										      },
-										    });
-							    	    Swal.fire(
-							    	      'Thành công!',
-							    	      'Bạn đã xóa sản phẩm thành công',
-							    	      'success'
-							    	    )
-							    	  }
-							    	})
-							});
-
-							function displayProducts(response) {
-								// Lặp qua danh sách sản phẩm và thêm chúng vào danh sách UL
-								var tbody = $('#table'); // ID của tbody trong bảng
-								// Xóa các dòng cũ trong tbody
-								tbody.empty();
-								// Lặp qua danh sách sản phẩm và thêm từng sản phẩm vào tbody
-								for (var i = 0; i < response.products.length; i++) {
-									var product = response.products[i];
-									// Tạo một dòng tr mới
-									var row = $('<tr>');
-									
-									var hiddenInput = $('<input type="hidden" class="id-product">').val(product.id_product);
-							        row.append(hiddenInput);
-							        
-									// Thêm checkbox
-									var checkboxCell = $('<td class="center">')
-											.html(
-													'<label class="pos-rel"><input type="checkbox" class="ace" /><span class="lbl"></span></label>');
-									row.append(checkboxCell);
-									// Thêm tên sản phẩm (ví dụ: <td><a href="#">max.com</a></td>)
-									var productNameCell = $('<td>').html(
-											'<a href="#">'
-													+ product.product_name
-													+ '</a>');
-									row.append(productNameCell);
-									// Thêm giá (ví dụ: <td>$60</td>)
-									var priceCell = $('<td>').text(
-											'' + product.price);
-									row.append(priceCell);
-									//Thêm mô tả <td class="hidden-480">4,400</td>
-									var desc = $('<td class="hidden-480">')
-											.text('' + product.desc);
-									row.append(desc);
-									// Thêm brand <td>Mar 11</td>
-									var brand = $('<td>').text(
-											'' + product.brand_name);
-									row.append(brand);
-									//Thêm danh mục <td class="hidden-480"><span class="label label-sm label-warning">Expiring</span></td>
-									var cate = $('<td class="hidden-480">')
-											.text('' + product.cate_name);
-									row.append(cate);
-									// Thêm các nút "Edit" và "Delete"
-									var actionCell = $('<td>');
-
-									// Nút "Edit" cho màn hình lớn
-									actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
-				        							+ '<button class="green green-lock" style="border: none !important; background-color: transparent;"><i class="fa fa-pencil bigger-130" aria-hidden="true"></i></i></button>'
-				        							+ '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
-				        							+ '</div>');
-
-									// Nút "Edit" cho màn hình nhỏ
-									actionCell
-											.append('<div class="hidden-md hidden-lg">'
-													+ '<div class="inline pos-rel">'
-													+ '<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">'
-													+ '<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>'
-													+ '</button>'
-													+ '<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">'
-													+ '<li><a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="ace-icon fa fa-search-plus bigger-120"></i></span></a></li>'
-													+ '<li><a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i></span></a></li>'
-													+ '<li><a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i></span></a></li>'
-													+ '</ul>'
-													+ '</div>'
-													+ '</div>');
-
-									// Thêm cột actionCell vào dòng
-									row.append(actionCell);
-
-									// Thêm dòng vào tbody
-									tbody.append(row);
-								}
-								// Lấy element có class là "form-group" để thêm các select box vào đó
-								var formGroupContainer = $('#category');
-								// Lặp qua danh sách categories trong response
-								formGroupContainer.empty();
-								// Tạo một element select bằng jQuery
-								var selectElement = $('<select>').addClass('col-sm-3').attr('name', 'cate_name');
-
-								// Đặt id của selectElement dựa trên thông tin của category (ví dụ: category.id)
-								selectElement.attr('id','form-field-select-1');
-
-								// Thêm một option rỗng
-								selectElement.append($('<option>').val('').text(''));
-								for (var i = 0; i < response.categories.length; i++) {
-									var category = response.categories[i];
-									
-									// Thêm một option mới với giá trị và nội dung dựa trên thông tin của mỗi mục trong category
-									selectElement.append($('<option>').val(category.cate_name).text(category.cate_name));
-								}
-
-								// Tạo một element label bằng jQuery
-								var labelElement = $('<label>').attr({
-									'for' : selectElement.attr('id'),
-									'class' : 'col-sm-3 me-2 control-label'
-								}).text('Danh mục');
-
-								// Tạo một element div để chứa label và select bằng jQuery
-								var divContainer = $('<div>').addClass('form-group');
-								divContainer.append(labelElement);
-								divContainer.append(selectElement);
-
-								// Thêm divContainer vào formGroupContainer
-								formGroupContainer.append(divContainer);
-								
-								//Brand
-								var formGroup = $('#brand-select');
-								formGroup.empty();
-								var select = $('<select>').addClass('col-sm-3').attr('name', 'brand_name');
-								select.attr('id','form-field-select-1');
-								select.append($('<option>').val('').text(''));
-								for (var i = 0; i < response.brands.length; i++) {
-									var brands = response.brands[i];
-									select.append($('<option>').val(brands.brand_name).text(brands.brand_name));
-								}
-								// Tạo một element label bằng jQuery
-								var label = $('<label>').attr({
-									'for' : select.attr('id'),
-									'class' : 'col-sm-3 me-2 control-label'
-								}).text('Brand');
-								// Tạo một element div để chứa label và select bằng jQuery
-								var div = $('<div>').addClass('form-group');
-								div.append(label);
-								div.append(select);
-
-								// Thêm divContainer vào formGroupContainer
-								formGroup.append(div);
-							}
-							
-						});
+		                // Hiển thị ảnh preview (nếu có)
+		                if (response.file) {
+		                	for(var i =0; i < response.file.length; i++ ){
+		                		var name = response.file[i];
+		                		var imagePath = '${pageContext.request.contextPath}/template/web/images/' + name.fileName;
+		                		$('#img' + (i+1)).attr('src', imagePath);
+		                	}
+		                }
+		                
+		            },
+		            error: function(error) {
+		                console.error('Error:', error);
+		            }
+		        });
+			});
+			$(document).on('click', '#edit', function (e) {
+				e.preventDefault();
+				var idProduct = $('#form-create-new-product input[name="id_pro"]').val();
+				var formData = new FormData($('#form-create-new-product')[0]);
+			    
+			    // Thêm các file vào FormData
+			    formData.append('file', $('#id-input-file-1')[0].files[0]);
+			    formData.append('file', $('#id-input-file-2')[0].files[0]);
+			    formData.append('file', $('#id-input-file-3')[0].files[0])
+			    $.ajax({
+			    	url: 'http://localhost:8888/SkylineShop/api/products/'+idProduct,
+			        type: 'PUT',
+			        processData: false,
+			        contentType: false,
+			        data: formData,
+			        success: function (response) {
+			        	 displayProducts(response);
+			        	 Swal.fire({
+		                	  title: 'Thay đổi thông tin thành công',
+		                	  showClass: {
+		                	    popup: 'animate__animated animate__fadeInDown'
+		                	  },
+		                	  hideClass: {
+		                	    popup: 'animate__animated animate__fadeOutUp'
+		                	  }
+		                })
+			        },
+			        error: function (error) {
+			            console.log(error);
+			        }
+			    });
+			});
+	
+			//Xoa san pham
+			$(document).on('click', '.red-delete', function (e) {
+			    e.preventDefault();
+			    var idProduct = $(this).closest('tr').find('.id-product').val();
+			    
+			    Swal.fire({
+			    	  title: 'Xóa sản phẩm?',
+			    	  text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+			    	  icon: 'warning',
+			    	  showCancelButton: true,
+			    	  confirmButtonColor: '#3085d6',
+			    	  cancelButtonColor: '#d33',
+			    	  confirmButtonText: 'Xóa'
+			    	}).then((result) => {
+			    	  if (result.isConfirmed) {
+			    		  var urlink = 'http://localhost:8888/SkylineShop/api/products/'+ idProduct;
+						    $.ajax({
+						      url: urlink,
+						      type: 'DELETE',
+						      processData: false,
+						      contentType: false,
+						      dataType: 'json',
+						      success: function (response) {
+						    	  displayProducts(response);
+						      },
+						      error: function (error) {
+						        console.log(error);
+						      },
+						    });
+			    	    Swal.fire(
+			    	      'Thành công!',
+			    	      'Bạn đã xóa sản phẩm thành công',
+			    	      'success'
+			    	    )
+			    	  }
+			    	})
+			});
+	
+			function displayProducts(response) {
+				// Lặp qua danh sách sản phẩm và thêm chúng vào danh sách UL
+				var tbody = $('#table'); // ID của tbody trong bảng
+				// Xóa các dòng cũ trong tbody
+				tbody.empty();
+				// Lặp qua danh sách sản phẩm và thêm từng sản phẩm vào tbody
+				for (var i = 0; i < response.products.length; i++) {
+					var product = response.products[i];
+					// Tạo một dòng tr mới
+					var row = $('<tr>');
+					
+					var hiddenInput = $('<input type="hidden" class="id-product">').val(product.id_product);
+			        row.append(hiddenInput);
+			        
+					// Thêm checkbox
+					var checkboxCell = $('<td class="center">')
+							.html(
+									'<label class="pos-rel"><input type="checkbox" class="ace" /><span class="lbl"></span></label>');
+					row.append(checkboxCell);
+					// Thêm tên sản phẩm (ví dụ: <td><a href="#">max.com</a></td>)
+					var productNameCell = $('<td>').html(
+							'<a href="#">'
+									+ product.product_name
+									+ '</a>');
+					row.append(productNameCell);
+					// Thêm giá (ví dụ: <td>$60</td>)
+					var priceCell = $('<td>').text(
+							'' + product.price);
+					row.append(priceCell);
+					//Thêm mô tả <td class="hidden-480">4,400</td>
+					var desc = $('<td class="hidden-480">')
+							.text('' + product.desc);
+					row.append(desc);
+					// Thêm brand <td>Mar 11</td>
+					var brand = $('<td>').text(
+							'' + product.brand_name);
+					row.append(brand);
+					//Thêm danh mục <td class="hidden-480"><span class="label label-sm label-warning">Expiring</span></td>
+					var cate = $('<td class="hidden-480">')
+							.text('' + product.cate_name);
+					row.append(cate);
+					// Thêm các nút "Edit" và "Delete"
+					var actionCell = $('<td>');
+	
+					// Nút "Edit" cho màn hình lớn
+					actionCell.append('<div class="hidden-sm hidden-xs action-buttons">'
+	    							+ '<button class="green green-edit" data-toggle="modal" data-target="#exampleModalCenter" style="border: none !important; background-color: transparent;"><i class="fa fa-pencil bigger-130" aria-hidden="true"></i></i></button>'
+	    							+ '<button class="red red-delete" style="border: none !important; background-color: transparent;"><i class="ace-icon fa fa-trash-o bigger-130"></i></button>'
+	    							+ '</div>');
+	
+					// Nút "Edit" cho màn hình nhỏ
+					actionCell
+							.append('<div class="hidden-md hidden-lg">'
+									+ '<div class="inline pos-rel">'
+									+ '<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">'
+									+ '<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>'
+									+ '</button>'
+									+ '<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">'
+									+ '<li><a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="ace-icon fa fa-search-plus bigger-120"></i></span></a></li>'
+									+ '<li><a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i></span></a></li>'
+									+ '<li><a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i></span></a></li>'
+									+ '</ul>'
+									+ '</div>'
+									+ '</div>');
+	
+					// Thêm cột actionCell vào dòng
+					row.append(actionCell);
+	
+					// Thêm dòng vào tbody
+					tbody.append(row);
+				}
+				
+				//Category
+				// Lấy element có class là "form-group" để thêm các select box vào đó
+				var formGroupContainer = $('#category');
+				// Lặp qua danh sách categories trong response
+				formGroupContainer.empty();
+				// Tạo một element select bằng jQuery
+				var selectElement = $('<select>').addClass('col-sm-3').attr('name', 'cate_name');
+	
+				// Đặt id của selectElement dựa trên thông tin của category (ví dụ: category.id)
+				selectElement.attr('id','form-field-select-1');
+	
+				// Thêm một option rỗng
+				selectElement.append($('<option>').val('').text(''));
+				for (var i = 0; i < response.categories.length; i++) {
+					var category = response.categories[i];
+					
+					// Thêm một option mới với giá trị và nội dung dựa trên thông tin của mỗi mục trong category
+					selectElement.append($('<option>').val(category.cate_name).text(category.cate_name));
+				}
+	
+				// Tạo một element label bằng jQuery
+				var labelElement = $('<label>').attr({
+					'for' : selectElement.attr('id'),
+					'class' : 'col-sm-3 me-2 control-label'
+				}).text('Danh mục');
+	
+				// Tạo một element div để chứa label và select bằng jQuery
+				var divContainer = $('<div>').addClass('form-group');
+				divContainer.append(labelElement);
+				divContainer.append(selectElement);
+	
+				// Thêm divContainer vào formGroupContainer
+				formGroupContainer.append(divContainer);
+				
+				//Brand
+				var formGroup = $('#brand-select');
+				formGroup.empty();
+				var select = $('<select>').addClass('col-sm-3').attr('name', 'brand_name');
+				select.attr('id','form-field-select-1');
+				select.append($('<option>').val('').text(''));
+				for (var i = 0; i < response.brands.length; i++) {
+					var brands = response.brands[i];
+					select.append($('<option>').val(brands.brand_name).text(brands.brand_name));
+				}
+				// Tạo một element label bằng jQuery
+				var label = $('<label>').attr({
+					'for' : select.attr('id'),
+					'class' : 'col-sm-3 me-2 control-label'
+				}).text('Brand');
+				// Tạo một element div để chứa label và select bằng jQuery
+				var div = $('<div>').addClass('form-group');
+				div.append(label);
+				div.append(select);
+	
+				// Thêm divContainer vào formGroupContainer
+				formGroup.append(div);
+			}
+			
+		});
 	</script>
 	<script type="text/javascript">
 		function previewImage1() {

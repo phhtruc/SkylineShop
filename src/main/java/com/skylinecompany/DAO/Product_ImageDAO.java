@@ -33,7 +33,7 @@ public class Product_ImageDAO extends BaseDAO {
 	}
 
 	// Lọc sản phẩm theo category
-	private int findCategoryIdByName(String name) {
+	public int findCategoryIdByName(String name) {
 		String sql = "SELECT id_cate FROM Category WHERE cate_name = ?";
 		return _jdbcTemplate.queryForObject(sql, Integer.class, name);
 	}
@@ -54,7 +54,7 @@ public class Product_ImageDAO extends BaseDAO {
 	}
 
 	// Lọc sản phẩm theo Brand
-	private int findIdBrandByName(String brand) {
+	public int findIdBrandByName(String brand) {
 		String sql = "select id_brand from Brand where brand_name = ?";
 		return _jdbcTemplate.queryForObject(sql, Integer.class, brand);
 	}

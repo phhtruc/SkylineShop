@@ -9,4 +9,7 @@
 		<pattern>/quan-tri/*</pattern>
 	</decorator>
 
+	<decorator name="server" page="server.jsp">
+		<pattern>/server</pattern>
+	</decorator>
 </decorators>

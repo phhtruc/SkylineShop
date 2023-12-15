@@ -26,12 +26,14 @@
 	<!-- Spring MVC -->
 	<servlet> <!-- Load, khai báo cho dispatcher-servlet.xml -->
 		<servlet-name>dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/context/dispatcher-servlet.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	        <param-value>/WEB-INF/context/dispatcher-servlet.xml</param-value>
+	    </init-param>
+	    <load-on-startup>1</load-on-startup>
+	    <!-- Thêm multipart-config tại đây -->
+		
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>

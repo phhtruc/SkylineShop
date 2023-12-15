@@ -111,7 +111,7 @@ public class UserDAO extends BaseDAO {
 	//Delete user with id
 	public List<UsersDto> deleteUserId(int id) {
 		String sql = "delete from [User] where id_user = ?";
-		int delete = _jdbcTemplate.update(sql, new Object[] {id});
+		_jdbcTemplate.update(sql, new Object[] {id});
 		List<UsersDto> list = getAllUser();
 		return list;
 	}
@@ -121,7 +121,7 @@ public class UserDAO extends BaseDAO {
 		String sql = "UPDATE [User]\r\n"
 				+ "SET [status] = 2\r\n"
 				+ "WHERE id_user = ?";
-		int update = _jdbcTemplate.update(sql, new Object[] {id});
+		_jdbcTemplate.update(sql, new Object[] {id});
 		List<UsersDto> list = getAllUser();
 		return list;
 	}

@@ -63,8 +63,8 @@ public class ProfileController {
 	    ModelAndView mav = new ModelAndView("web/profile");
 	    String namefile =commonsMultipartFiles.getOriginalFilename();
 		if(!"".equals(namefile)){
-			String dirFile = request.getServletContext().getRealPath("images");
-			System.out.println(dirFile);
+			String dirFile = request.getServletContext().getRealPath("/") + "template" + File.separator + "web" + File.separator + "img" ;
+	        System.out.println(dirFile);
 			File fileDir = new File(dirFile);
 			if(!fileDir.exists()){
 				fileDir.mkdir();

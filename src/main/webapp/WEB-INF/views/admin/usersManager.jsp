@@ -252,9 +252,7 @@
 											class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
-													<th class="center"><label class="pos-rel"> <input
-															type="checkbox" class="ace" /> <span class="lbl"></span>
-													</label></th>
+													<th class="center"><label class="pos-rel"> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label></th>
 													<th>Thông tin</th>
 													<th>Email</th>
 													<th class="hidden-480">Số điện thoại</th>
