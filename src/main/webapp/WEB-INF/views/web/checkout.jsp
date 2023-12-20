@@ -48,14 +48,23 @@
 <link rel="stylesheet" href="template/web/css/style.css" type="text/css" />
 
 <style>
-.checkout_radio  .form_radio {
-	border-bottom: solid 1px rgb(192, 192, 192);
-}
-
-.checkout_radio  .form_radio img {
-	width: 13%;
-	float: right;
-}
+	.checkout_radio  .form_radio {
+		border-bottom: solid 1px rgb(192, 192, 192);
+	}
+	
+	.checkout_radio  .form_radio img {
+		width: 13%;
+		float: right;
+	}
+	#provinceList {
+            display: none;
+            overflow: auto; /* Thêm thanh cuộn khi cần */
+            max-height: 150px; /* Đặt chiều cao tối đa cho phần tử */
+            border: 1px solid #ccc; /* Thêm viền để trang trí */
+            background-color: #fff; /* Màu nền */
+            position: absolute; /* Tạo vị trí tuyệt đối để không làm ảnh hưởng đến bố cục khác */
+            width: 100%; /* Độ rộng tương ứng với input */
+    }
 </style>
 </head>
 
@@ -127,14 +136,99 @@
 								<p>
 									Tỉnh/Thành Phố<span>*</span>
 								</p>
-								<input type="text" />
+								<input type="text" id="provinceInput" name="province" onclick="fetchProvinces()">
+							    <div id="provinceList">
+							        <!-- Danh sách tỉnh/thành phố sẽ được hiển thị ở đây -->
+							    </div>
 							</div>
 							<div class="checkout__input">
 								<p>
 									Phường/Quận<span>*</span>
 								</p>
-								<input type="text" />
+								<input type="text" id="provinceInputPhuong" name="provincePhuong" onclick="fetchProvincesPhuong()"/>
+								<div id="provinceListPhuong">
+							        <!-- Danh sách tỉnh/thành phố sẽ được hiển thị ở đây -->
+							    </div>
 							</div>
+							<script>
+								function fetchProvinces() {
+								    // Gửi request AJAX đến API để lấy danh sách tỉnh/thành phố
+								    var apiUrl = 'https://provinces.open-api.vn/api/?depth=2';
+	
+								    $.ajax({
+								        url: apiUrl,
+								        method: 'GET',
+								        dataType: 'json',
+								        success: function(response) {
+								            // Xử lý dữ liệu và hiển thị trong #provinceList
+								            displayProvinces(response, 'provinceList');
+								        },
+								        error: function(error) {
+								            console.error('Error fetching provinces:', error);
+								        }
+								    });
+								}
+	
+								function displayProvinces(data, targetId) {
+								    // Lấy danh sách tỉnh/thành phố từ dữ liệu
+								    var provinces = data.map(function(province) {
+								        return province.name;
+								    });
+	
+								    // Hiển thị danh sách trong #provinceList hoặc #provinceListPhuong
+								    var listContainer = document.getElementById(targetId);
+								    listContainer.innerHTML = '';
+	
+								    provinces.forEach(function(province) {
+								        var listItem = document.createElement('div');
+								        listItem.textContent = province;
+								        listItem.onclick = function() {
+								            // Đặt giá trị của input khi người dùng chọn
+								            document.getElementById(targetId.replace('List', 'Input')).value = province;
+								            // Ẩn danh sách sau khi chọn
+								            listContainer.style.display = 'none';
+								        };
+	
+								        listContainer.appendChild(listItem);
+								    });
+	
+								    // Hiển thị danh sách
+								    listContainer.style = "overflow: auto;"+
+							                				"max-height: 150px;"+
+							                				"border: 1px solid #ccc;"+
+														    "background-color: #fff;"+
+														    "position: absolute;"+
+														    "position: absolute;"+
+														    "position: absolute;"+
+														    "width: 100%;";
+														    
+									fetchProvincesPhuong();
+								}
+								function fetchProvincesPhuong() {
+								    // Gửi request AJAX đến API để lấy danh sách tỉnh/thành phố
+								    
+								    var apiUrl = 'https://provinces.open-api.vn/api/d/"'+code+'"?depth=2';
+	
+								    $.ajax({
+								        url: apiUrl,
+								        method: 'GET',
+								        dataType: 'json',
+								        success: function(response) {
+								            // Xử lý dữ liệu và hiển thị trong #provinceListPhuong
+								            displayProvinces(response, 'provinceListPhuong');
+								        },
+								        error: function(error) {
+								            console.error('Error fetching provinces:', error);
+								        }
+								    });
+								}
+	
+								// Bắt sự kiện click để gọi hàm fetchProvinces khi người dùng click vào input
+								document.getElementById('provinceInput').addEventListener('click', fetchProvinces);
+								document.getElementById('provinceInputPhuong').addEventListener('click', fetchProvincesPhuong);
+
+							</script>
+							
 							<c:if test="${voucherID != null}">
 								<input type="hidden" name="voucher" value="voucherID">
 							</c:if>
