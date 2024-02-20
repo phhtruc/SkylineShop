@@ -34,16 +34,16 @@
 			value="jdbc:sqlserver://34.42.252.114:1433;databaseName=skyline_shop"></property>
 		<property name="username" value="sqlserver"></property>
 		<property name="password" value="123"></property>
-	</bean> 
+	</bean>
 	
-<!-- 	<bean id="dataSource"
+<!--  	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
 		<property name="url"
 			value="jdbc:sqlserver://localhost:1433;databaseName=skyline_shop"></property>
-		<property name="username" value="TrucPham"></property>
-		<property name="password" value="123"></property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="12345"></property>
 	</bean> -->
 
 	<bean id="jdbcTemplate"
