@@ -131,7 +131,7 @@
 							<div class="product__details__cart__option">
 								<div class="quantity">
 									<div class="pro-qty">
-                          				<input type="text" value="1" id="quantity" />
+                          				<input type="text" value="1" id="quantity" min="1" />
 									</div>
 								</div>
 								<button style="padding: 10px" class="primary-btn add-to-cart add-detail" data-product-id="${product.id_product }">add to cart</button>

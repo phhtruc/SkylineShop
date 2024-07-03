@@ -5,7 +5,7 @@
 	<groupId>com.skylinecompany</groupId>
 	<artifactId>SkylineShop</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<servlet.api.version>4.0.1</servlet.api.version>
@@ -25,6 +25,8 @@
 			<artifactId>spring-core</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
+		
+		<!-- restfb -->
 		<dependency>
 			<groupId>com.restfb</groupId>
 			<artifactId>restfb</artifactId>
@@ -107,7 +109,7 @@
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
-			<version>9.4.0.jre11</version>
+			<version>8.2.2.jre8</version>
 		</dependency>
 
 		<!-- Spring security-->
@@ -224,16 +226,6 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<warSourceDirectory>src/main/webapp</warSourceDirectory>
-					<warName>technewfinal</warName>
-					<failOnMissingWebEml>false</failOnMissingWebEml>
 				</configuration>
 			</plugin>
 			<plugin>

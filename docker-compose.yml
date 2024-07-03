@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  sqldb:
+    container_name: sqlserverdb
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: always
+    env_file: ./.env
+    ports:
+      - "${SQLSERVER_LOCAL_PORT}:${SQLSERVER_DOCKER_PORT}"
+    environment:
+      - SA_PASSWORD=$SQLSERVER_SA_PASSWORD
+      - ACCEPT_EULA=Y
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - skyline
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "$SQLSERVER_SA_PASSWORD", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  api-service:
+    container_name: SpringMVC
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
+    restart: always
+    env_file: ./.env
+    depends_on:
+      sqldb:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_JSON: '{
+              "spring.datasource.url"  : "jdbc:sqlserver://sqlserverdb:$SQLSERVER_DOCKER_PORT;databaseName=$SQLSERVER_DATABASE",
+              "spring.datasource.username" : "sa",
+              "spring.datasource.password" : "$SQLSERVER_SA_PASSWORD"
+            }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+    networks:
+      - skyline
+
+volumes:
+  sqlserver-data:
+
+networks:
+  skyline:
+    driver: bridge

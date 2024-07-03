@@ -24,6 +24,7 @@ public class RestFB {
 	public static String FACEBOOK_APP_ID = "1132561737721410";
 	public static String FACEBOOK_APP_SECRET = "8d894445e6e17d03be5fe70f2f7a2ee2";
 	public static String FACEBOOK_REDIRECT_URL = "http://localhost:8888/SkylineShop/login-facebook";
+//	public static String FACEBOOK_REDIRECT_URL = "https://skyline-shop-e327475651af.herokuapp.com/login-facebook";
 	public static String FACEBOOK_LINK_GET_TOKEN = "https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&redirect_uri=%s&code=%s";
 
 	public String getToken(final String code) throws ClientProtocolException, IOException {

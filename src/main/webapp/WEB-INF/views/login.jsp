@@ -48,15 +48,24 @@
 					     <p> <i>Hoặc đăng nhập bằng </i></p>
 					     <div class = "row container d-flex justify-content-center gap-3">
 					        <div class= "col container-as">
-					           	<a href="https://www.facebook.com/dialog/oauth?client_id=1132561737721410&redirect_uri=http://localhost:8888/SkylineShop/login-facebook">
+					        	<a href="https://www.facebook.com/dialog/oauth?client_id=1132561737721410&redirect_uri=http://localhost:8888/SkylineShop/login-facebook">
 					           		<img alt="" src="template/web/img/login_fb.png">
 					           		<span>FaceBook</span>
 					           	</a>
+					           	<!-- <a href="https://www.facebook.com/dialog/oauth?client_id=1132561737721410&redirect_uri=https://skyline-shop-e327475651af.herokuapp.com/login-facebook">
+					           		<img alt="" src="template/web/img/login_fb.png">
+					           		<span>FaceBook</span>
+					           	</a> -->
 					        </div>
 					         <div class= "col container-as">
 
 
-					         	<a style="width: 100%; height: 100%" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
+					         	<!-- <a style="width: 100%; height: 100%" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8888/SkylineShop/login-google&response_type=code
+    &client_id=946928910591-a6uhbkq7ahh2nv3lnrvss0si8ll2pvo6.apps.googleusercontent.com&approval_prompt=force">
+					           		<img alt="" src="template/web/img/login_google.png">
+					           		<span>Google</span>
+					           	</a> -->
+					           	<a style="width: 100%; height: 100%" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=https://skyline-shop-e327475651af.herokuapp.com/login-google&response_type=code
     &client_id=946928910591-a6uhbkq7ahh2nv3lnrvss0si8ll2pvo6.apps.googleusercontent.com&approval_prompt=force">
 					           		<img alt="" src="template/web/img/login_google.png">
 					           		<span>Google</span>

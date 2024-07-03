@@ -157,8 +157,11 @@
 										type="number" groupingUsed="true" value="${TotalPrice}" />
 									VND</span></li>
 							<li>Số tiền được giảm<span class="cart-price-discountAmount"><fmt:formatNumber
-										type="number" groupingUsed="true" value="" /> VND</span></li>
-							<li>Tổng sau khi giảm<span class="price"><fmt:formatNumber
+										type="number" groupingUsed="true" value="0" /> VND</span></li>
+							<%-- <li>Tổng sau khi giảm<span class="price"><fmt:formatNumber
+										type="number" groupingUsed="true" value="${TotalPrice}" />
+									VND</span></li> --%>
+							<li>Tổng sau khi giảm<span class="cart-price"><fmt:formatNumber
 										type="number" groupingUsed="true" value="${TotalPrice}" />
 									VND</span></li>
 						</ul>
